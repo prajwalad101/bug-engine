@@ -33,7 +33,7 @@ function Sidebar() {
       <nav
         className={`${
           sidebarOpen ? "left-0" : "-left-full"
-        }  bg-white w-56 border-r-2 h-[100vh] fixed top-0 transition-all`}
+        }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 transition-all`}
       >
         <ul className="w-full mx-4">
           {/* Close Sidebar Icon */}
