@@ -6,16 +6,16 @@ export const SidebarData = [
   {
     title: "Personal Info",
     path: "/info",
-    icon: <BiIcons.BiNotification />,
+    icon: <BiIcons.BiNotification size={20} />,
   },
   {
     title: "Developers",
     path: "/developers",
-    icon: <BsIcons.BsPeople />,
+    icon: <BsIcons.BsPeople size={20} />,
   },
   {
-    title: "Personal Info",
+    title: "Notifications",
     path: "/info",
-    icon: <IoIcons.IoMdNotificationsOutline />,
+    icon: <IoIcons.IoMdNotificationsOutline size={20} />,
   },
 ];
