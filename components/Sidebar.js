@@ -64,6 +64,7 @@ function Sidebar() {
                 <li
                   key={item.id}
                   className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 w-[85%] pl-3"
+                  onClick={closeSidebar}
                 >
                   <Link href={`/projects/${item.id}`}>{item.name}</Link>
                 </li>
