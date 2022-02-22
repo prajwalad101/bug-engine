@@ -5,7 +5,7 @@ import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
-import { projects } from "../dev-data/projects";
+import { projects } from "../../dev-data/projects";
 
 function Sidebar() {
   // State for opening and closing the sidebar
