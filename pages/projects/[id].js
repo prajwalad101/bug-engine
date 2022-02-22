@@ -3,7 +3,7 @@ import Issues from "../../components/Project/Issues";
 
 function ProjectPage() {
   return (
-    <div className="ml-5 mt-5 font-lato">
+    <div className="ml-5 mt-5 mr-5 font-lato">
       <Heading />
       <Issues />
     </div>
