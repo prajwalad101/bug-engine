@@ -19,27 +19,29 @@ function Issues() {
 
   return (
     <div className="mt-6">
-      <hr className="h-0 border-0 border-t-2 " />
-      {/* No status issues */}
-      <div>
-        <p>No Status</p>
-        {noStatusIssues.map((issue) => {
-          return <Issue issue={issue} key={issue.id} />;
-        })}
-      </div>
-      <div>
+      <hr className="h-0 border-0 border-t-2 border-blue-300" />
+      <div className="flex overflow-x-scroll">
+        {/* No status issues */}
+        <div className="mt-2 shrink-0 w-[360px]">
+          <p>No Status ({noStatusIssues.length})</p>
+          {noStatusIssues.map((issue) => {
+            return <Issue issue={issue} key={issue.id} />;
+          })}
+        </div>
         {/* In progress issues */}
-        <p>In Progress</p>
-        {inProgressIssues.map((issue) => {
-          return <Issue issue={issue} key={issue.id} />;
-        })}
-      </div>
-      {/* Completed issues */}
-      <div>
-        <p>Completed</p>
-        {completedIssues.map((issue) => {
-          return <Issue issue={issue} key={issue.id} />;
-        })}
+        <div className="mt-2 shrink-0 w-[360px]">
+          <p>In Progress</p>
+          {inProgressIssues.map((issue) => {
+            return <Issue issue={issue} key={issue.id} />;
+          })}
+        </div>
+        {/* Completed issues */}
+        <div className="mt-2 shrink-0 w-[360px]">
+          <p>Completed</p>
+          {completedIssues.map((issue) => {
+            return <Issue issue={issue} key={issue.id} />;
+          })}
+        </div>
       </div>
     </div>
   );
