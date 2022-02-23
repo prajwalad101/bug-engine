@@ -3,15 +3,7 @@ import { GoSettings } from "react-icons/go";
 
 import { getProjectById } from "../../utils/projectFunc";
 
-function Heading() {
-  const router = useRouter();
-
-  const projectId = router.query.id;
-  const project = getProjectById(projectId);
-
-  // If project not loaded return null
-  if (!project) return null;
-
+function Heading({ project }) {
   return (
     <div>
       <div className="flex items-end gap-4">

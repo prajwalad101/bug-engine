@@ -19,7 +19,7 @@ export const projects = [
         submitter: "Henry parker",
         submittedOn: "January 22, 2022",
         type: "UIDesign",
-        status: "in progress",
+        status: "no status",
         comments: [],
       },
       {
@@ -46,7 +46,7 @@ export const projects = [
         submitter: "Sean Parker",
         submittedOn: "January 22, 2022",
         type: "Development",
-        status: "completed",
+        status: "no status",
         comments: [],
       },
     ],

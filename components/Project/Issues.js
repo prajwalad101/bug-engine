@@ -6,14 +6,7 @@ import { getProjectById } from "../../utils/projectFunc";
 
 import Issue from "./Issue";
 
-function Issues({ setIsModalOpen }) {
-  const router = useRouter();
-
-  const id = router.query.id;
-
-  const project = getProjectById(id);
-  if (!project) return null;
-
+function Issues({ project, setIsModalOpen }) {
   const issues = project.issues;
 
   const noStatusIssues = issues.filter((el) => el.status === "no status");
