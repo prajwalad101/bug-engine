@@ -1,46 +1,51 @@
 const mongoose = require("mongoose");
 
-const projectSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    unique: true,
-    required: [true, "A project must have a name"],
-    trim: true,
-  },
-  createdOn: {
-    type: Date,
-    required: [true, "A project must have a date"],
-  },
-  issues: {
+const projectSchema = new mongoose.Schema(
+  {
     name: {
       type: String,
-      required: [true, "An issue must have a name"],
       unique: true,
+      required: [true, "A project must have a name"],
       trim: true,
     },
-    submitter: {
-      type: String,
-      required: [true, "An issue must have a submitter"],
-    },
-    submittedOn: {
+    createdOn: {
       type: Date,
-      required: [true, "An issue must have a submitted date"],
+      required: [true, "A project must have a date"],
     },
-    type: {
-      type: String,
-      required: [true, "An issue must have a type"],
-    },
-    status: {
-      type: String,
-      required: [true, "An issue must have a status"],
-      enum: {
-        values: ["no status", "in progress", "completed"],
-        message: "Status should be either no status, in progress or completed",
+    issues: {
+      name: {
+        type: String,
+        required: [true, "An issue must have a name"],
+        unique: true,
+        trim: true,
+      },
+      submitter: {
+        type: String,
+        required: [true, "An issue must have a submitter"],
+      },
+      submittedOn: {
+        type: Date,
+        required: [true, "An issue must have a submitted date"],
+      },
+      type: {
+        type: String,
+        required: [true, "An issue must have a type"],
+      },
+      status: {
+        type: String,
+        required: [true, "An issue must have a status"],
+        enum: {
+          values: ["no status", "in progress", "completed"],
+          message:
+            "Status should be either no status, in progress or completed",
+        },
       },
     },
   },
-});
+  { timestamps: true }
+);
 
-const Project = mongoose.model("Project", projectSchema);
+const Project =
+  mongoose.models.Project || mongoose.model("Project", projectSchema);
 
 module.exports = Project;
