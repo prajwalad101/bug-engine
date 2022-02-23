@@ -1,8 +1,4 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
-
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { getProjectById } from "../../utils/projectFunc";
 
 import Issue from "./Issue";
 
