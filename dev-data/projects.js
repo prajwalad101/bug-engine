@@ -55,10 +55,12 @@ export const projects = [
     name: "Futsal Booking App",
     createdOn: "March 11, 2022",
     id: 2,
+    issues: [],
   },
   {
     name: "Library Management",
     createdOn: "March 20, 2022",
     id: 3,
+    issues: [],
   },
 ];

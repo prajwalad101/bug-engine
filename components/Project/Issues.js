@@ -16,37 +16,50 @@ function Issues({ project, setIsModalOpen }) {
   return (
     <div className="mt-6">
       <hr className="h-0 border-0 border-t-2 border-blue-300" />
-      <div className="flex overflow-x-auto mb-10">
-        {/* No status issues */}
-        <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
-          <p className="mb-5">No Status ({noStatusIssues.length})</p>
-          {noStatusIssues.map((issue) => {
-            return <Issue issue={issue} key={issue.id} />;
-          })}
-          {/* Create new issue */}
+      {issues.length !== 0 ? (
+        <div className="flex overflow-x-auto mb-10">
+          {/* No status issues */}
+          <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
+            <p className="mb-5">No Status ({noStatusIssues.length})</p>
+            {noStatusIssues.map((issue) => {
+              return <Issue issue={issue} key={issue.id} />;
+            })}
+            {/* Create new issue */}
+            <div
+              className="flex items-center gap-3 w-fit mt-5 py-3 px-3 text-[#040C24] hover:bg-slate-100 hover:cursor-pointer rounded-md"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <IoIosAddCircleOutline size={22} />
+              <p>Create new issue</p>
+            </div>
+          </div>
+          {/* In progress issues */}
+          <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
+            <p className="mb-5">In Progress ({inProgressIssues.length})</p>
+            {inProgressIssues.map((issue) => {
+              return <Issue issue={issue} key={issue.id} />;
+            })}
+          </div>
+          {/* Completed issues */}
+          <div className="mt-2 shrink-0 w-[360px] pr-7">
+            <p className="mb-5">Completed ({inProgressIssues.length})</p>
+            {completedIssues.map((issue) => {
+              return <Issue issue={issue} key={issue.id} />;
+            })}
+          </div>
+        </div>
+      ) : (
+        <div className="mt-7 flex flex-col items-center">
+          <div className="text-xl text-blue-300">No Issues Found</div>
           <div
-            className="flex items-center gap-3 w-fit mt-5 py-3 px-3 text-[#040C24] hover:bg-slate-100 hover:cursor-pointer rounded-md"
+            className="flex items-center gap-3 w-fit mt-5 py-3 px-3 text-[#040C24] bg-slate-100 hover:bg-slate-200 hover:cursor-pointer rounded-md"
             onClick={() => setIsModalOpen(true)}
           >
             <IoIosAddCircleOutline size={22} />
             <p>Create new issue</p>
           </div>
         </div>
-        {/* In progress issues */}
-        <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
-          <p className="mb-5">In Progress ({inProgressIssues.length})</p>
-          {inProgressIssues.map((issue) => {
-            return <Issue issue={issue} key={issue.id} />;
-          })}
-        </div>
-        {/* Completed issues */}
-        <div className="mt-2 shrink-0 w-[360px] pr-7">
-          <p className="mb-5">Completed ({inProgressIssues.length})</p>
-          {completedIssues.map((issue) => {
-            return <Issue issue={issue} key={issue.id} />;
-          })}
-        </div>
-      </div>
+      )}
     </div>
   );
 }
