@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import { projects } from "../../dev-data/projects";
 import { getProjectById } from "../../utils/projectFunc";
 
-export default function IssueModal() {
+export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   const router = useRouter();
 
   const id = router.query.id;
   const project = getProjectById(id);
 
-  const [isOpen, setIsOpen] = useState(true);
   const [issue, setIssue] = useState("");
 
   const handleChange = (event) => {
@@ -24,16 +23,16 @@ export default function IssueModal() {
   };
 
   function closeModal() {
-    setIsOpen(false);
+    setIsModalOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true);
+    setIsModalOpen(true);
   }
 
   return (
     <>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"

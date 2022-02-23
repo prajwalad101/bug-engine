@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { getProjectById } from "../../utils/projectFunc";
 
 import Issue from "./Issue";
 
-function Issues() {
+function Issues({ setIsModalOpen }) {
   const router = useRouter();
 
   const id = router.query.id;
@@ -29,7 +30,11 @@ function Issues() {
           {noStatusIssues.map((issue) => {
             return <Issue issue={issue} key={issue.id} />;
           })}
-          <div className="flex items-center gap-3 w-fit mt-5 py-3 px-3 text-[#040C24] hover:bg-slate-100 hover:cursor-pointer rounded-md">
+          {/* Create new issue */}
+          <div
+            className="flex items-center gap-3 w-fit mt-5 py-3 px-3 text-[#040C24] hover:bg-slate-100 hover:cursor-pointer rounded-md"
+            onClick={() => setIsModalOpen(true)}
+          >
             <IoIosAddCircleOutline size={22} />
             <p>Create new issue</p>
           </div>
