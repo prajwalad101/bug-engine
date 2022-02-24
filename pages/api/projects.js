@@ -1,16 +1,19 @@
+// utility functions
 import dbConnect from "../../utils/dbConnect";
-import Project from "../../models/project";
 import catchAsync from "../../utils/catchAsync";
 import AppError from "../../utils/appError";
+
+// models
+import Project from "../../models/Project";
+
+// middlewares
 import globalErrorHandler from "../../middleware/errorMd";
 
-dbConnect();
-
 const handler = async (req, res) => {
+  await dbConnect();
   const { method } = req; // request type
 
   if (method === "POST") {
-    console.log(req.body);
     const newProject = await Project.create(req.body);
 
     res.status(200).json({
