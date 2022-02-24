@@ -16,11 +16,18 @@ const handler = async (req, res) => {
   if (method === "POST") {
     const newProject = await Project.create(req.body);
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       data: {
         project: newProject,
       },
+    });
+  } else if (method === "GET") {
+    const projects = await Project.find();
+
+    return res.status(200).json({
+      status: "success",
+      data: projects,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
