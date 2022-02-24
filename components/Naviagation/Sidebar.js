@@ -1,13 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
-import { projects } from "../../dev-data/projects";
+// import { projects } from "../../dev-data/projects";
 
 function Sidebar() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("/api/projects");
+        const data = (await res.json()).data;
+        setProjects(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchData();
+  }, []);
   // State for opening and closing the sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -62,7 +76,7 @@ function Sidebar() {
             {projects.map((item) => {
               return (
                 <li
-                  key={item.id}
+                  key={item._id}
                   className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 w-[85%] pl-3"
                   onClick={closeSidebar}
                 >
