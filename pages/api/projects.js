@@ -1,32 +1,27 @@
 import dbConnect from "../../utils/dbConnect";
 import Project from "../../models/project";
+import catchAsync from "../../utils/catchAsync";
 
-async function handler(req, res) {
-  dbConnect();
+dbConnect();
 
-  if (req.method === "POST") {
-    try {
-      const newProject = await Project.create(req.body);
+const handler = catchAsync(async (req, res) => {
+  const { method } = req; // request type
 
-      res.status(200).json({
-        status: "success",
-        data: {
-          project: newProject,
-        },
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(400).json({
-        status: "fail",
-        message: err,
-      });
-    }
+  if (method === "POST") {
+    const newProject = await Project.create(req.body);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        project: newProject,
+      },
+    });
   } else {
     res.status(500).json({
       status: "error",
       message: "No route for this request found",
     });
   }
-}
+});
 
 export default handler;
