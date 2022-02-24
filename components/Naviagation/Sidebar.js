@@ -5,7 +5,6 @@ import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
-// import { projects } from "../../dev-data/projects";
 
 function Sidebar() {
   const [projects, setProjects] = useState([]);
@@ -80,7 +79,7 @@ function Sidebar() {
                   className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 w-[85%] pl-3"
                   onClick={closeSidebar}
                 >
-                  <Link href={`/projects/${item.id}`}>{item.name}</Link>
+                  <Link href={`/projects/${item._id}`}>{item.name}</Link>
                 </li>
               );
             })}

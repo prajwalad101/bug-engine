@@ -2,14 +2,10 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
-import { projects } from "../../dev-data/projects";
-import { getProjectById } from "../../utils/projectFunc";
-
 export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   const router = useRouter();
 
   const id = router.query.id;
-  const project = getProjectById(id);
 
   const [issue, setIssue] = useState("");
 
@@ -18,7 +14,6 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   };
 
   const addIssue = () => {
-    project.issues.push({ name: issue, submitter: "Michael Scott" });
     closeModal();
   };
 

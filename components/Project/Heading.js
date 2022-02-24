@@ -1,7 +1,4 @@
-import { useRouter } from "next/router";
 import { GoSettings } from "react-icons/go";
-
-import { getProjectById } from "../../utils/projectFunc";
 
 function Heading({ project }) {
   return (
