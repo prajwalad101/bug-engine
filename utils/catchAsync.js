@@ -1,11 +1,12 @@
+import globalErrorHandler from "../middleware/errorMd";
+
 function catchAsync(handler) {
   return async (req, res) => {
-    await handler(req, res).catch((err) => {
-      return res.status(400).json({
-        status: "fail",
-        message: err,
-      });
-    });
+    try {
+      await handler(req, res);
+    } catch (err) {
+      globalErrorHandler(err, req, res);
+    }
   };
 }
 
