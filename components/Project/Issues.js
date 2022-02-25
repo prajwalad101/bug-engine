@@ -18,7 +18,7 @@ function Issues({ project, setIsModalOpen }) {
           <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
             <p className="mb-5">No Status ({noStatusIssues.length})</p>
             {noStatusIssues.map((issue) => {
-              return <Issue issue={issue} key={issue.id} />;
+              return <Issue issue={issue} key={issue._id} />;
             })}
             {/* Create new issue */}
             <div

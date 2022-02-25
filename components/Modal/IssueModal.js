@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   const router = useRouter();
 
-  const id = router.query.id;
+  const projectId = router.query.id;
 
   const [issue, setIssue] = useState("");
 
@@ -13,7 +13,25 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
     setIssue(event.target.value);
   };
 
-  const addIssue = () => {
+  const addIssue = async () => {
+    try {
+      const res = await fetch(`/api/project/${projectId}/issues`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/JSON",
+        },
+        body: JSON.stringify({
+          name: issue,
+          submitter: "Prajwal Adhikari",
+          type: "Development",
+          status: "no status",
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(`Error: ${err}`);
+    }
     closeModal();
   };
 
