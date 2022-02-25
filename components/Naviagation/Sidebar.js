@@ -1,26 +1,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+// hooks
+import useProjects from "../../hooks/useProjects";
+
+// icons
 import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
 
 function Sidebar() {
-  const [projects, setProjects] = useState([]);
+  const projects = useProjects();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/projects");
-        const data = (await res.json()).data;
-        setProjects(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
   // State for opening and closing the sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
