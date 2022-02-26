@@ -4,7 +4,7 @@ export default function ProjectLink({ project, setSidebarOpen }) {
   const router = useRouter();
 
   const pushToProjectPage = () => {
-    router.push(`/projects/${project._id}`);
+    router.push(`/project/${project._id}`);
     setSidebarOpen(false);
   };
 
