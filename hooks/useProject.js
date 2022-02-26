@@ -1,22 +1,16 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 
-const useProject = (projectId) => {
-  const [project, setProject] = useState({});
+const getProjectById = async (projectId) => {
+  const res = await fetch(`/api/project/${projectId}`);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        if (!projectId) return;
-        const res = await fetch(`/api/project/${projectId}`);
-        const project = (await res.json()).data.project;
-        setProject(project);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, [projectId]);
-  return project;
+  if (!res.ok) {
+    throw Error("Error while fetching the post with that id");
+  }
+  return res.json();
 };
 
-export default useProject;
+export default function useProject(projectId) {
+  return useQuery(["project", projectId], () => getProjectById(projectId), {
+    enabled: !!projectId,
+  });
+}

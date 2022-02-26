@@ -1,23 +1,14 @@
-import { useState, useEffect } from "react";
+import { useQuery } from "react-query";
 
-// hook for fetching all projects
-const useProjects = () => {
-  const [projects, setProjects] = useState([]);
+const getProjects = async () => {
+  const res = await fetch("/api/projects");
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch("/api/projects");
-        const data = (await res.json()).data;
-        setProjects(data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
-
-  return projects;
+  if (!res.ok) {
+    throw new Error("Unable to fetch data");
+  }
+  return res.json();
 };
 
-export default useProjects;
+export default function useProjects() {
+  return useQuery("projects", getProjects);
+}

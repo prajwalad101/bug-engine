@@ -15,10 +15,24 @@ function ProjectPage() {
   const router = useRouter();
   const projectId = router.query.id;
 
-  const project = useProject(projectId);
+  const { isLoading, isError, data, error } = useProject(projectId);
 
-  const isEmpty = Object.keys(project).length === 0;
+  const project = data?.data.project;
+
+  const isEmpty = project ? Object.keys(project).length === 0 : true;
   if (isEmpty) return null;
+
+  if (isEmpty) {
+    return <div>404 Error. Page not found</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="ml-5 mt-5 mr-5 font-lato">

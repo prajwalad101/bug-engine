@@ -11,18 +11,21 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 
 function Sidebar() {
-  const projects = useProjects();
+  // const projects = useProjects();
+  const { isLoading, isError, data, error } = useProjects();
+
+  let projects = data?.data;
 
   // State for opening and closing the sidebar
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const openSidebar = () => {
-    setSidebarOpen(true);
-  };
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
 
-  const closeSidebar = () => {
-    setSidebarOpen(false);
-  };
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
 
   return (
     <>
@@ -30,7 +33,7 @@ function Sidebar() {
       <div className="flex justify-start items-center my-3 ml-5">
         <MdIcons.MdMenu
           size={35}
-          onClick={openSidebar}
+          onClick={() => setSidebarOpen(true)}
           className="hover:cursor-pointer"
         />
       </div>
@@ -45,7 +48,7 @@ function Sidebar() {
           <li className="my-4 ml-3">
             <AiIcons.AiOutlineClose
               size={25}
-              onClick={closeSidebar}
+              onClick={() => setSidebarOpen(false)}
               className="hover:cursor-pointer"
             />
           </li>
@@ -69,7 +72,7 @@ function Sidebar() {
                 <li
                   key={item._id}
                   className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 w-[85%] pl-3"
-                  onClick={closeSidebar}
+                  onClick={() => setSidebarOpen(false)}
                 >
                   <Link href={`/projects/${item._id}`}>{item.name}</Link>
                 </li>
