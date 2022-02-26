@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }) {
       <Navbar setSidebarOpen={setSidebarOpen} />
       <div>
         <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <div className="lg:ml-64">
+        <div className="lg:ml-64 side-transition">
           <Component {...pageProps} />
         </div>
       </div>

@@ -23,8 +23,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <div
       className={`${
-        sidebarOpen ? "left-0" : "-left-full"
-      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 transition-all lg:left-0 lg:w-64`}
+        sidebarOpen ? "left-0" : "-left-[225px]"
+      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 side-transition lg:left-0 lg:w-64`}
     >
       {/* Logo */}
       <div>
