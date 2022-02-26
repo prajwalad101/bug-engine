@@ -1,9 +1,8 @@
-import { useState } from "react";
 import Link from "next/link";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
-import ProjectLink from "../UI/ProjectLink";
+import ProjectLink from "../UI/Sidebar/ProjectLink";
 import useProjects from "../../hooks/useProjects";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
