@@ -28,19 +28,19 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     >
       {/* Logo */}
       <div>
-        <h2 className="my-4 mx-7 text-xl font-bold">BugEngine</h2>
+        {/* Close Sidebar Icon */}
+        <div className="flex items-center">
+          <h2 className="my-4 mx-7 text-xl font-bold">BugEngine</h2>
+          <AiIcons.AiOutlineClose
+            size={25}
+            onClick={() => setSidebarOpen(false)}
+            className=" my-4 ml-3 hover:cursor-pointer lg:hidden"
+          />
+        </div>
         <hr className="hr-line" />
       </div>
 
       <ul className="w-full mx-4">
-        {/* Close Sidebar Icon */}
-        <li className="my-4 ml-3">
-          <AiIcons.AiOutlineClose
-            size={25}
-            onClick={() => setSidebarOpen(false)}
-            className="hover:cursor-pointer lg:hidden"
-          />
-        </li>
         {/* Displays all Sidebar data */}
         {SidebarData.map((item, index) => {
           return (
