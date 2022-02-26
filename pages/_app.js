@@ -1,12 +1,19 @@
 import Sidebar from "../components/Naviagation/Sidebar";
 import "../styles/globals.css";
 
+// imports for react query
+import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const queryClient = new QueryClient();
+
 function MyApp({ Component, pageProps }) {
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <Sidebar />
       <Component {...pageProps} />
-    </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 

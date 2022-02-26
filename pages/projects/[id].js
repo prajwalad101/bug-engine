@@ -17,20 +17,6 @@ function ProjectPage() {
 
   const project = useProject(projectId);
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       if (!projectId) return;
-  //       const res = await fetch(`/api/project/${projectId}`);
-  //       const project = (await res.json()).data.project;
-  //       setProject(project);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [projectId]);
-
   const isEmpty = Object.keys(project).length === 0;
   if (isEmpty) return null;
 
