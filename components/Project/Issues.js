@@ -11,7 +11,7 @@ function Issues({ project, setIsModalOpen }) {
 
   return (
     <div className="mt-6">
-      <hr className="h-0 border-0 border-t-2 border-blue-300" />
+      <hr className="hr-line border-blue-300" />
       {issues.length !== 0 ? (
         <div className="flex overflow-x-auto mb-10">
           {/* No status issues */}
@@ -33,14 +33,14 @@ function Issues({ project, setIsModalOpen }) {
           <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
             <p className="mb-5">In Progress ({inProgressIssues.length})</p>
             {inProgressIssues.map((issue) => {
-              return <Issue issue={issue} key={issue.id} />;
+              return <Issue issue={issue} key={issue._id} />;
             })}
           </div>
           {/* Completed issues */}
           <div className="mt-2 shrink-0 w-[360px] pr-7">
             <p className="mb-5">Completed ({inProgressIssues.length})</p>
             {completedIssues.map((issue) => {
-              return <Issue issue={issue} key={issue.id} />;
+              return <Issue issue={issue} key={issue._id} />;
             })}
           </div>
         </div>

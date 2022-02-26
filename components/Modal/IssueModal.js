@@ -23,6 +23,7 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   };
 
   function closeModal() {
+    setIssue("");
     setIsModalOpen(false);
   }
 

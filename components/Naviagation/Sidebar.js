@@ -1,23 +1,16 @@
 import { useState } from "react";
 import Link from "next/link";
-
-// hooks
-import useProjects from "../../hooks/useProjects";
-
-// icons
-import * as MdIcons from "react-icons/md";
 import * as AiIcons from "react-icons/ai";
 
 import { SidebarData } from "./SidebarData";
+import ProjectLink from "../UI/ProjectLink";
+import useProjects from "../../hooks/useProjects";
 
-function Sidebar() {
+function Sidebar({ sidebarOpen, setSidebarOpen }) {
   // const projects = useProjects();
   const { isLoading, isError, data, error } = useProjects();
 
-  let projects = data?.data;
-
-  // State for opening and closing the sidebar
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const projects = data?.data;
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -28,60 +21,53 @@ function Sidebar() {
   }
 
   return (
-    <>
-      {/* Navigation Bar */}
-      <div className="flex justify-start items-center my-3 ml-5">
-        <MdIcons.MdMenu
-          size={35}
-          onClick={() => setSidebarOpen(true)}
-          className="hover:cursor-pointer"
-        />
+    <div
+      className={`${
+        sidebarOpen ? "left-0" : "-left-full"
+      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 transition-all lg:left-0 lg:w-64`}
+    >
+      {/* Logo */}
+      <div>
+        <h2 className="my-4 mx-7 text-xl font-bold">BugEngine</h2>
+        <hr className="hr-line" />
       </div>
-      {/* Sidebar */}
-      <nav
-        className={`${
-          sidebarOpen ? "left-0" : "-left-full"
-        }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 transition-all`}
-      >
-        <ul className="w-full mx-4">
-          {/* Close Sidebar Icon */}
-          <li className="my-4 ml-3">
-            <AiIcons.AiOutlineClose
-              size={25}
-              onClick={() => setSidebarOpen(false)}
-              className="hover:cursor-pointer"
-            />
-          </li>
-          {/* Displays all Sidebar data */}
-          {SidebarData.map((item, index) => {
+
+      <ul className="w-full mx-4">
+        {/* Close Sidebar Icon */}
+        <li className="my-4 ml-3">
+          <AiIcons.AiOutlineClose
+            size={25}
+            onClick={() => setSidebarOpen(false)}
+            className="hover:cursor-pointer lg:hidden"
+          />
+        </li>
+        {/* Displays all Sidebar data */}
+        {SidebarData.map((item, index) => {
+          return (
+            <li key={index} className="py-1">
+              <Link href={item.path}>
+                <a className="flex items-center gap-3 h-10 pl-3 rounded-sm hover:bg-slate-100 w-[85%]">
+                  <span>{item.icon}</span>
+                  <span>{item.title}</span>
+                </a>
+              </Link>
+            </li>
+          );
+        })}
+        <div>
+          <p className="text-[17.5px] ml-3 mt-4 mb-2 text-gray-500">Projects</p>
+          {projects.map((item) => {
             return (
-              <li key={index} className="py-1">
-                <Link href={item.path}>
-                  <a className="flex items-center gap-3 h-10 pl-3 rounded-sm hover:bg-slate-100 w-[85%]">
-                    <span>{item.icon}</span>
-                    <span>{item.title}</span>
-                  </a>
-                </Link>
-              </li>
+              <ProjectLink
+                key={item._id}
+                project={item}
+                setSidebarOpen={setSidebarOpen}
+              />
             );
           })}
-          <div>
-            <p className="text-lg ml-3 mt-4 mb-2 text-gray-500">Projects</p>
-            {projects.map((item) => {
-              return (
-                <li
-                  key={item._id}
-                  className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 w-[85%] pl-3"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <Link href={`/projects/${item._id}`}>{item.name}</Link>
-                </li>
-              );
-            })}
-          </div>
-        </ul>
-      </nav>
-    </>
+        </div>
+      </ul>
+    </div>
   );
 }
 
