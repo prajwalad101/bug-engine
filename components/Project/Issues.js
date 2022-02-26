@@ -25,7 +25,7 @@ function Issues({ project, setIsModalOpen }) {
             {noStatusIssues.map((issue) => {
               return <Issue issue={issue} key={issue._id} />;
             })}
-            <CreateIssueButton />
+            <CreateIssueButton setIsModalOpen={setIsModalOpen} />
             {/* In progress issues column */}
           </div>
           <div className="mt-2 shrink-0 w-[360px] pr-7 mb-10">
