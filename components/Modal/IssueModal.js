@@ -2,6 +2,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
 
+import useCreateIssue from "../../hooks/useCreateIssue";
+
 export default function IssueModal({ setIsModalOpen, isModalOpen }) {
   const router = useRouter();
 
@@ -13,35 +15,18 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
     setIssue(event.target.value);
   };
 
-  const addIssue = async () => {
-    try {
-      const res = await fetch(`/api/project/${projectId}/issues`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/JSON",
-        },
-        body: JSON.stringify({
-          name: issue,
-          submitter: "Prajwal Adhikari",
-          type: "Development",
-          status: "no status",
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
-    } catch (err) {
-      console.log(`Error: ${err}`);
-    }
-    closeModal();
+  const newIssue = {
+    name: issue,
+    submitter: "Prajwal Adhikari",
+    type: "Development",
+    status: "no status",
   };
 
   function closeModal() {
     setIsModalOpen(false);
   }
 
-  function openModal() {
-    setIsModalOpen(true);
-  }
+  const mutation = useCreateIssue(projectId, closeModal);
 
   return (
     <>
@@ -107,7 +92,7 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={addIssue}
+                    onClick={() => mutation.mutate(newIssue)}
                   >
                     Create
                   </button>
