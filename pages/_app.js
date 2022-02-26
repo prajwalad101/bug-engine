@@ -18,11 +18,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Navbar setSidebarOpen={setSidebarOpen} />
-      <div>
-        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        <div className="lg:ml-64 side-transition">
-          <Component {...pageProps} />
-        </div>
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <div className="lg:ml-[270px] side-transition">
+        <Component {...pageProps} />
       </div>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

@@ -22,18 +22,17 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
   return (
     <div
       className={`${
-        sidebarOpen ? "left-0" : "-left-[225px]"
-      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 side-transition lg:left-0 lg:w-64`}
+        sidebarOpen ? "left-0" : "-left-[280px]"
+      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 side-transition lg:left-0 md:w-[270px]`}
     >
-      {/* Logo */}
-      <div>
-        {/* Close Sidebar Icon */}
+      {/* Sidebar heading */}
+      <div className="mb-3">
         <div className="flex items-center">
-          <h2 className="my-4 mx-7 text-xl font-bold">BugEngine</h2>
+          <h2 className="my-4 mx-7 text-xl font-bold pb-1">BugEngine</h2>
           <AiIcons.AiOutlineClose
             size={25}
             onClick={() => setSidebarOpen(false)}
-            className=" my-4 ml-3 hover:cursor-pointer lg:hidden"
+            className="ml-3 md:ml-9 transition-all hover:cursor-pointer hover:text-gray-500 lg:hidden"
           />
         </div>
         <hr className="hr-line" />
