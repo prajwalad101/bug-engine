@@ -47,7 +47,7 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -66,7 +66,7 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-sm">
+              <div className="inline-block w-full max-w-md p-6 my-8 lg:ml-[270px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md side-transition">
                 <Dialog.Title
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
