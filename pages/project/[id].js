@@ -35,7 +35,7 @@ function ProjectPage() {
   }
 
   return (
-    <div className="ml-5 mt-5 mr-5 font-lato">
+    <div className="mx-5 font-lato">
       <Heading project={project} />
       <Issues project={project} setIsModalOpen={setIsModalOpen} />
       <IssueModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />

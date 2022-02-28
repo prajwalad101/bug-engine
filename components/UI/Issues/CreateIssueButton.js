@@ -1,13 +1,9 @@
-import { IoIosAddCircleOutline } from "react-icons/io";
+import { IoAddSharp } from "react-icons/io5";
 
-function CreateIssueButton({ setIsModalOpen }) {
+function CreateIssueButton() {
   return (
-    <div
-      className="flex items-center gap-3 w-fit mt-5 py-3 px-3 bg-slate-100 hover:bg-slate-200 hover:shadow-sm transition-all hover:cursor-pointer rounded-md"
-      onClick={() => setIsModalOpen(true)}
-    >
-      <IoIosAddCircleOutline size={22} />
-      <p>Create new issue</p>
+    <div className="mr-[30px] bg-[#3197F5] rounded-[4px] w-9 h-8 flex items-center justify-center hover:shadow-md hover:cursor-pointer transition-shadow hover:bg-[#52a9fa]">
+      <IoAddSharp size={25} className="text-white" />
     </div>
   );
 }
