@@ -1,5 +1,7 @@
 import { GoSettings } from "react-icons/go";
+import FilterIssues from "../UI/Issues/FilterIssues";
 import Searchbar from "../UI/Issues/Searchbar";
+import StatusToggle from "../UI/Issues/StatusToggle";
 
 function Heading({ project }) {
   const issues = project.issues;
@@ -20,7 +22,13 @@ function Heading({ project }) {
         </div>
       </div>
       <hr className="hr-line mt-4" />
-      <Searchbar />
+      <div className="flex items-center justify-between mt-7">
+        <Searchbar />
+        <FilterIssues />
+      </div>
+      <div className="mt-6">
+        <StatusToggle />
+      </div>
     </div>
   );
 }
