@@ -1,4 +1,5 @@
 import { GoSettings } from "react-icons/go";
+import Searchbar from "../UI/Issues/Searchbar";
 
 function Heading({ project }) {
   const issues = project.issues;
@@ -19,6 +20,7 @@ function Heading({ project }) {
         </div>
       </div>
       <hr className="hr-line mt-4" />
+      <Searchbar />
     </div>
   );
 }
