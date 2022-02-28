@@ -13,7 +13,6 @@ function Issues({ project, setIsModalOpen }) {
 
   return (
     <div className="mt-6">
-      <hr className="hr-line border-blue-300" />
       {issues.length !== 0 ? (
         <div>issues</div>
       ) : (
