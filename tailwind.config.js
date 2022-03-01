@@ -13,6 +13,7 @@ module.exports = {
       colors: {
         "sidebar-text": "#E3E3E3",
         "sidebar-background": "#2B2A3D",
+        "sidebar-hover": "#000022",
       },
     },
   },

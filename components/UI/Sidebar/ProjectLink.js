@@ -10,7 +10,7 @@ export default function ProjectLink({ project, setSidebarOpen }) {
 
   return (
     <li
-      className="my-1 flex items-center h-11 rounded-sm hover:bg-slate-100 hover:cursor-pointer w-[85%] pl-3"
+      className="flex items-center mb-1 pl-3 h-12 rounded-md hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
       onClick={pushToProjectPage}
     >
       <p>{project.name}</p>

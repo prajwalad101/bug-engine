@@ -2,11 +2,11 @@ import { useState } from "react";
 
 import "../styles/globals.css";
 
-import Sidebar from "../components/Naviagation/Sidebar";
-import Navbar from "../components/Naviagation/Navbar";
+import Sidebar from "../components/Navigation/Sidebar";
+import Navbar from "../components/Navigation/Navbar";
 
 // imports for react query
-import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 const queryClient = new QueryClient();
