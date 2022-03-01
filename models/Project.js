@@ -10,6 +10,12 @@ const projectSchema = new mongoose.Schema(
       required: [true, "A project must have a name"],
       trim: true,
     },
+    description: {
+      type: String,
+      unique: true,
+      required: [true, "A project must have a description"],
+      trim: true,
+    },
     issues: [issueSchema],
   },
   { timestamps: true }

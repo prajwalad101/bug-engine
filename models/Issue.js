@@ -18,9 +18,10 @@ const issueSchema = new mongoose.Schema(
     status: {
       type: String,
       required: [true, "An issue must have a status"],
+      default: "open",
       enum: {
-        values: ["no status", "in progress", "completed"],
-        message: "Status should be either no status, in progress or completed",
+        values: ["open", "completed"],
+        message: "Status should be open or completed",
       },
     },
   },

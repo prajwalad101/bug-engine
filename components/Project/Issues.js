@@ -7,9 +7,8 @@ import Issue from "./Issue";
 function Issues({ project, setIsModalOpen }) {
   const issues = project.issues;
 
-  const noStatusIssues = issues.filter((el) => el.status === "no status");
+  const noStatusIssues = issues.filter((el) => el.status === "open");
   const completedIssues = issues.filter((el) => el.status === "completed");
-  const inProgressIssues = issues.filter((el) => el.status === "in progress");
 
   return (
     <div className="mt-6">
