@@ -10,6 +10,10 @@ module.exports = {
         roboto: ["Roboto", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
+      colors: {
+        "sidebar-text": "#E3E3E3",
+        "sidebar-background": "#2B2A3D",
+      },
     },
   },
   plugins: [],

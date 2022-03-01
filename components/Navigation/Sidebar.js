@@ -23,23 +23,44 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     <div
       className={`${
         sidebarOpen ? "left-0" : "-left-[280px]"
-      }  font-lato bg-white w-56 border-r-2 h-[100vh] fixed top-0 side-transition lg:left-0 md:w-[270px]`}
+      }  font-lato bg-sidebar-background text-sidebar-text w-64 h-[100vh] fixed top-0 side-transition lg:left-0 md:w-[270px]`}
     >
       {/* Sidebar heading */}
-      <div className="mb-3">
-        <div className="flex items-center">
-          <h2 className="my-4 mx-7 text-xl font-bold pb-1">BugEngine</h2>
+      <div className="mb-3 bg-[#000022] text-white">
+        <div className="flex items-center ml-7 justify-between">
+          <h2 className="my-4 pb-[1px] tracking-wide text-[19px] font-semibold">
+            BugEngine
+          </h2>
           <AiIcons.AiOutlineClose
-            size={25}
+            size={20}
             onClick={() => setSidebarOpen(false)}
-            className="ml-3 md:ml-9 transition-all hover:cursor-pointer hover:text-gray-500 lg:hidden"
+            className="mr-5 transition-all hover:cursor-pointer hover:text-gray-500 lg:hidden"
           />
         </div>
-        <hr className="hr-line" />
       </div>
 
-      <ul className="w-full mx-4">
-        {/* Displays all Sidebar data */}
+      {/* Sidebar data */}
+      <ul className="mx-4">
+        {SidebarData.map((item, index) => {
+          return (
+            <li
+              key={index}
+              className="flex items-center mb-1 pl-3 rounded-md h-12 hover:bg-[#0B132B] hover:cursor-pointer transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <span>{item.icon}</span>
+                <span>{item.title}</span>
+              </div>
+            </li>
+          );
+        })}
+        <div>
+          <p className="uppercase text-gray-500 ml-3 mt-9">projects</p>
+        </div>
+      </ul>
+
+      {/* <ul className="w-full mx-4">
+        Displays all Sidebar data
         {SidebarData.map((item, index) => {
           return (
             <li key={index} className="py-1">
@@ -64,7 +85,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             );
           })}
         </div>
-      </ul>
+      </ul> */}
     </div>
   );
 }
