@@ -19,7 +19,7 @@ export default function ProjectLink({
       className={`${activeClass} flex items-center mb-1 pl-3 h-12 rounded-md hover:bg-sidebar-hover hover:cursor-pointer transition-colors`}
       onClick={() => {
         setActiveProject(project._id);
-        pushToProjectPage;
+        pushToProjectPage();
         setSidebarOpen(false);
       }}
     >

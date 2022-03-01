@@ -4,7 +4,7 @@ import { IoAddSharp } from "react-icons/io5";
 import { SidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 import useProjects from "../../hooks/useProjects";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   // Fetch projects from the api
@@ -12,8 +12,17 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
   const projects = data?.data;
 
+  /*
+  projects is undefined on the first render
+  Hence, when projects changes, set the active project to the first project id
+  */
+  useEffect(() => {
+    const firstProject = projects && projects[0]._id;
+    setActiveProject(firstProject);
+  }, [projects]);
+
   // to view which project is currently selected
-  const [activeProject, setActiveProject] = useState(projects[0]._id);
+  const [activeProject, setActiveProject] = useState([]);
 
   if (isLoading) {
     return <span>Loading...</span>;
