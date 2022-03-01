@@ -47,18 +47,18 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <AiIcons.AiOutlineClose
             size={20}
             onClick={() => setSidebarOpen(false)}
-            className="mr-5 transition-all hover:cursor-pointer text-gray-400 hover:text-white lg:hidden"
+            className="mr-5 transition-all hover:cursor-pointer text-gray-500 hover:text-white lg:hidden"
           />
         </div>
       </div>
 
       {/* Sidebar data */}
-      <ul className="mx-4">
+      <ul className="">
         {SidebarData.map((item, index) => {
           return (
             <li
               key={index}
-              className="flex items-center mb-[2px] pl-3 rounded-md h-12 hover:bg-[#0B132B] hover:cursor-pointer transition-colors"
+              className="flex items-center text-gray-300 mb-[2px] pl-3 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
             >
               <div className="flex items-center gap-3">
                 <span>{item.icon}</span>
@@ -71,11 +71,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <p className="uppercase">projects</p>
           <IoAddSharp
             size={22}
-            className="mr-2 hover:text-white hover:cursor-pointer"
+            className="mr-5 hover:text-white hover:cursor-pointer"
           />
         </div>
         {/* All Projects */}
-        <div className="mt-5">
+        <div className="mt-5 text-gray-300">
           {projects.map((item) => (
             <ProjectLink
               key={item._id}
