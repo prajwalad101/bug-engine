@@ -1,21 +1,21 @@
+import { useState } from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import NoIssues from "../UI/Issues/NoIssues";
 
 import Issue from "./Issue";
 
-function Issues({ project, setIsModalOpen }) {
-  const issues = project.issues;
+function Issues({ project }) {
+  const [issueStatus, setIssueStatus] = useState("open");
 
-  const noStatusIssues = issues.filter((el) => el.status === "open");
-  const completedIssues = issues.filter((el) => el.status === "completed");
+  const issues = project.issues.filter((el) => el.status === issueStatus);
 
   return (
-    <div className="mt-6">
+    <div className="mt-4">
       {issues.length !== 0 ? (
-        <div>issues</div>
+        issues.map((item, index) => <Issue key={item._id} issue={item} />)
       ) : (
-        <NoIssues setIsModalOpen={setIsModalOpen} />
+        <NoIssues />
       )}
     </div>
   );

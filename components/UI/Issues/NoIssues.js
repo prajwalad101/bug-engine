@@ -1,6 +1,6 @@
 import { IoIosAddCircleOutline } from "react-icons/io";
 
-function NoIssues({ setIsModalOpen }) {
+function NoIssues() {
   return (
     <div className="mt-7 flex flex-col items-center">
       <div className="text-xl text-blue-300">No Issues Found</div>
