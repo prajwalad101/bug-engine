@@ -4,11 +4,16 @@ import { IoAddSharp } from "react-icons/io5";
 import { SidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 import useProjects from "../../hooks/useProjects";
+import { useState } from "react";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
 
   const projects = data?.data;
+
+  // to view which project is currently selected
+  const [activeProject, setActiveProject] = useState(projects[0]._id);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -60,44 +65,19 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             className="mr-2 hover:text-white hover:cursor-pointer"
           />
         </div>
+        {/* All Projects */}
         <div className="mt-5">
           {projects.map((item) => (
             <ProjectLink
               key={item._id}
               project={item}
               setSidebarOpen={setSidebarOpen}
+              setActiveProject={setActiveProject}
+              activeProject={activeProject}
             />
           ))}
         </div>
       </ul>
-
-      {/* <ul className="w-full mx-4">
-        Displays all Sidebar data
-        {SidebarData.map((item, index) => {
-          return (
-            <li key={index} className="py-1">
-              <Link href={item.path}>
-                <a className="flex items-center gap-3 h-10 pl-3 rounded-sm hover:bg-slate-100 w-[85%]">
-                  <span>{item.icon}</span>
-                  <span>{item.title}</span>
-                </a>
-              </Link>
-            </li>
-          );
-        })}
-        <div>
-          <p className="text-[17.5px] ml-3 mt-4 mb-2 text-gray-500">Projects</p>
-          {projects.map((item) => {
-            return (
-              <ProjectLink
-                key={item._id}
-                project={item}
-                setSidebarOpen={setSidebarOpen}
-              />
-            );
-          })}
-        </div>
-      </ul> */}
     </div>
   );
 }
