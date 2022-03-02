@@ -15,13 +15,15 @@ async function handler(req, res) {
 
   const { id } = req.query;
 
-  if (method === "GET") {
-    const project = await Project.findById(id);
+  const project = await Project.findById(id);
 
-    if (!project) {
-      const err = new AppError("Cannot find project with that id", 404);
-      globalErrorHandler(err, req, res);
-    }
+  if (!project) {
+    const err = new AppError("Cannot find project with that id", 404);
+    globalErrorHandler(err, req, res);
+  }
+
+  // GET request
+  if (method === "GET") {
     return res.status(200).json({
       status: "success",
       data: {
