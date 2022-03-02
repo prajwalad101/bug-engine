@@ -31,7 +31,7 @@ function Heading({ project }) {
         <StatusToggle />
         <CreateIssueButton />
       </div>
-      <hr className="hr-line mt-5" />
+      <hr className="hr-line mt-5 sm:hidden" />
     </div>
   );
 }

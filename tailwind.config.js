@@ -16,6 +16,9 @@ module.exports = {
         "sidebar-background": "#0C1E2E",
         "sidebar-hover": "#000022",
       },
+      screens: {
+        tablet: "700px",
+      },
     },
   },
   plugins: [],
