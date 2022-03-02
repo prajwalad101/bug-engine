@@ -31,3 +31,20 @@ a {
   border-top-width: 2px;
   border-color: #d9d9d9;
 }
+
+.parent-rotate {
+  -webkit-transform: skewY(-45deg);
+  -moz-transform: skewY(-45deg);
+  -ms-transform: skewY(-45deg);
+  -o-transform: skewY(-45deg);
+  transform: skewY(-45deg);
+  text-align: center;
+}
+
+.child-rotate {
+  -webkit-transform: skewY(45deg);
+  -moz-transform: skewY(45deg);
+  -ms-transform: skewY(45deg);
+  -o-transform: skewY(45deg);
+  transform: skewY(45deg);
+}
