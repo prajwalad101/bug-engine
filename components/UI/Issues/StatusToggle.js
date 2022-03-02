@@ -14,7 +14,7 @@ function StatusToggle() {
         <p
           className={`${
             issueStatus === "open" && "text-[#3197f5]"
-          } text-[13px] font-semibold text-[#898989] px-1`}
+          } text-[13.5px] font-semibold text-[#898989] px-1`}
         >
           open
         </p>
@@ -28,7 +28,7 @@ function StatusToggle() {
         <p
           className={`${
             issueStatus === "completed" && "text-[#3197f5] "
-          } text-[13px] font-semibold text-[#898989] px-1`}
+          } text-[13.5px] font-semibold text-[#898989] px-1`}
         >
           completed
         </p>

@@ -11,9 +11,9 @@ function Issues({ project }) {
   const issues = project.issues.filter((el) => el.status === issueStatus);
 
   return (
-    <div className="mt-4">
+    <div>
       {issues.length !== 0 ? (
-        issues.map((item, index) => <Issue key={item._id} issue={item} />)
+        issues.map((item) => <Issue key={item._id} issue={item} />)
       ) : (
         <NoIssues />
       )}

@@ -28,6 +28,6 @@ a {
 .hr-line {
   height: 0;
   border-width: 0px;
-  border-top-width: 1px;
+  border-top-width: 2px;
   border-color: #d9d9d9;
 }
