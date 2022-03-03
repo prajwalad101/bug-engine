@@ -7,9 +7,12 @@ module.exports = {
     extend: {
       fontFamily: {
         lato: ["Lato", "sans-serif"],
-        sourcesans: ["Source Sans Pro"],
-        roboto: ["Roboto", "sans-serif"],
+        sourcesans: ["Source Sans Pro", "sans-serif"],
+        leaguespartan: ["League Spartan", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        raleway: ["Raleway", "sans-serif"],
+        worksans: ["Work Sans", "sans-serif"],
+        hindsiliguri: ["Hind Siliguri", "sans-serif"],
       },
       colors: {
         "sidebar-text": "#E3E3E3",
@@ -17,8 +20,9 @@ module.exports = {
         "sidebar-hover": "#000022",
       },
       screens: {
-        tablet: "750px",
         lgphone: "550px",
+        tablet: "750px",
+        lgtablet: "900px",
       },
     },
   },
