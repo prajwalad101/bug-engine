@@ -1,7 +1,6 @@
 import { GoSettings } from "react-icons/go";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
-import FilterIssues from "../UI/Issues/FilterIssues";
 import Searchbar from "../UI/Issues/Searchbar";
 import StatusToggle from "../UI/Issues/StatusToggle";
 

@@ -12,7 +12,7 @@ function Issue({ issue }) {
         </p> */}
         {/* Issue name / details */}
         <div className="flex flex-col gap-[6px] tablet:gap-1 grow">
-          <h2 className="text-xl font-medium font-hindsiliguri">
+          <h2 className="text-lg md:text-xl font-medium font-hindsiliguri">
             {issue.name}
           </h2>
           <div className="flex flex-col font-sourcesans lgphone:flex-row lgphone:items-center lgphone:gap-1">
