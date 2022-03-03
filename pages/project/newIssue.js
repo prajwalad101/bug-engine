@@ -1,6 +1,8 @@
 import { useState } from "react";
 import TextEditor from "../../components/Project/TextEditor";
 
+import IssueTypeDropdown from "../../components/UI/NewIssue/IssueTypeDropdown";
+
 function NewIssuePage() {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueType, setIssueType] = useState("");
@@ -25,7 +27,17 @@ function NewIssuePage() {
           className="border-b-2 text-xl rounded-sm pr-2 py-1 border-gray-200 focus:outline-none focus:border-gray-500 "
         />
       </div>
-
+      <IssueTypeDropdown />
+      {/* <div className="max-w-[100px]">
+        <h3 className="text-gray-500">TYPE</h3>
+        <input
+          type="text"
+          name="type"
+          onChange={onTypeChange}
+          value={issueType}
+          className="border-b-2 rounded-sm pr-2 py-1 border-gray-200 focus:outline-none focus:border-gray-500 max-w-[100px]"
+        />
+      </div> */}
       <TextEditor />
     </div>
   );
