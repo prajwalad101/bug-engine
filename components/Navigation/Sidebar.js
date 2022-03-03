@@ -58,7 +58,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           return (
             <li
               key={index}
-              className="flex items-center text-gray-300 mb-[2px] pl-3 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
+              className="flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
             >
               <div className="flex items-center gap-3">
                 <span>{item.icon}</span>
@@ -67,7 +67,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </li>
           );
         })}
-        <div className="flex items-center justify-between text-gray-400 ml-3 mt-9">
+        <div className="flex items-center justify-between text-gray-400 ml-3 lg:pl-4 mt-9">
           <p className="uppercase">projects</p>
           <IoAddSharp
             size={22}

@@ -9,7 +9,7 @@ function Searchbar() {
       <div className="w-[2.5px] h-full bg-[#e4e4e4]"></div>
       <input
         type="text"
-        className="bg-[#f3f3f3] font-poppins placeholder-[#898989] w-full h-full px-3 rounded-r"
+        className="bg-[#f3f3f3] font-poppins text-[15px] placeholder-[#898989] w-full h-full px-3 rounded-r"
         placeholder="Search for issues..."
       />
     </div>
