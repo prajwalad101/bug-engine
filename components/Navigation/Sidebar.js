@@ -36,7 +36,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     <div
       className={`${
         sidebarOpen ? "left-0" : "-left-[280px]"
-      }  font-lato bg-sidebar-background text-sidebar-text w-64 h-[100vh] fixed top-0 side-transition lg:left-0 md:w-[270px]`}
+      }  font-lato bg-sidebar-background text-sidebar-text w-64 h-[100vh] fixed top-0 side-transition lg:left-0 md:w-[270px] z-10`}
     >
       {/* Sidebar heading */}
       <div className="mb-3 bg-sidebar-hover text-white">
