@@ -4,7 +4,7 @@ function StatusToggle() {
   const [issueStatus, setIssueStatus] = useState("open");
 
   return (
-    <div className="flex h-[37px]">
+    <div className="flex h-[37px] font-raleway">
       <div
         className={`${
           issueStatus === "open" ? "border-[#3197f5]" : "border-[#D4D4D4]"
@@ -14,7 +14,7 @@ function StatusToggle() {
         <p
           className={`${
             issueStatus === "open" && "text-[#3197f5]"
-          } text-[13.5px] font-semibold text-[#898989] px-1`}
+          } text-[13.5px] lgphone:text-[14px] font-semibold text-[#898989] px-1`}
         >
           open
         </p>
@@ -28,7 +28,7 @@ function StatusToggle() {
         <p
           className={`${
             issueStatus === "completed" && "text-[#3197f5] "
-          } text-[13.5px] font-semibold text-[#898989] px-1`}
+          } text-[13.5px] lgphone:text-[14px] font-semibold text-[#898989] px-1`}
         >
           completed
         </p>

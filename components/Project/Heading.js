@@ -23,14 +23,19 @@ function Heading({ project }) {
         </div>
       </div>
       <hr className="hr-line mt-4" />
-      <div className="flex items-center justify-between mt-5">
-        <Searchbar />
-        <FilterIssues />
+      <div className="flex flex-col lgphone:items-center lgphone:flex-row lgphone:justify-between">
+        {/* Heading section 1 */}
+        <div className="flex gap-10 items-center xl:gap-20 mt-5 grow">
+          <Searchbar />
+          <CreateIssueButton />
+        </div>
+        {/* Heading section 2 */}
+        <div className="flex items-center justify-between mt-5">
+          <StatusToggle />
+          {/* <FilterIssues /> */}
+        </div>
       </div>
-      <div className="flex items-center justify-between mt-6">
-        <StatusToggle />
-        <CreateIssueButton />
-      </div>
+
       <hr className="hr-line mt-5 lgphone:hidden" />
     </div>
   );
