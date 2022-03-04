@@ -24,10 +24,17 @@ export default class TextEditor extends Component {
       <div>
         <Editor
           editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="wrapperClassName"
-          editorClassName="editorClassName"
+          toolbarClassName="toolbar-class"
+          wrapperClassName="wrapper-class"
+          editorClassName="editor-class"
           onEditorStateChange={this.onEditorStateChange}
+          toolbar={{
+            inline: { inDropdown: true },
+            list: { inDropdown: true },
+            textAlign: { inDropdown: true },
+            link: { inDropdown: true },
+            history: { inDropdown: true },
+          }}
         />
       </div>
     );
