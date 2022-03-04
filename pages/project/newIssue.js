@@ -25,9 +25,14 @@ function NewIssuePage() {
   const [issueType, setIssueType] = useState(issueTypes[0]);
   const [issuePriority, setIssuePriority] = useState(issuePriorites[0]);
   const [issueDeveloper, setIssueDeveloper] = useState(issueDevelopers[0]);
+  const [issueDescription, setIssueDescription] = useState("");
 
   const onTitleChange = (event) => {
     setIssueTitle(event.target.value);
+  };
+
+  const getEditorState = (text) => {
+    setIssueDescription(text);
   };
 
   return (
@@ -81,7 +86,7 @@ function NewIssuePage() {
       {/* Issue Description */}
       <div className="mt-5">
         <h3 className="text-gray-500 mb-3">ISSUE DESCRIPTION</h3>
-        <TextEditor />
+        <TextEditor getEditorState={getEditorState} />
       </div>
     </div>
   );
