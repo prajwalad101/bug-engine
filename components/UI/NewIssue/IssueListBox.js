@@ -3,15 +3,11 @@ import { Listbox, Transition } from "@headlessui/react";
 
 import { BiChevronDown } from "react-icons/bi";
 
-export default function IssueTypeListbox({
-  issueTypes,
-  issueType,
-  setIssueType,
-}) {
+export default function IssueListbox({ listTypes, listType, setListType }) {
   return (
-    <Listbox value={issueType} onChange={setIssueType}>
+    <Listbox value={listType} onChange={setListType}>
       <Listbox.Button className="border-b-2 pr-5 mb-2 font-lato flex">
-        {issueType.name}
+        {listType.name}
         {<BiChevronDown size={23} className="mt-[1px]" />}
       </Listbox.Button>
 
@@ -23,8 +19,8 @@ export default function IssueTypeListbox({
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
       >
-        <Listbox.Options>
-          {issueTypes.map((type) => (
+        <Listbox.Options className="absolute z-10">
+          {listTypes.map((type) => (
             <Listbox.Option
               key={type.id}
               value={type}
@@ -34,9 +30,7 @@ export default function IssueTypeListbox({
               {({ active, selected }) => (
                 <li
                   className={`${
-                    active
-                      ? " hover:cursor-pointer text-gray-500"
-                      : "bg-white text-black"
+                    active ? " hover:cursor-pointer" : "bg-white"
                   } font-lato`}
                 >
                   {type.name}
