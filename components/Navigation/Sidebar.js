@@ -3,12 +3,15 @@ import { IoAddSharp } from "react-icons/io5";
 
 import { SidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
+
 import useProjects from "../../hooks/useProjects";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
+  const router = useRouter();
 
   const projects = data?.data;
 
@@ -72,6 +75,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <IoAddSharp
             size={22}
             className="mr-5 hover:text-white hover:cursor-pointer"
+            onClick={() => {
+              setSidebarOpen(false);
+              router.push("/newProject");
+            }}
           />
         </div>
         {/* All Projects */}
