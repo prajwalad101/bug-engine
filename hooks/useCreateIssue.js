@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from "react-query";
 returns a mutation object (addIssue) which can then be used to call 
 the mutate function
 */
-function useCreateIssue(projectId, closeModal) {
+function useCreateIssue(projectId) {
   const queryClient = useQueryClient();
 
   const addIssue = useMutation(
@@ -22,10 +22,6 @@ function useCreateIssue(projectId, closeModal) {
       onSuccess: () => {
         // refetch the issues for the project
         queryClient.invalidateQueries(["project", projectId]);
-
-        if (!!closeModal) {
-          closeModal();
-        }
       },
     }
   );

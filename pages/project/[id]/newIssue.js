@@ -1,7 +1,8 @@
 import { useState } from "react";
-import TextEditor from "../../components/Project/TextEditor";
+import TextEditor from "../../../components/Project/TextEditor";
+import SubmitIssue from "../../../components/UI/Issues/SubmitIssue";
 
-import IssueListbox from "../../components/UI/NewIssue/IssueListBox";
+import IssueListbox from "../../../components/UI/NewIssue/IssueListBox";
 
 function NewIssuePage() {
   const issueTypes = [
@@ -88,6 +89,12 @@ function NewIssuePage() {
         <h3 className="text-gray-500 mb-3">ISSUE DESCRIPTION</h3>
         <TextEditor getEditorState={getEditorState} />
       </div>
+      <SubmitIssue
+        issueTitle={issueTitle}
+        issueType={issueType}
+        issuePriority={issuePriority}
+        issueDescription={issueDescription}
+      />
     </div>
   );
 }
