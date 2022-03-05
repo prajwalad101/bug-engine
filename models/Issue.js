@@ -15,6 +15,11 @@ const issueSchema = new mongoose.Schema(
     priority: {
       type: String,
       required: [true, "An issue must have a priority"],
+      default: "notset",
+      enum: {
+        values: ["High", "Medium", "Low", "notset"],
+        message: "Priority should be either high, medium or low",
+      },
     },
     submitter: {
       type: String,

@@ -4,7 +4,7 @@ const getProjectById = async (projectId) => {
   const res = await fetch(`/api/project/${projectId}`);
 
   if (!res.ok) {
-    throw Error("Error while fetching the post with that id");
+    throw Error("Error while fetching the project with that id");
   }
   return res.json();
 };

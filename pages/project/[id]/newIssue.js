@@ -91,8 +91,8 @@ function NewIssuePage() {
       </div>
       <SubmitIssue
         issueTitle={issueTitle}
-        issueType={issueType}
-        issuePriority={issuePriority}
+        issueType={issueType.name}
+        issuePriority={issuePriority.name}
         issueDescription={issueDescription}
       />
     </div>
