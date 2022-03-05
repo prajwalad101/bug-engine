@@ -8,7 +8,7 @@ function Heading({ project, statusToggleComponent }) {
   const issues = project.issues;
 
   return (
-    <div className="mt-5 ">
+    <div className="mt-5">
       <section className="flex ">
         <div className="flex grow items-end justify-between lg:justify-start lg:gap-24">
           <div>

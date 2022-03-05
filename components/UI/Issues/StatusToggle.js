@@ -11,8 +11,8 @@ function StatusToggle({ issueStatus, setIssueStatus }) {
       >
         <p
           className={`${
-            issueStatus === "open" && "text-[#3197f5]"
-          } text-[13.5px] lgphone:text-[14px] font-semibold text-[#898989] px-1`}
+            issueStatus === "open" ? "text-[#3197f5]" : "text-[#898989]"
+          } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
           open
         </p>
@@ -25,8 +25,8 @@ function StatusToggle({ issueStatus, setIssueStatus }) {
       >
         <p
           className={`${
-            issueStatus === "completed" && "text-[#3197f5] "
-          } text-[13.5px] lgphone:text-[14px] font-semibold text-[#898989] px-1`}
+            issueStatus === "completed" ? "text-[#3197f5]" : "text-[#898989]"
+          } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
           completed
         </p>

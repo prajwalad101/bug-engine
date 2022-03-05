@@ -28,7 +28,7 @@ function Issue({ issue }) {
             </p>
             <p className="text-gray-500 hidden lgphone:inline"> / </p>
             <p className="text-base text-gray-400">
-              {relativeDate} {issue.submitter}
+              {relativeDate} by {issue.submitter}
             </p>
           </div>
         </div>
