@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { IoIosAddCircleOutline } from "react-icons/io";
-import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import ListHeading from "../UI/Issues/ListHeading";
 import NoIssues from "../UI/Issues/NoIssues";
 
