@@ -6,9 +6,7 @@ import NoIssues from "../UI/Issues/NoIssues";
 
 import Issue from "./Issue";
 
-function Issues({ project }) {
-  const [issueStatus, setIssueStatus] = useState("open");
-
+function Issues({ project, issueStatus }) {
   const issues = project.issues.filter((el) => el.status === issueStatus);
 
   return (

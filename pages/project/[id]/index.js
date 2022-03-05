@@ -11,6 +11,7 @@ import useProject from "../../../hooks/useProject";
 
 function ProjectPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [issueStatus, setIssueStatus] = useState("open");
 
   const router = useRouter();
   const projectId = router.query.id;
@@ -36,8 +37,16 @@ function ProjectPage() {
 
   return (
     <div className="mx-5 font-lato">
-      <Heading project={project} />
-      <Issues project={project} setIsModalOpen={setIsModalOpen} />
+      <Heading
+        project={project}
+        issueStatus={issueStatus}
+        setIssueStatus={setIssueStatus}
+      />
+      <Issues
+        project={project}
+        setIsModalOpen={setIsModalOpen}
+        issueStatus={issueStatus}
+      />
       <IssueModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />
     </div>
   );

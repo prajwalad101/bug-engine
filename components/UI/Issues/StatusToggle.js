@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-function StatusToggle() {
-  const [issueStatus, setIssueStatus] = useState("open");
-
+function StatusToggle({ issueStatus, setIssueStatus }) {
   return (
     <div className="flex h-[37px] font-raleway">
       <div
