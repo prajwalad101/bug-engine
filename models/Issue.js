@@ -7,6 +7,15 @@ const issueSchema = new mongoose.Schema(
       required: [true, "An issue must have a name"],
       trim: true,
     },
+    description: {
+      type: String,
+      required: [true, "An issue must have a description"],
+      trim: true,
+    },
+    priority: {
+      type: String,
+      required: [true, "An issue must have a priority"],
+    },
     submitter: {
       type: String,
       required: [true, "An issue must have a submitter"],
