@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
 import { IoAddSharp } from "react-icons/io5";
 
-function CreateIssueButton({ text }) {
+function CreateIssueButton({ projectId }) {
   const router = useRouter();
 
   const createNewIssue = () => {
-    router.push(`/project/newIssue`);
+    router.push(`/project/${projectId}/newIssue`);
   };
 
   return (
@@ -16,9 +16,7 @@ function CreateIssueButton({ text }) {
       <div className="px-[6px] py-[5px] lgphone:hidden">
         <IoAddSharp size={25} />
       </div>
-      <p className="hidden lgphone:block px-5 py-[6px]">
-        {text ? text : "Add new"}
-      </p>
+      <p className="hidden lgphone:block px-5 py-[6px]">Add new</p>
     </div>
   );
 }
