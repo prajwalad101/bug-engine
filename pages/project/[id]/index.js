@@ -5,6 +5,7 @@ import { useState } from "react";
 import IssueModal from "../../../components/Modal/IssueModal";
 import Heading from "../../../components/Project/Heading";
 import Issues from "../../../components/Project/Issues";
+import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 
 // hooks
 import useProject from "../../../hooks/useProject";
@@ -35,12 +36,16 @@ function ProjectPage() {
     return <div>Error: {error}</div>;
   }
 
+  // This component is rendered inside the heading section.
+  const statusToggleComponent = (
+    <StatusToggle issueStatus={issueStatus} setIssueStatus={setIssueStatus} />
+  );
+
   return (
     <div className="mx-5 font-lato">
       <Heading
         project={project}
-        issueStatus={issueStatus}
-        setIssueStatus={setIssueStatus}
+        statusToggleComponent={statusToggleComponent}
       />
       <Issues
         project={project}

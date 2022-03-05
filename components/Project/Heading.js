@@ -4,7 +4,7 @@ import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import Searchbar from "../UI/Issues/Searchbar";
 import StatusToggle from "../UI/Issues/StatusToggle";
 
-function Heading({ project, issueStatus, setIssueStatus }) {
+function Heading({ project, statusToggleComponent }) {
   const issues = project.issues;
 
   return (
@@ -42,10 +42,7 @@ function Heading({ project, issueStatus, setIssueStatus }) {
         </div>
         {/* Heading section 2 */}
         <div className="flex items-center justify-between mt-5">
-          <StatusToggle
-            issueStatus={issueStatus}
-            setIssueStatus={setIssueStatus}
-          />
+          {statusToggleComponent}
           {/* <FilterIssues /> */}
         </div>
       </section>
