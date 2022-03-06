@@ -7,6 +7,7 @@ import ProjectLink from "../UI/Sidebar/ProjectLink";
 import useProjects from "../../hooks/useProjects";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
   // Fetch projects from the api
@@ -63,10 +64,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               key={index}
               className="flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
             >
-              <div className="flex items-center gap-3">
-                <span>{item.icon}</span>
-                <span>{item.title}</span>
-              </div>
+              <Link href={item.path} passHref>
+                <div className="flex items-center gap-3">
+                  <span>{item.icon}</span>
+                  <span>{item.title}</span>
+                </div>
+              </Link>
             </li>
           );
         })}
