@@ -35,7 +35,13 @@ async function handler(req, res) {
 
     res.status(200).json({
       status: "success",
-      message: "test",
+      message: "successfully deleted",
+    });
+  }
+  if (method === "GET") {
+    res.status(200).json({
+      status: "success",
+      data: issue,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
