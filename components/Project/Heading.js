@@ -1,6 +1,7 @@
 import { GoSettings } from "react-icons/go";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
+import ListHeading from "../UI/Issues/ListHeading";
 import Searchbar from "../UI/Issues/Searchbar";
 import StatusToggle from "../UI/Issues/StatusToggle";
 
@@ -46,8 +47,8 @@ function Heading({ project, statusToggleComponent }) {
           {/* <FilterIssues /> */}
         </div>
       </section>
-
       <hr className="hr-line mt-5 lgphone:hidden" />
+      <ListHeading />
     </div>
   );
 }

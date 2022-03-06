@@ -1,8 +1,10 @@
 import formatDate from "../../utils/formatDate";
-
 import IssuePriority from "../UI/Issues/IssuePriority";
 
-function Issue({ issue, setIsModalOpen, setSelectedIssue }) {
+import { useRouter } from "next/router";
+
+function Issue({ issue, setIsModalOpen, setSelectedIssue, pId }) {
+  const router = useRouter();
   const date = new Date(issue.createdAt).toLocaleDateString("en-gb", {
     year: "numeric",
     month: "long",
@@ -15,6 +17,7 @@ function Issue({ issue, setIsModalOpen, setSelectedIssue }) {
   const showIssueInfo = () => {
     setIsModalOpen(true);
     setSelectedIssue(issue);
+    router.push(`/project/${pId}/issue/${issue._id}`);
   };
 
   return (

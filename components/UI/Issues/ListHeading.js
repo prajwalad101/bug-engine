@@ -1,6 +1,6 @@
 function ListHeading() {
   return (
-    <div className="hidden lgphone:flex gap-4 xl:gap-10 items-center text-gray-500 bg-[#E4E4E4] rounded-sm mt-5 h-10 px-2 font-sourcesans">
+    <div className="hidden lgphone:flex gap-4 xl:gap-10 items-center text-gray-500 bg-[#E4E4E4] rounded-sm mt-8 h-10 px-2 font-sourcesans">
       {/* <p className="basis-14">ID</p> */}
       <p className="basis-24">PRIORITY</p>
       <p className="grow">ISSUE</p>

@@ -13,14 +13,13 @@ function Issues({ project, issueStatus }) {
   const issues = project.issues.filter((el) => el.status === issueStatus);
 
   return (
-    <div className="h-[78vh] overflow-auto">
+    <div className="h-[68vh] overflow-auto">
       {/* send the specific issue to the modal */}
-      <IssueModal
+      {/* <IssueModal
         setIsModalOpen={setIsModalOpen}
         isModalOpen={isModalOpen}
         issue={selectedIssue}
-      />
-      <ListHeading />
+      /> */}
       {issues.length !== 0 ? (
         issues.map((item) => (
           <Issue
@@ -28,6 +27,7 @@ function Issues({ project, issueStatus }) {
             issue={item}
             setIsModalOpen={setIsModalOpen}
             setSelectedIssue={setSelectedIssue}
+            pId={project._id}
           />
         ))
       ) : (
