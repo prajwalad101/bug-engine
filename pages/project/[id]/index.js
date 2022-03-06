@@ -11,7 +11,6 @@ import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 import useProject from "../../../hooks/useProject";
 
 function ProjectPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [issueStatus, setIssueStatus] = useState("open");
 
   const router = useRouter();
@@ -47,12 +46,7 @@ function ProjectPage() {
         project={project}
         statusToggleComponent={statusToggleComponent}
       />
-      <Issues
-        project={project}
-        setIsModalOpen={setIsModalOpen}
-        issueStatus={issueStatus}
-      />
-      <IssueModal setIsModalOpen={setIsModalOpen} isModalOpen={isModalOpen} />
+      <Issues project={project} issueStatus={issueStatus} />
     </div>
   );
 }

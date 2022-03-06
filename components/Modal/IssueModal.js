@@ -1,33 +1,8 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import { useRouter } from "next/router";
+import { Fragment } from "react";
 
-import useCreateIssue from "../../hooks/useCreateIssue";
-
-export default function IssueModal({ setIsModalOpen, isModalOpen }) {
-  const router = useRouter();
-
-  const projectId = router.query.id;
-
-  const [issue, setIssue] = useState("");
-
-  const handleChange = (event) => {
-    setIssue(event.target.value);
-  };
-
-  const newIssue = {
-    name: issue,
-    submitter: "Prajwal Adhikari",
-    type: "Development",
-    status: "no status",
-  };
-
-  function closeModal() {
-    setIssue("");
-    setIsModalOpen(false);
-  }
-
-  const mutation = useCreateIssue(projectId, closeModal);
+export default function IssueModal({ setIsModalOpen, isModalOpen, issue }) {
+  if (!issue) return null;
 
   return (
     <>
@@ -35,7 +10,7 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={() => setIsModalOpen(false)}
         >
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
@@ -71,29 +46,14 @@ export default function IssueModal({ setIsModalOpen, isModalOpen }) {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Create new issue
+                  Issue # {issue._id}
                 </Dialog.Title>
-                <div className="mt-5">
-                  <form className="flex flex-col gap-5">
-                    {/* Issue Name */}
-                    <label className="flex gap-3 items-center text-gray-500">
-                      Name:
-                      <input
-                        type="text"
-                        className="bg-slate-200 rounded-sm p-1"
-                        value={issue}
-                        onChange={handleChange}
-                      />
-                    </label>
-                    {/* Issue type */}
-                  </form>
-                </div>
+                <div className="mt-5"></div>
 
                 <div className="mt-6">
                   <button
                     type="button"
                     className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={() => mutation.mutate(newIssue)}
                   >
                     Create
                   </button>

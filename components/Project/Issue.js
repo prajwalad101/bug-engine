@@ -2,7 +2,7 @@ import formatDate from "../../utils/formatDate";
 
 import IssuePriority from "../UI/Issues/IssuePriority";
 
-function Issue({ issue }) {
+function Issue({ issue, setIsModalOpen, setSelectedIssue }) {
   const date = new Date(issue.createdAt).toLocaleDateString("en-gb", {
     year: "numeric",
     month: "long",
@@ -12,10 +12,18 @@ function Issue({ issue }) {
 
   const relativeDate = formatDate(new Date(issue.createdAt));
 
+  const showIssueInfo = () => {
+    setIsModalOpen(true);
+    setSelectedIssue(issue);
+  };
+
   return (
     <div>
-      <section className="flex items-start gap-4 xl:gap-10 pl-2 py-3 hover:bg-gray-100 hover:cursor-pointer hover:pl-4 side-transition">
-        {/* Issue status */}
+      <section
+        className="flex items-start gap-4 xl:gap-10 pl-2 py-3 hover:bg-gray-100 hover:cursor-pointer hover:pl-4 side-transition"
+        onClick={showIssueInfo}
+      >
+        {/* Issue priority */}
         <IssuePriority priority={issue.priority} />
         {/* Issue name / details */}
         <div className="flex flex-col gap-[6px] tablet:gap-1 grow">
