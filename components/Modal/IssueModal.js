@@ -1,8 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
+import DOMPurify from "dompurify";
+
 export default function IssueModal({ setIsModalOpen, isModalOpen, issue }) {
   if (!issue) return null;
+
+  const sanitizedData = () => ({
+    __html: DOMPurify.sanitize(issue.description),
+  });
+
+  console.log(sanitizedData());
 
   return (
     <>
@@ -41,22 +49,39 @@ export default function IssueModal({ setIsModalOpen, isModalOpen, issue }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <div className="inline-block w-full max-w-md p-6 my-8 lg:ml-[270px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-md side-transition">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900"
-                >
-                  Issue # {issue._id}
-                </Dialog.Title>
-                <div className="mt-5"></div>
-
-                <div className="mt-6">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                  >
-                    Create
-                  </button>
+              {/* Issue Information */}
+              <div className="inline-block w-full max-w-2xl p-6 my-8 lg:ml-[270px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-sm side-transition font-lato">
+                {/* Name */}
+                <h3 className="text-2xl font-lato  leading-6 text-gray-900">
+                  {issue.name}
+                </h3>
+                {/* Submitter */}
+                <div className="mt-2">
+                  <span className="text-gray-500">Submitted by: </span>
+                  {issue.submitter}
+                </div>
+                {/* Type */}
+                <div className="">
+                  <span className="text-gray-500">In {issue.type}</span>
+                </div>
+                {/* Status */}
+                <div className="flex gap-3 mt-5">
+                  <span className="text-gray-500">Status:</span>
+                  <div className="bg-green-400 px-2 rounded-sm text-white">
+                    <span className="uppercase">{issue.status}</span>
+                  </div>
+                </div>
+                {/* Priority */}
+                <div className="flex gap-3 mt-3">
+                  <span className="text-gray-500">Priority:</span>
+                  <span className="uppercase text-red-500">
+                    {issue.priority}
+                  </span>
+                </div>
+                {/* Description */}
+                <div className="mt-5">
+                  <p className="text-gray-500 ">Description</p>
+                  <div dangerouslySetInnerHTML={sanitizedData()} />
                 </div>
               </div>
             </Transition.Child>
