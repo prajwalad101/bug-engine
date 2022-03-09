@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
-import IssueModal from "../components/Modal/IssueModal";
-import Heading from "../components/Project/Heading";
-import Issues from "../components/Project/Issues";
+import { getSession } from "next-auth/react";
+
 import useProjects from "../hooks/useProjects";
 
 export default function Home() {
@@ -17,4 +16,20 @@ export default function Home() {
 
   router.push(`/project/${project._id}`);
   return <div></div>;
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 }
