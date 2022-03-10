@@ -1,6 +1,8 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const issueSchema = new mongoose.Schema(
+const Schema = mongoose.Schema;
+
+const issueSchema = new Schema(
   {
     name: {
       type: String,
@@ -21,6 +23,7 @@ const issueSchema = new mongoose.Schema(
         message: "Priority should be either high, medium or low",
       },
     },
+    developers: [{ type: Schema.Types.ObjectId, ref: "Developer" }],
     submitter: {
       type: String,
       required: [true, "An issue must have a submitter"],
