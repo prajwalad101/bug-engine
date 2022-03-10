@@ -16,8 +16,8 @@ async function handler(req, res) {
   const { id } = req.query;
   const { issueId } = req.query;
 
-  const project = await Project.findById(id);
-  const issue = project.issues.id(issueId);
+  const project = await Project.findById(id); // individual project
+  const issue = project.issues.id(issueId); // individual issue
 
   if (!project) {
     const err = new AppError("Could not find project with given id", 404);
@@ -42,6 +42,16 @@ async function handler(req, res) {
     res.status(200).json({
       status: "success",
       data: issue,
+    });
+  }
+  if (method === "PATCH") {
+    issue.set(req.body); // updates the issue
+
+    const newProject = await project.save();
+
+    res.status(200).json({
+      status: "success",
+      data: newProject,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);

@@ -17,7 +17,7 @@ async function handler(req, res) {
     project.issues.push(req.body);
     await project.save();
 
-    const newIssue = project.issues[0];
+    const newIssue = project.issues[project.issues.length - 1];
 
     return res.status(200).json({
       status: "success",
