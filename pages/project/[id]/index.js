@@ -1,34 +1,37 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { getSession, useSession } from "next-auth/react";
+import useProject from "../../../hooks/useProject";
 
 // components
-import IssueModal from "../../../components/Modal/IssueModal";
 import Heading from "../../../components/Project/Heading";
 import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 
-// hooks
-import useProject from "../../../hooks/useProject";
-
 function ProjectPage() {
+  const router = useRouter();
+
+  const { status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      router.push("/api/auth/signin");
+    },
+  });
+
   const [issueStatus, setIssueStatus] = useState("open");
 
-  const router = useRouter();
   const projectId = router.query.id;
 
   const { isLoading, isError, data, error } = useProject(projectId);
 
   const project = data?.data.project;
 
-  const isEmpty = project ? Object.keys(project).length === 0 : true;
-  if (isEmpty) return null;
-
-  if (isEmpty) {
-    return <div>404 Error. Page not found</div>;
+  if (isLoading || status === "loading") {
+    return <div>Loading...</div>;
   }
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (!project) {
+    return <div>404 Error. Project not found</div>;
   }
 
   if (isError) {
@@ -49,6 +52,22 @@ function ProjectPage() {
       <Issues project={project} issueStatus={issueStatus} />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const session = await getSession({ req: context.req });
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/api/auth/signin",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: { session },
+  };
 }
 
 export default ProjectPage;
