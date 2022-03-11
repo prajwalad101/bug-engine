@@ -11,12 +11,12 @@ import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 function ProjectPage() {
   const router = useRouter();
 
-  const { status } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.push("/api/auth/signin");
-    },
-  });
+  // const { status } = useSession({
+  //   required: true,
+  //   onUnauthenticated() {
+  //     router.push("/api/auth/signin");
+  //   },
+  // });
 
   const [issueStatus, setIssueStatus] = useState("open");
 
@@ -26,7 +26,7 @@ function ProjectPage() {
 
   const project = data?.data.project;
 
-  if (isLoading || status === "loading") {
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 

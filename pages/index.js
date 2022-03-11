@@ -18,18 +18,18 @@ export default function Home() {
   return <div></div>;
 }
 
-export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
+// export async function getServerSideProps(context) {
+//   const session = await getSession({ req: context.req });
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
-}
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/api/auth/signin",
+//         permanent: false,
+//       },
+//     };
+//   }
+//   return {
+//     props: { session },
+//   };
+// }

@@ -1,9 +1,8 @@
 import NextAuth from "next-auth";
-// import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
-// import clientPromise from "../../../utils/mongoDb";
-
-// import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
+
+import Developer from "../../../models/Developer";
+import dbConnect from "../../../utils/dbConnect";
 
 export default NextAuth({
   // Configure authentication providers
@@ -32,4 +31,20 @@ export default NextAuth({
     //   from: process.env.EMAIL_FROM,
     // }),
   ],
+  secret: "BqkdKnJAssR1BndJnUeY4OoIAUUFG6PeiK+S7GfIUhs=",
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      // Fetch developer from the email
+      const userEmail = user?.email;
+
+      await dbConnect();
+      const developer = await Developer.findOne({ email: userEmail });
+      // if developer exists in database, authorize that developer
+      if (developer) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
 });
