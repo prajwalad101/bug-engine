@@ -1,12 +1,21 @@
-import { GoSettings } from "react-icons/go";
+// icons
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { GoSettings } from "react-icons/go";
+
+// components
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import ListHeading from "../UI/Issues/ListHeading";
 import Searchbar from "../UI/Issues/Searchbar";
-import StatusToggle from "../UI/Issues/StatusToggle";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 function Heading({ project, statusToggleComponent }) {
   const issues = project.issues;
+
+  const { data: session, status } = useSession();
+
+  // get user image from the session
+  const userImage = session.user.image;
 
   return (
     <div className="mt-5">
@@ -30,7 +39,9 @@ function Heading({ project, statusToggleComponent }) {
         {/* Notification / Profile */}
         <div className="hidden items-center gap-14 lg:flex ">
           <IoMdNotificationsOutline size={29} />
-          <div className="bg-gray-500 w-8 h-8 rounded-full"></div>
+          <div className="rounded-full overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
+            <Image src={userImage} alt="user profile" width={35} height={35} />
+          </div>
         </div>
       </section>
 

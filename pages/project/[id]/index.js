@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { getSession, useSession } from "next-auth/react";
 import useProject from "../../../hooks/useProject";
 
 // components
@@ -9,22 +8,17 @@ import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 
 function ProjectPage() {
-  const router = useRouter();
-
-  // const { status } = useSession({
-  //   required: true,
-  //   onUnauthenticated() {
-  //     router.push("/api/auth/signin");
-  //   },
-  // });
-
   const [issueStatus, setIssueStatus] = useState("open");
 
+  // get project id
+  const router = useRouter();
   const projectId = router.query.id;
 
+  // fetch individual project from id
   const { isLoading, isError, data, error } = useProject(projectId);
-
   const project = data?.data.project;
+
+  // Check project statues
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -52,22 +46,6 @@ function ProjectPage() {
       <Issues project={project} issueStatus={issueStatus} />
     </div>
   );
-}
-
-export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: { session },
-  };
 }
 
 export default ProjectPage;
