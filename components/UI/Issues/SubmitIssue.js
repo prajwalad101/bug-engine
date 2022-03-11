@@ -6,11 +6,13 @@ function SubmitIssue({
   issueType,
   issuePriority,
   issueDescription,
+  issueDeveloper,
 }) {
   const router = useRouter();
   const projectId = router.query.id;
 
   const addIssue = useCreateIssue(projectId);
+  console.log(issueDeveloper);
 
   const submit = () => {
     const newIssue = {
@@ -18,6 +20,7 @@ function SubmitIssue({
       type: issueType,
       priority: issuePriority,
       description: issueDescription,
+      developers: [issueDeveloper],
       submitter: "Prajwal Adhikari",
     };
     addIssue.mutate(newIssue);

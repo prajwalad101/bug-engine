@@ -102,6 +102,7 @@ function NewIssuePage() {
         issueType={issueType.name}
         issuePriority={issuePriority.name}
         issueDescription={issueDescription}
+        issueDeveloper={issueDeveloper}
       />
     </div>
   );
