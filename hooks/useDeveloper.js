@@ -2,10 +2,9 @@ import { useQuery } from "react-query";
 
 const getDeveloperById = async (developerId) => {
   const res = await fetch(`/api/developer/${developerId}`);
-  const data = await res.json();
 
   if (!res.ok) {
-    throw new Error(data.message || "No developer with that id found");
+    throw new Error("No developer with that id found");
   }
   return res.json();
 };

@@ -1,3 +1,5 @@
+import clientPromise from "../../utils/mongoDb";
+
 // utility functions
 import dbConnect from "../../utils/dbConnect";
 import AppError from "../../utils/appError";
@@ -21,11 +23,14 @@ async function handler(req, res) {
       data: newDeveloper,
     });
   } else if (method === "GET") {
-    const developers = await Developer.find();
+    const client = await clientPromise;
+    const usersCollection = client.db().collection("users");
+
+    const users = await usersCollection.find({}).toArray();
 
     return res.status(200).json({
       status: "success",
-      data: developers,
+      data: users,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);

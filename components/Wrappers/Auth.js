@@ -10,5 +10,5 @@ export default function Auth({ children }) {
     return children;
   }
 
-  return <div>Loading...</div>;
+  return <div>Loading session...</div>;
 }
