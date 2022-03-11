@@ -12,6 +12,7 @@ const developerSchema = new Schema(
     email: {
       type: String,
       required: [true, "A developer must have an email"],
+      unique: true,
       trim: true,
     },
     // Array of project id's
