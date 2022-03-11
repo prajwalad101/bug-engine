@@ -33,13 +33,12 @@ async function handler(req, res) {
     project.issues.remove({ _id: issueId });
     await project.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "successfully deleted",
     });
-  }
-  if (method === "GET") {
-    res.status(200).json({
+  } else if (method === "GET") {
+    return res.status(200).json({
       status: "success",
       data: issue,
     });
@@ -49,7 +48,7 @@ async function handler(req, res) {
 
     const newProject = await project.save();
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       data: newProject,
     });

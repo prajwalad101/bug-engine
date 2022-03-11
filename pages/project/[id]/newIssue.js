@@ -1,31 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TextEditor from "../../../components/Project/TextEditor";
 import SubmitIssue from "../../../components/UI/Issues/SubmitIssue";
 
 import IssueListbox from "../../../components/UI/NewIssue/IssueListBox";
+import { useDevelopers } from "../../../hooks/useDevelopers";
 
 function NewIssuePage() {
+  const { isLoading, isError, data, error } = useDevelopers();
+
+  const issueDevelopers = data?.data;
+
+  // change set the initial developer when developers gets loaded
+  useEffect(() => {
+    if (issueDevelopers) {
+      setIssueDeveloper(issueDevelopers[0]);
+    }
+  }, [issueDevelopers]);
+
   const issueTypes = [
-    { id: 1, name: "Development", unavailable: false },
-    { id: 2, name: "UIDesign", unavailable: false },
+    { _id: 1, name: "Development", unavailable: false },
+    { _id: 2, name: "UIDesign", unavailable: false },
   ];
 
   const issuePriorites = [
-    { id: 1, name: "High", unavailable: false },
-    { id: 2, name: "Medium", unavailable: false },
-    { id: 3, name: "Low", unavailable: false },
-  ];
-
-  const issueDevelopers = [
-    { id: 1, name: "Prajwal Adhikari", unavailable: false },
-    { id: 2, name: "Kalyan Khatry", unavailable: false },
-    { id: 3, name: "Sujal Thapa", unavailable: false },
+    { _id: 1, name: "High", unavailable: false },
+    { _id: 2, name: "Medium", unavailable: false },
+    { _id: 3, name: "Low", unavailable: false },
   ];
 
   const [issueTitle, setIssueTitle] = useState("");
   const [issueType, setIssueType] = useState(issueTypes[0]);
   const [issuePriority, setIssuePriority] = useState(issuePriorites[0]);
-  const [issueDeveloper, setIssueDeveloper] = useState(issueDevelopers[0]);
+  const [issueDeveloper, setIssueDeveloper] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
 
   const onTitleChange = (event) => {
@@ -35,6 +41,8 @@ function NewIssuePage() {
   const getEditorState = (text) => {
     setIssueDescription(text);
   };
+
+  if (!issueDevelopers) return null;
 
   return (
     <div className="max-w-[900px] mx-5 flex justify-center flex-col gap-5 font-hindsiliguri lg:mt-5">

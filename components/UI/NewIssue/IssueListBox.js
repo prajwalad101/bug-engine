@@ -22,7 +22,7 @@ export default function IssueListbox({ listTypes, listType, setListType }) {
         <Listbox.Options className="absolute z-10">
           {listTypes.map((type) => (
             <Listbox.Option
-              key={type.id}
+              key={type._id}
               value={type}
               disabled={type.unavailable}
               as={Fragment}
