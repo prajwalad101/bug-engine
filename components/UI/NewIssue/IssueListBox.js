@@ -6,7 +6,7 @@ import { BiChevronDown } from "react-icons/bi";
 export default function IssueListbox({ listTypes, listType, setListType }) {
   return (
     <Listbox value={listType} onChange={setListType}>
-      <Listbox.Button className="border-b-2 pr-5 mb-2 font-lato flex">
+      <Listbox.Button className="border-b-2 pr-5 font-lato flex">
         {listType.name}
         {<BiChevronDown size={23} className="mt-[1px]" />}
       </Listbox.Button>

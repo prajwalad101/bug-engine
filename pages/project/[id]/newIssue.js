@@ -3,19 +3,13 @@ import TextEditor from "../../../components/Project/TextEditor";
 import SubmitIssue from "../../../components/UI/Issues/SubmitIssue";
 
 import IssueListbox from "../../../components/UI/NewIssue/IssueListBox";
+import SetAssignee from "../../../components/UI/NewIssue/SetAssignee";
 import { useDevelopers } from "../../../hooks/useDevelopers";
 
 function NewIssuePage() {
-  const { isLoading, isError, data, error } = useDevelopers();
+  const { data } = useDevelopers();
 
-  const issueDevelopers = data?.data;
-
-  // change set the initial developer when developers gets loaded
-  useEffect(() => {
-    if (issueDevelopers) {
-      setIssueDeveloper(issueDevelopers[0]);
-    }
-  }, [issueDevelopers]);
+  const allAssignees = data?.data;
 
   const issueTypes = [
     { _id: 1, name: "Development", unavailable: false },
@@ -31,7 +25,7 @@ function NewIssuePage() {
   const [issueTitle, setIssueTitle] = useState("");
   const [issueType, setIssueType] = useState(issueTypes[0]);
   const [issuePriority, setIssuePriority] = useState(issuePriorites[0]);
-  const [issueDeveloper, setIssueDeveloper] = useState("");
+  const [selectedAssignees, setSelectedAssignees] = useState([]);
   const [issueDescription, setIssueDescription] = useState("");
 
   const onTitleChange = (event) => {
@@ -42,7 +36,7 @@ function NewIssuePage() {
     setIssueDescription(text);
   };
 
-  if (!issueDevelopers) return null;
+  if (!allAssignees) return null;
 
   return (
     <div className="max-w-[900px] mx-5 flex justify-center flex-col gap-5 font-hindsiliguri lg:mt-5">
@@ -62,34 +56,33 @@ function NewIssuePage() {
         />
       </div>
       {/* Listbox section */}
-      <section className="flex justify-between">
-        {/* Set Type */}
-        <div className="max-w-[150px]">
-          <h3 className="text-gray-500 mb-3">TYPE</h3>
-          <IssueListbox
-            listTypes={issueTypes}
-            listType={issueType}
-            setListType={setIssueType}
-          />
+      <section className="flex flex-col gap-10">
+        <div className="flex justify-between sm:justify-start sm:gap-64">
+          {/* Set Type */}
+          <div className="max-w-[150px]">
+            <h3 className="text-gray-500 mb-3">TYPE</h3>
+            <IssueListbox
+              listTypes={issueTypes}
+              listType={issueType}
+              setListType={setIssueType}
+            />
+          </div>
+          {/* Set Priority */}
+          <div className="max-w-[150px]">
+            <h3 className="text-gray-500 mb-3">PRIORITY</h3>
+            <IssueListbox
+              listTypes={issuePriorites}
+              listType={issuePriority}
+              setListType={setIssuePriority}
+            />
+          </div>
         </div>
-        {/* Set Priority */}
-        <div className="max-w-[150px]">
-          <h3 className="text-gray-500 mb-3">PRIORITY</h3>
-          <IssueListbox
-            listTypes={issuePriorites}
-            listType={issuePriority}
-            setListType={setIssuePriority}
-          />
-        </div>
-        {/* Set Developers */}
-        <div>
-          <h3 className="text-gray-500 mb-3">DEVELOPERS</h3>
-          <IssueListbox
-            listTypes={issueDevelopers}
-            listType={issueDeveloper}
-            setListType={setIssueDeveloper}
-          />
-        </div>
+        {/* Set Assignees */}
+        <SetAssignee
+          allAssignees={allAssignees}
+          selectedAssignees={selectedAssignees}
+          setSelectedAssignees={setSelectedAssignees}
+        />
       </section>
 
       {/* Issue Description */}
@@ -97,12 +90,14 @@ function NewIssuePage() {
         <h3 className="text-gray-500 mb-3">ISSUE DESCRIPTION</h3>
         <TextEditor getEditorState={getEditorState} />
       </div>
+
+      {/* Submit issue button */}
       <SubmitIssue
         issueTitle={issueTitle}
         issueType={issueType.name}
         issuePriority={issuePriority.name}
         issueDescription={issueDescription}
-        issueDeveloper={issueDeveloper}
+        selectedAssignees={selectedAssignees}
       />
     </div>
   );
