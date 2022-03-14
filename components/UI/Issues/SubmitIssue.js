@@ -11,7 +11,7 @@ function SubmitIssue({
   const router = useRouter();
   const projectId = router.query.id;
 
-  const addIssue = useCreateIssue(projectId);
+  const addIssue = useCreateIssue(projectId); // mutate function for new issue
 
   const submit = () => {
     const newIssue = {
@@ -22,12 +22,10 @@ function SubmitIssue({
       developers: selectedAssignees,
       submitter: "Prajwal Adhikari",
     };
-    addIssue.mutate(newIssue);
+    addIssue.mutate(newIssue, {
+      onSuccess: () => router.push(`/project/${projectId}`),
+    });
   };
-
-  if (addIssue.isSuccess) {
-    router.push(`/project/${projectId}`);
-  }
 
   return (
     <div>

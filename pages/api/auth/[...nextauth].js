@@ -18,7 +18,7 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
     }),
   ],
-  secret: "BqkdKnJAssR1BndJnUeY4OoIAUUFG6PeiK+S7GfIUhs=",
+  secret: process.env.JWT_SECRET,
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       // Fetch developer from the email

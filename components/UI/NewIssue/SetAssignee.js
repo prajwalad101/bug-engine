@@ -17,8 +17,6 @@ function SetAssignee({
     }
   };
 
-  console.log("Set assignee component rendered");
-
   return (
     <div className="mb-8">
       <h3 className="text-gray-500 mb-3">ASSIGNEES</h3>
@@ -40,7 +38,6 @@ function SetAssignee({
       </div>
       {/* Assignees to be added */}
       <div className="flex">
-        {console.log(selectedAssignees)}
         {selectedAssignees.length === 0 ? (
           <div className="text-gray-500">NA</div>
         ) : (

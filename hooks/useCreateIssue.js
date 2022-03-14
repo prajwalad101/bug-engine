@@ -8,24 +8,27 @@ function useCreateIssue(projectId) {
   const queryClient = useQueryClient();
 
   const addIssue = useMutation(
-    (newIssue) => {
-      const res = fetch(`/api/project/${projectId}/issues`, {
+    async (newIssue) => {
+      const res = await fetch(`/api/project/${projectId}/issues`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newIssue),
       });
+
+      if (!res.ok) {
+        throw Error("Error while adding issue");
+      }
       return res;
     },
     {
       onSuccess: () => {
         // refetch the issues for the project
-        queryClient.invalidateQueries(["project", projectId]);
+        return queryClient.invalidateQueries(["project", projectId]);
       },
     }
   );
-
   return addIssue;
 }
 

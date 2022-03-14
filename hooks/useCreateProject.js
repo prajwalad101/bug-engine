@@ -4,14 +4,17 @@ function useCreateProject() {
   const queryClient = useQueryClient();
 
   const addProject = useMutation(
-    (newProject) => {
-      const res = fetch(`/api/projects`, {
+    async (newProject) => {
+      const res = await fetch(`/api/projects`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(newProject),
       });
+      if (!res.ok) {
+        throw Error("Error while adding issue");
+      }
       return res;
     },
     {
