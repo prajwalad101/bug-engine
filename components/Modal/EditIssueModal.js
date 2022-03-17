@@ -3,7 +3,7 @@ import { Fragment } from "react";
 
 import DOMPurify from "dompurify";
 
-export default function IssueModal({ setIsModalOpen, isModalOpen, issue }) {
+export default function EditIssueModal({ setIsModalOpen, isModalOpen, issue }) {
   if (!issue) return null;
 
   const sanitizedData = () => ({

@@ -17,19 +17,3 @@ export default function Home() {
   router.push(`/project/${project._id}`);
   return <div></div>;
 }
-
-// export async function getServerSideProps(context) {
-//   const session = await getSession({ req: context.req });
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/api/auth/signin",
-//         permanent: false,
-//       },
-//     };
-//   }
-//   return {
-//     props: { session },
-//   };
-// }

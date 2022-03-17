@@ -4,7 +4,7 @@ import IssuePriority from "../UI/Issues/IssuePriority";
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-function Issue({ issue, setIsModalOpen, setSelectedIssue, pId }) {
+function Issue({ issue, pId }) {
   const router = useRouter();
   const date = new Date(issue.createdAt).toLocaleDateString("en-gb", {
     year: "numeric",
@@ -16,8 +16,6 @@ function Issue({ issue, setIsModalOpen, setSelectedIssue, pId }) {
   const relativeDate = formatDate(new Date(issue.createdAt));
 
   const showIssueInfo = () => {
-    setIsModalOpen(true);
-    setSelectedIssue(issue);
     router.push(`/project/${pId}/issue/${issue._id}`);
   };
 
