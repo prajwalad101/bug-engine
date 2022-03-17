@@ -8,8 +8,14 @@ import IssueListbox from "../UI/NewIssue/IssueListBox";
 
 // data
 import { issueTypes, issuePriorites, issueStatuses } from "../../data";
+import UpdateIssueButton from "../UI/NewIssue/UpdateIssueButton";
 
-export default function EditIssueModal({ setIsModalOpen, isModalOpen, issue }) {
+export default function EditIssueModal({
+  setIsModalOpen,
+  isModalOpen,
+  issue,
+  projectId,
+}) {
   const createIssueObject = (name) => {
     return { _id: 0, name, unavailable: false };
   };
@@ -86,6 +92,11 @@ export default function EditIssueModal({ setIsModalOpen, isModalOpen, issue }) {
                     setListType={setIssuePriority}
                   />
                 </div>
+                <UpdateIssueButton
+                  issue={(issueType, issueStatus, selectedAssignees)}
+                  issueId={issue._id}
+                  projectId={projectId}
+                />
               </div>
             </Transition.Child>
           </div>

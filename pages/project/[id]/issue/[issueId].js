@@ -39,6 +39,7 @@ function IssuePage() {
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
         issue={issue}
+        projectId={id}
       />
       <div className="flex items-center gap-56">
         {/* Name */}
