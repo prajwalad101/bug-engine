@@ -4,6 +4,7 @@ import { Listbox, Transition } from "@headlessui/react";
 import { BiChevronDown } from "react-icons/bi";
 
 export default function IssueListbox({ listTypes, listType, setListType }) {
+  console.log(listType);
   return (
     <Listbox value={listType} onChange={setListType}>
       <Listbox.Button className="border-b-2 pr-5 font-lato flex">

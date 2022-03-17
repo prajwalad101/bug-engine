@@ -1,7 +1,11 @@
 import DOMPurify from "dompurify";
 
 import { useRouter } from "next/router";
+import { useState } from "react";
 import useIssue from "../../../../hooks/useIssue";
+
+import { AiOutlineEdit } from "react-icons/ai";
+import EditIssueModal from "../../../../components/Modal/EditIssueModal";
 
 function IssuePage() {
   const router = useRouter();
@@ -10,6 +14,8 @@ function IssuePage() {
   const { isLoading, isError, data, error } = useIssue(id, issueId);
 
   const issue = data?.data;
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!issue) return null;
 
@@ -27,11 +33,29 @@ function IssuePage() {
   }
 
   return (
-    <div className="mx-5 font-lato">
-      {/* Name */}
-      <h3 className="text-2xl font-lato  leading-6 text-gray-900">
-        {issue.name}
-      </h3>
+    <div className="mx-5 mt-8 font-lato">
+      {/* modal for editing issue */}
+      <EditIssueModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        issue={issue}
+      />
+      <div className="flex items-center gap-56">
+        {/* Name */}
+        <h3 className="text-2xl font-lato  leading-6 text-gray-900">
+          {issue.name}
+        </h3>
+        {/* Edit issue */}
+        <div
+          className="flex gap-2 text-gray-600 hover:cursor-pointer"
+          onClick={() => setIsModalOpen(true)}
+        >
+          <AiOutlineEdit size={23} className="peer" />
+          <p className="hover:underline peer-hover:underline underline-offset-2">
+            Edit
+          </p>
+        </div>
+      </div>
       {/* Submitter */}
       <div className="mt-2">
         <span className="text-gray-500">Submitted by: </span>

@@ -1,26 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useDevelopers } from "../../../hooks/useDevelopers";
+
+// components
 import TextEditor from "../../../components/Project/TextEditor";
 import SubmitIssue from "../../../components/UI/Issues/SubmitIssue";
-
 import IssueListbox from "../../../components/UI/NewIssue/IssueListBox";
 import SetAssignee from "../../../components/UI/NewIssue/SetAssignee";
-import { useDevelopers } from "../../../hooks/useDevelopers";
+
+// data
+import { issueTypes } from "../../../data";
+import { issuePriorites } from "../../../data";
 
 function NewIssuePage() {
   const { data } = useDevelopers();
 
   const allAssignees = data?.data;
-
-  const issueTypes = [
-    { _id: 1, name: "Development", unavailable: false },
-    { _id: 2, name: "UIDesign", unavailable: false },
-  ];
-
-  const issuePriorites = [
-    { _id: 1, name: "High", unavailable: false },
-    { _id: 2, name: "Medium", unavailable: false },
-    { _id: 3, name: "Low", unavailable: false },
-  ];
 
   const [issueTitle, setIssueTitle] = useState("");
   const [issueType, setIssueType] = useState(issueTypes[0]);

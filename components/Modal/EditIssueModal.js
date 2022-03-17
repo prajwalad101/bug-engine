@@ -1,16 +1,29 @@
+import { useState, useEffect } from "react";
+
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 
-import DOMPurify from "dompurify";
+// components
+import IssueListbox from "../UI/NewIssue/IssueListBox";
+
+// data
+import { issueTypes, issuePriorites, issueStatuses } from "../../data";
 
 export default function EditIssueModal({ setIsModalOpen, isModalOpen, issue }) {
-  if (!issue) return null;
+  const createIssueObject = (name) => {
+    return { _id: 0, name, unavailable: false };
+  };
 
-  const sanitizedData = () => ({
-    __html: DOMPurify.sanitize(issue.description),
-  });
+  const [issuePriority, setIssuePriority] = useState(
+    createIssueObject(issue.priority)
+  );
 
-  console.log(sanitizedData());
+  const [issueType, setIssueType] = useState(createIssueObject(issue.type));
+
+  const [selectedAssignees, setSelectedAssignees] = useState(issue.developers);
+  const [issueStatus, setIssueStatus] = useState(
+    createIssueObject(issue.status)
+  );
 
   return (
     <>
@@ -55,33 +68,23 @@ export default function EditIssueModal({ setIsModalOpen, isModalOpen, issue }) {
                 <h3 className="text-2xl font-lato  leading-6 text-gray-900">
                   {issue.name}
                 </h3>
-                {/* Submitter */}
-                <div className="mt-2">
-                  <span className="text-gray-500">Submitted by: </span>
-                  {issue.submitter}
-                </div>
-                {/* Type */}
-                <div className="">
-                  <span className="text-gray-500">In {issue.type}</span>
-                </div>
                 {/* Status */}
                 <div className="flex gap-3 mt-5">
                   <span className="text-gray-500">Status:</span>
-                  <div className="bg-green-400 px-2 rounded-sm text-white">
-                    <span className="uppercase">{issue.status}</span>
-                  </div>
+                  <IssueListbox
+                    listType={issueStatus}
+                    listTypes={issueStatuses}
+                    setListType={setIssueStatus}
+                  />
                 </div>
                 {/* Priority */}
                 <div className="flex gap-3 mt-3">
                   <span className="text-gray-500">Priority:</span>
-                  <span className="uppercase text-red-500">
-                    {issue.priority}
-                  </span>
-                </div>
-                {/* Description */}
-                <div className="mt-5">
-                  <p className="text-gray-500 ">Description</p>
-                  <div dangerouslySetInnerHTML={sanitizedData()} />
+                  <IssueListbox
+                    listType={issuePriority}
+                    listTypes={issuePriorites}
+                    setListType={setIssuePriority}
+                  />
                 </div>
               </div>
             </Transition.Child>
