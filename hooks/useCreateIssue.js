@@ -11,9 +11,7 @@ function useCreateIssue(projectId) {
     async (newIssue) => {
       const res = await fetch(`/api/project/${projectId}/issues`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newIssue),
       });
 
