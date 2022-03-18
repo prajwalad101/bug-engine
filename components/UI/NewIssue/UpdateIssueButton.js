@@ -5,15 +5,12 @@ import { useRouter } from "next/router";
 
 function UpdateIssueButton({ issue, issueId, projectId }) {
   const router = useRouter();
-  const mutation = useUpdateIssue(issue, issueId, projectId);
+  const mutation = useUpdateIssue(projectId, issueId);
 
   const updateIssue = () => {
-    mutation.mutate(
-      { issue, issueId, projectId },
-      {
-        onSuccess: () => router.push(`/project/${projectId}`),
-      }
-    );
+    mutation.mutate(issue, {
+      onSuccess: () => router.push(`/project/${projectId}`),
+    });
   };
 
   return (

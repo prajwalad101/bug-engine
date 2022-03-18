@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
 
-function useUpdateIssue(projectId, issueId, issue) {
+function useUpdateIssue(projectId, issueId) {
   const queryClient = useQueryClient();
 
   const updateIssue = useMutation(
-    async ({ issue, projectId, issueId }) => {
+    async (issue) => {
       const res = await fetch(`/api/project/${projectId}/issue/${issueId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -18,7 +18,7 @@ function useUpdateIssue(projectId, issueId, issue) {
     },
     {
       onSuccess: () => {
-        return queryClient.invalidateQueries([projectId, issueId]);
+        return queryClient.invalidateQueries(["issue", projectId, issueId]);
       },
     }
   );

@@ -1,14 +1,16 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
+import useDeleteIssue from "../../hooks/useDeleteIssue";
 
 // components
 import IssueListbox from "../UI/NewIssue/IssueListBox";
+import { AiOutlineDelete } from "react-icons/ai";
 
 // data
 import { issueTypes, issuePriorites, issueStatuses } from "../../data";
 import UpdateIssueButton from "../UI/NewIssue/UpdateIssueButton";
+import { useRouter } from "next/router";
 
 export default function EditIssueModal({
   setIsModalOpen,
@@ -16,6 +18,11 @@ export default function EditIssueModal({
   issue,
   projectId,
 }) {
+  const router = useRouter();
+  const deleteMutation = useDeleteIssue(projectId, issue._id);
+
+  deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
+
   const createIssueObject = (name) => {
     return { _id: 0, name, unavailable: false };
   };
@@ -25,8 +32,8 @@ export default function EditIssueModal({
   );
 
   const [issueType, setIssueType] = useState(createIssueObject(issue.type));
-
   const [selectedAssignees, setSelectedAssignees] = useState(issue.developers);
+
   const [issueStatus, setIssueStatus] = useState(
     createIssueObject(issue.status)
   );
@@ -70,10 +77,17 @@ export default function EditIssueModal({
             >
               {/* Issue Information */}
               <div className="inline-block w-full max-w-2xl p-6 my-8 lg:ml-[270px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-sm side-transition font-lato">
-                {/* Name */}
-                <h3 className="text-2xl font-lato  leading-6 text-gray-900">
-                  {issue.name}
-                </h3>
+                <div className="flex items-center gap-10">
+                  {/* Name */}
+                  <h3 className="text-2xl font-lato  leading-6 text-gray-900">
+                    {issue.name}
+                  </h3>
+                  <AiOutlineDelete
+                    size={20}
+                    className="hover:text-red-900 hover:cursor-pointer"
+                    onClick={() => deleteMutation.mutate()}
+                  />
+                </div>
                 {/* Status */}
                 <div className="flex gap-3 mt-5">
                   <span className="text-gray-500">Status:</span>
