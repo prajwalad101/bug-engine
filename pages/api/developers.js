@@ -6,7 +6,7 @@ import AppError from "../../utils/appError";
 import catchAsync from "../../utils/catchAsync";
 
 // models
-import Developer from "../../models/Developer";
+import Assignee from "../../models/Assignee";
 
 // middlewares
 import globalErrorHandler from "../../middleware/errorMd";
@@ -16,11 +16,11 @@ async function handler(req, res) {
   const { method } = req; // request type
 
   if (method === "POST") {
-    const newDeveloper = await Developer.create(req.body);
+    const newAssignee = await Assignee.create(req.body);
 
     res.status(200).json({
       status: "success",
-      data: newDeveloper,
+      data: newAssignee,
     });
   } else if (method === "GET") {
     const client = await clientPromise;
