@@ -43,6 +43,7 @@ async function handler(req, res) {
       data: issue,
     });
   } else if (method === "PATCH") {
+    // console.log(req.body);
     issue.set(req.body); // updates the issue
 
     const newProject = await project.save();

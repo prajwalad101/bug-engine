@@ -93,7 +93,12 @@ export default function EditIssueModal({
                   />
                 </div>
                 <UpdateIssueButton
-                  issue={(issueType, issueStatus, selectedAssignees)}
+                  issue={{
+                    type: issueType.name,
+                    status: issueStatus.name,
+                    assignees: selectedAssignees,
+                    priority: issuePriority.name,
+                  }}
                   issueId={issue._id}
                   projectId={projectId}
                 />

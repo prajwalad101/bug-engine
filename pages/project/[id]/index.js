@@ -8,7 +8,7 @@ import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 
 function ProjectPage() {
-  const [issueStatus, setIssueStatus] = useState("open");
+  const [issueStatus, setIssueStatus] = useState("Open");
 
   // get project id
   const router = useRouter();
