@@ -17,9 +17,9 @@ const issueSchema = new Schema(
     priority: {
       type: String,
       required: [true, "An issue must have a priority"],
-      default: "notset",
+      default: "Notset",
       enum: {
-        values: ["High", "Medium", "Low", "notset"],
+        values: ["High", "Medium", "Low", "Notset"],
         message: "Priority should be either high, medium or low",
       },
     },
@@ -35,9 +35,9 @@ const issueSchema = new Schema(
     status: {
       type: String,
       required: [true, "An issue must have a status"],
-      default: "open",
+      default: "Open",
       enum: {
-        values: ["open", "completed"],
+        values: ["Open", "Completed"],
         message: "Status should be open or completed",
       },
     },
