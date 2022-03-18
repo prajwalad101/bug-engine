@@ -21,12 +21,12 @@ async function handler(req, res) {
 
   if (!project) {
     const err = new AppError("Could not find project with given id", 404);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 
   if (!issue) {
     const err = new AppError("Could not find issue with given id", 404);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 
   if (method === "DELETE") {
@@ -42,8 +42,7 @@ async function handler(req, res) {
       status: "success",
       data: issue,
     });
-  }
-  if (method === "PATCH") {
+  } else if (method === "PATCH") {
     issue.set(req.body); // updates the issue
 
     const newProject = await project.save();
@@ -54,7 +53,7 @@ async function handler(req, res) {
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 }
 

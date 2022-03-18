@@ -31,7 +31,7 @@ const handler = async (req, res) => {
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 };
 

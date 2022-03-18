@@ -19,7 +19,7 @@ async function handler(req, res) {
 
   if (!project) {
     const err = new AppError("Cannot find project with that id", 404);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 
   // GET request
@@ -32,7 +32,7 @@ async function handler(req, res) {
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
-    globalErrorHandler(err, req, res);
+    return globalErrorHandler(err, req, res);
   }
 }
 
