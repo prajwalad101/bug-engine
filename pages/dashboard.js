@@ -1,9 +1,9 @@
-import useProject from "../hooks/useProject";
+import BarChart from "../components/Dashboard/BarChart";
 
 function DashboardPage() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <BarChart />
     </div>
   );
 }
