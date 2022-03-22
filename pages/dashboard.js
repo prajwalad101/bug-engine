@@ -1,3 +1,5 @@
+import useProject from "../hooks/useProject";
+
 function DashboardPage() {
   return (
     <div>

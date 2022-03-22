@@ -19,9 +19,8 @@ function ProjectPage() {
   const project = data?.data.project;
 
   // Check project statues
-
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>project page loading...</div>;
   }
 
   if (!project) {

@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-const getProjectById = async (projectId) => {
+export const getProjectById = async (projectId) => {
   const res = await fetch(`/api/project/${projectId}`);
 
   if (!res.ok) {
