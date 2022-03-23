@@ -1,26 +1,31 @@
-import { Line } from "react-chartjs-2";
+// import chart components
+import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from "chart.js";
 
+// register chart components
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
-const LineChart = () => {
+function BarChart() {
+  var yLabels = {
+    0: "Low",
+    2: "Medium",
+    4: "High",
+  };
   const options = {
     responsive: true,
     plugins: {
@@ -29,7 +34,7 @@ const LineChart = () => {
       },
       title: {
         display: true,
-        text: "All Issues",
+        text: "Chart.js Bar Chart",
       },
     },
   };
@@ -38,22 +43,27 @@ const LineChart = () => {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
     datasets: [
       {
-        label: "Completed",
+        label: "High",
         data: [33, 53, 85, 41, 44, 65],
         fill: true,
-        backgroundColor: "rgba(75,192,192,0.2)",
+        backgroundColor: "rgba(255,114,118,0.5)",
         borderColor: "rgba(75,192,192,1)",
       },
       {
-        label: "Open",
+        label: "Medium",
+        data: [33, 25, 35, 51, 54, 76],
+        fill: false,
+        borderColor: "#742774",
+      },
+      {
+        label: "Low",
         data: [33, 25, 35, 51, 54, 76],
         fill: false,
         borderColor: "#742774",
       },
     ],
   };
+  return <Bar data={data} options={options}></Bar>;
+}
 
-  return <Line data={data} options={options} />;
-};
-
-export default LineChart;
+export default BarChart;
