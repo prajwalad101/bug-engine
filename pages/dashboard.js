@@ -1,9 +1,9 @@
-import BarChart from "../components/Dashboard/BarChart";
+import LineChart from "../components/Dashboard/LineChart";
 
 function DashboardPage() {
   return (
     <div>
-      <BarChart />
+      <LineChart />
     </div>
   );
 }
