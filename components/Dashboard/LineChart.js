@@ -1,4 +1,5 @@
 import { Line } from "react-chartjs-2";
+import { sortIssuesByStatus } from "../../utils/chartFunction";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -20,16 +21,18 @@ ChartJS.register(
   Legend
 );
 
-const LineChart = () => {
+const LineChart = ({ openIssues, completedIssues }) => {
+  const { openData, completedData } = sortIssuesByStatus(
+    openIssues,
+    completedIssues
+  );
+
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: "chartArea",
-      },
       title: {
         display: true,
-        text: "All Issues",
+        text: "Issue By Status",
       },
     },
   };
@@ -39,14 +42,14 @@ const LineChart = () => {
     datasets: [
       {
         label: "Completed",
-        data: [33, 53, 85, 41, 44, 65],
+        data: completedData,
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)",
       },
       {
         label: "Open",
-        data: [33, 25, 35, 51, 54, 76],
+        data: openData,
         fill: false,
         borderColor: "#742774",
       },

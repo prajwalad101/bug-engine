@@ -20,44 +20,41 @@ ChartJS.register(
   Legend
 );
 
-function BarChart() {
-  var yLabels = {
-    0: "Low",
-    2: "Medium",
-    4: "High",
-  };
+import { sortIssueByPriority } from "../../utils/chartFunction";
+
+function BarChart({ openIssues }) {
   const options = {
     responsive: true,
     plugins: {
-      legend: {
-        position: "chartArea",
-      },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Issue By Priority",
       },
     },
   };
+
+  const { highIssueData, mediumIssueData, lowIssueData } =
+    sortIssueByPriority(openIssues);
 
   const data = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
     datasets: [
       {
         label: "High",
-        data: [33, 53, 85, 41, 44, 65],
+        data: highIssueData,
         fill: true,
         backgroundColor: "rgba(255,114,118,0.5)",
         borderColor: "rgba(75,192,192,1)",
       },
       {
         label: "Medium",
-        data: [33, 25, 35, 51, 54, 76],
+        data: mediumIssueData,
         fill: false,
         borderColor: "#742774",
       },
       {
         label: "Low",
-        data: [33, 25, 35, 51, 54, 76],
+        data: lowIssueData,
         fill: false,
         borderColor: "#742774",
       },

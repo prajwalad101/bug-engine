@@ -6,8 +6,9 @@ import useProjects from "../hooks/useProjects";
 export default function Home() {
   const router = useRouter();
 
-  // // Fetch projects from the api
+  // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
+
   const projects = data?.data;
 
   const project = projects && projects[0];
