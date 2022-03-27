@@ -49,13 +49,15 @@ function Issue({ issue, pId }) {
 
         {/* Assigned to */}
         <div className="flex shrink-0 gap-1 mt-4 lgphone:mt-1 lgphone:mr-9 lgtablet:mr-12 xl:basis-32">
-          <Image
-            alt="assignee"
-            src={issue.developers[0].image}
-            width={30}
-            height={30}
-            className="rounded-full"
-          />
+          {issue.developers[0] && (
+            <Image
+              alt="assignee"
+              src={issue.developers[0].image}
+              width={30}
+              height={30}
+              className="rounded-full"
+            />
+          )}
         </div>
       </section>
       {/* Horizontal line to differentiate issues */}

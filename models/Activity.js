@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import issueSchema from "./Issue";
 
 const Schema = mongoose.Schema;
 
@@ -21,9 +22,7 @@ const activitySchema = new Schema(
       type: String,
       required: [true, "An activity must have an user"],
     },
-    assignees: {
-      type: Array,
-    },
+    issue: issueSchema,
   },
   {
     timestamps: true,
