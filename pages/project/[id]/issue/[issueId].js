@@ -60,7 +60,7 @@ function IssuePage() {
       {/* Submitter */}
       <div className="mt-2">
         <span className="text-gray-500">Submitted by: </span>
-        {issue.submitter}
+        {issue.submitter.name}
       </div>
       {/* Type */}
       <div className="mt-5">
