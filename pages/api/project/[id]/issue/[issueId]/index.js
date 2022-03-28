@@ -5,9 +5,11 @@ import AppError from "../../../../../../utils/appError";
 
 // models
 import Project from "../../../../../../models/Project";
+import Activity from "../../../../../../models/Activity";
 
 // middlewares
 import globalErrorHandler from "../../../../../../middleware/errorMd";
+import compareIssues from "../../../../../../utils/compareIssues";
 
 async function handler(req, res) {
   await dbConnect();
@@ -33,9 +35,16 @@ async function handler(req, res) {
     project.issues.remove({ _id: issueId });
     await project.save();
 
+    const newActivity = await Activity.create({
+      projectName: project.name,
+      action: "delete",
+      issue: issue,
+    });
+
     return res.status(200).json({
       status: "success",
       message: "successfully deleted",
+      activity: newActivity,
     });
   } else if (method === "GET") {
     return res.status(200).json({
@@ -43,14 +52,22 @@ async function handler(req, res) {
       data: issue,
     });
   } else if (method === "PATCH") {
-    // console.log(req.body);
-    issue.set(req.body); // updates the issue
+    const updatedInfo = compareIssues(req.body, issue);
 
+    issue.set(req.body); // updates the issue
     const newProject = await project.save();
+
+    const updated = await Activity.create({
+      action: "update",
+      projectName: project.name,
+      updatedInfo,
+      issue,
+    });
 
     return res.status(200).json({
       status: "success",
       data: newProject,
+      updated,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);

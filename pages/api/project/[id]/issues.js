@@ -1,5 +1,6 @@
 // model
 import Project from "../../../../models/Project";
+import Activity from "../../../../models/Activity";
 
 // error handlers
 import AppError from "../../../../utils/appError";
@@ -8,6 +9,7 @@ import AppError from "../../../../utils/appError";
 import catchAsync from "../../../../utils/catchAsync";
 import globalErrorHandler from "../../../../middleware/errorMd";
 
+// Handler to create new issues (POST)
 async function handler(req, res) {
   const { method } = req;
   const { id } = req.query;
@@ -18,6 +20,12 @@ async function handler(req, res) {
     await project.save();
 
     const newIssue = project.issues[project.issues.length - 1];
+
+    const newActivity = await Activity.create({
+      projectName: project.name,
+      action: "create",
+      issue: newIssue,
+    });
 
     return res.status(200).json({
       status: "success",
