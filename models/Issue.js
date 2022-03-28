@@ -23,9 +23,9 @@ const issueSchema = new Schema(
         message: "Priority should be either high, medium or low",
       },
     },
-    developers: { type: Array, default: [] },
+    assignees: { type: Array, default: [] },
     submitter: {
-      type: String,
+      type: Object,
       required: [true, "An issue must have a submitter"],
     },
     type: {

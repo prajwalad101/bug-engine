@@ -18,11 +18,11 @@ const activitySchema = new Schema(
         values: ["create", "update", "delete"],
       },
     },
-    user: {
-      type: String,
-      required: [true, "An activity must have an user"],
+    issue: {
+      type: [issueSchema],
+      required: [true, "An activity must have issue info"],
     },
-    issue: issueSchema,
+    updatedInfo: { type: Array },
   },
   {
     timestamps: true,
