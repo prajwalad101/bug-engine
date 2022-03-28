@@ -1,4 +1,6 @@
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+
 import useCreateIssue from "../../../hooks/useCreateIssue";
 
 function SubmitIssue({
@@ -8,6 +10,7 @@ function SubmitIssue({
   issueDescription,
   selectedAssignees,
 }) {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const projectId = router.query.id;
 
@@ -19,8 +22,8 @@ function SubmitIssue({
       type: issueType,
       priority: issuePriority,
       description: issueDescription,
-      developers: selectedAssignees,
-      submitter: "Prajwal Adhikari",
+      assignees: selectedAssignees,
+      submitter: session.user,
     };
     addIssue.mutate(newIssue, {
       onSuccess: () => router.push(`/project/${projectId}`),

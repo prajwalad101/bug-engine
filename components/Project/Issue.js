@@ -38,7 +38,7 @@ function Issue({ issue, pId }) {
             </p>
             <p className="text-gray-500 hidden lgphone:inline"> / </p>
             <p className="text-base text-gray-400">
-              {relativeDate} by {issue.submitter}
+              {relativeDate} by {issue.submitter.name}
             </p>
           </div>
         </div>
@@ -49,10 +49,10 @@ function Issue({ issue, pId }) {
 
         {/* Assigned to */}
         <div className="flex shrink-0 gap-1 mt-4 lgphone:mt-1 lgphone:mr-9 lgtablet:mr-12 xl:basis-32">
-          {issue.developers[0] && (
+          {issue.assignees[0] && (
             <Image
               alt="assignee"
-              src={issue.developers[0].image}
+              src={issue.assignees[0].image}
               width={30}
               height={30}
               className="rounded-full"

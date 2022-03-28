@@ -6,13 +6,13 @@ import Auth from "./Auth";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
-function Providers({ children, session }) {
+function Providers({ children, session, user }) {
   const queryClient = new QueryClient();
 
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider refetchOnWindowFocus={false} session={session}>
-        <Auth>{children}</Auth>
+        <Auth user={user}>{children}</Auth>
       </SessionProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

@@ -32,7 +32,7 @@ export default function EditIssueModal({
   );
 
   const [issueType, setIssueType] = useState(createIssueObject(issue.type));
-  const [selectedAssignees, setSelectedAssignees] = useState(issue.developers);
+  const [selectedAssignees, setSelectedAssignees] = useState(issue.assignees);
 
   const [issueStatus, setIssueStatus] = useState(
     createIssueObject(issue.status)
