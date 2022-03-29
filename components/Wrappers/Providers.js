@@ -1,5 +1,5 @@
 // next-auth
-import { SessionProvider } from "next-auth/react";
+import { SessionProvider, signIn } from "next-auth/react";
 import Auth from "./Auth";
 
 // react query
@@ -12,7 +12,7 @@ function Providers({ children, session, user }) {
   return (
     <QueryClientProvider client={queryClient}>
       <SessionProvider refetchOnWindowFocus={false} session={session}>
-        <Auth user={user}>{children}</Auth>
+        {children}
       </SessionProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>

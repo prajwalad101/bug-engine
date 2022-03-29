@@ -1,3 +1,4 @@
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 import Navbar from "../Navigation/Navbar";
@@ -8,8 +9,8 @@ function Layout({ children }) {
 
   return (
     <>
-      <Navbar setSidebarOpen={setSidebarOpen} />
-      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      {/* <Navbar setSidebarOpen={setSidebarOpen} /> */}
+      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
       <div className="lg:ml-[285px] side-transition">{children}</div>
     </>
   );
