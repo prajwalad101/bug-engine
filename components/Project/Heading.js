@@ -8,6 +8,7 @@ import ListHeading from "../UI/Issues/ListHeading";
 import Searchbar from "../UI/Issues/Searchbar";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
+import UserDropdown from "../UI/Heading/UserDropdown";
 
 function Heading({ project, statusToggleComponent }) {
   const issues = project.issues;
@@ -39,9 +40,7 @@ function Heading({ project, statusToggleComponent }) {
         {/* Notification / Profile */}
         <div className="hidden items-center gap-14 lg:flex ">
           <IoMdNotificationsOutline size={29} />
-          <div className="rounded-full overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
-            <Image src={userImage} alt="user profile" width={35} height={35} />
-          </div>
+          <UserDropdown user={session.user} />
         </div>
       </section>
 
