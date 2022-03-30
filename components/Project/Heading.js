@@ -10,13 +10,10 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import UserDropdown from "../UI/Heading/UserDropdown";
 
-function Heading({ project, statusToggleComponent }) {
+function Heading({ project, statusToggleComponent, isAdmin }) {
   const issues = project.issues;
 
   const { data: session, status } = useSession();
-
-  // get user image from the session
-  const userImage = session.user.image;
 
   return (
     <div className="mt-5">
@@ -40,7 +37,7 @@ function Heading({ project, statusToggleComponent }) {
         {/* Notification / Profile */}
         <div className="hidden items-center gap-14 lg:flex ">
           <IoMdNotificationsOutline size={29} />
-          <UserDropdown user={session.user} />
+          <UserDropdown user={session.user} isAdmin={isAdmin} />
         </div>
       </section>
 

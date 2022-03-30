@@ -8,12 +8,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function UserDropdown({ user }) {
+export default function UserDropdown({ user, isAdmin }) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex justify-center w-full rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-          <div className="rounded-full overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
+          <div className="rounded-full shadow-md overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
             <Image src={user.image} alt="user profile" width={35} height={35} />
           </div>
         </Menu.Button>
@@ -30,19 +30,29 @@ export default function UserDropdown({ user }) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            <Menu.Item>
-              {({ active }) => (
+            {isAdmin && (
+              <Menu.Item>
                 <a
                   href="#"
-                  className={classNames(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
+                  className=" text-gray-700
+                      block px-4 py-2 text-sm
+                    "
                 >
-                  {user.email}
+                  Logged in as admin
                 </a>
-              )}
+              </Menu.Item>
+            )}
+            <Menu.Item>
+              <a
+                href="#"
+                className=" text-gray-700
+                  block px-4 py-2 text-sm
+                "
+              >
+                {user.email}
+              </a>
             </Menu.Item>
+
             <Menu.Item>
               {({ active }) => (
                 <button
