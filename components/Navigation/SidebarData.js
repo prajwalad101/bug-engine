@@ -9,8 +9,8 @@ export const SidebarData = [
     icon: <MdOutlineDashboardCustomize size={24} />,
   },
   {
-    title: "Teams",
-    path: "/teams",
+    title: "People",
+    path: "/people",
     icon: <IoPeopleSharp size={24} />,
   },
   {

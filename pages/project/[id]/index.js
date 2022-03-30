@@ -7,7 +7,7 @@ import Heading from "../../../components/Project/Heading";
 import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 
-function ProjectPage() {
+function ProjectPage({ isAdmin }) {
   const [issueStatus, setIssueStatus] = useState("Open");
 
   // get project id
