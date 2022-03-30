@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import useProjects from "../hooks/useProjects";
 
 export default function Home() {
-  console.log("Home component rendered");
   const router = useRouter();
 
   // Fetch projects from the api

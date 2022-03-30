@@ -4,7 +4,7 @@ import clientPromise from "../../../utils/mongoDb";
 
 import GitHubProvider from "next-auth/providers/github";
 
-import Assignee from "../../../models/Assignee";
+import User from "../../../models/User";
 import dbConnect from "../../../utils/dbConnect";
 
 export default NextAuth({
@@ -22,14 +22,14 @@ export default NextAuth({
     signIn: "/auth/signin",
   },
   callbacks: {
-    async signIn({ user }) {
-      // Fetch assignee from the email
-      const userEmail = user?.email;
+    async signIn({ logUser }) {
+      // Fetch user from the email
+      const userEmail = logUser?.email;
 
       await dbConnect();
-      const assignee = await Assignee.findOne({ email: userEmail });
-      // if assignee exists in database, authorize
-      if (assignee) {
+      const user = await User.findOne({ email: userEmail });
+      // if user exists in database, authorize
+      if (user) {
         return true;
       } else {
         return false;

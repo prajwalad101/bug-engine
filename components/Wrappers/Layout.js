@@ -5,7 +5,6 @@ import Navbar from "../Navigation/Navbar";
 import Sidebar from "../Navigation/Sidebar";
 
 function Layout({ children }) {
-  console.log("Layout component rendered");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
