@@ -6,7 +6,7 @@ import AppError from "../../utils/appError";
 import catchAsync from "../../utils/catchAsync";
 
 // models
-import Assignee from "../../models/Assignee";
+import VerifiedUser from "../../models/VerifiedUser";
 
 // middlewares
 import globalErrorHandler from "../../middleware/errorMd";
@@ -16,21 +16,22 @@ async function handler(req, res) {
   const { method } = req; // request type
 
   if (method === "POST") {
-    const newAssignee = await Assignee.create(req.body);
+    const newUser = await VerifiedUser.create(req.body);
 
     res.status(200).json({
       status: "success",
-      data: newAssignee,
+      data: newUser,
     });
   } else if (method === "GET") {
-    const client = await clientPromise;
-    const usersCollection = client.db().collection("users");
+    // const client = await clientPromise;
+    const verifiedUsers = await VerifiedUser.find();
+    // const usersCollection = client.db().collection("users");
 
-    const users = await usersCollection.find({}).toArray();
+    // const users = await usersCollection.find({}).toArray();
 
     return res.status(200).json({
       status: "success",
-      data: users,
+      data: verifiedUsers,
     });
   } else {
     const err = new AppError(`No route for ${req.url} found`, 400);
