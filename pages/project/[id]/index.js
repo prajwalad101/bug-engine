@@ -41,6 +41,7 @@ function ProjectPage({ isAdmin }) {
       <Heading
         project={project}
         statusToggleComponent={statusToggleComponent}
+        isAdmin={isAdmin}
       />
       <Issues project={project} issueStatus={issueStatus} />
     </div>
