@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const verifiedUserSchema = new Schema(
   {
     name: {
       type: String,
@@ -15,10 +15,16 @@ const userSchema = new Schema(
       unique: true,
       trim: true,
     },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const VerifiedUser =
+  mongoose.models.VerifiedUser ||
+  mongoose.model("VerifiedUser", verifiedUserSchema);
 
-export default User;
+export default VerifiedUser;
