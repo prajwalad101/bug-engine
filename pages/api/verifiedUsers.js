@@ -1,5 +1,3 @@
-import clientPromise from "../../utils/mongoDb";
-
 // utility functions
 import dbConnect from "../../utils/dbConnect";
 import AppError from "../../utils/appError";
