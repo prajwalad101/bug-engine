@@ -7,15 +7,15 @@ import Auth from "../components/Wrappers/Auth";
 function MyApp({ Component, pageProps }) {
   return (
     <Providers session={pageProps.session}>
-      <Layout>
-        {Component.auth === false ? (
-          <Component {...pageProps} />
-        ) : (
-          <Auth>
+      {Component.auth === false ? (
+        <Component {...pageProps} />
+      ) : (
+        <Auth>
+          <Layout>
             <Component {...pageProps} />
-          </Auth>
-        )}
-      </Layout>
+          </Layout>
+        </Auth>
+      )}
     </Providers>
   );
 }

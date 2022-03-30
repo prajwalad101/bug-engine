@@ -5,12 +5,13 @@ import Navbar from "../Navigation/Navbar";
 import Sidebar from "../Navigation/Sidebar";
 
 function Layout({ children }) {
+  console.log("Layout component rendered");
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
-      {/* <Navbar setSidebarOpen={setSidebarOpen} /> */}
-      {/* <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} /> */}
+      <Navbar setSidebarOpen={setSidebarOpen} />
+      <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="lg:ml-[285px] side-transition">{children}</div>
     </>
   );
