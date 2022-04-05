@@ -32,9 +32,10 @@ function People() {
     );
   }
 
-  const users = usersData?.data;
-  const verifiedUsers = verifiedUsersData?.data;
+  const users = usersData?.data; // all logged in users
+  const verifiedUsers = verifiedUsersData?.data; // users entered into the verified collection
 
+  // except admin users
   const filteredUsers = getFilteredUsers(users, verifiedUsers);
 
   return (
