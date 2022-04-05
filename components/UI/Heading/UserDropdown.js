@@ -2,13 +2,17 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import Image from "next/image";
 
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function UserDropdown({ user, isAdmin }) {
+export default function UserDropdown({ isAdmin }) {
+  const { data: session } = useSession();
+
+  const user = session.user;
+
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -34,18 +38,18 @@ export default function UserDropdown({ user, isAdmin }) {
               <Menu.Item>
                 <a
                   href="#"
-                  className=" text-gray-700
+                  className=" bg-gray-50 text-gray-700
                       block px-4 py-2 text-sm
                     "
                 >
-                  Logged in as admin
+                  Logged in as {isAdmin.current ? "admin" : user.role}
                 </a>
               </Menu.Item>
             )}
             <Menu.Item>
               <a
                 href="#"
-                className=" text-gray-700
+                className=" bg-gray-50 text-gray-700
                   block px-4 py-2 text-sm
                 "
               >

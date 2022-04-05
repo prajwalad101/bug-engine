@@ -6,14 +6,10 @@ import { GoSettings } from "react-icons/go";
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import ListHeading from "../UI/Issues/ListHeading";
 import Searchbar from "../UI/Issues/Searchbar";
-import Image from "next/image";
-import { useSession } from "next-auth/react";
 import UserDropdown from "../UI/Heading/UserDropdown";
 
 function Heading({ project, statusToggleComponent, isAdmin }) {
   const issues = project.issues;
-
-  const { data: session, status } = useSession();
 
   return (
     <div className="mt-5">
@@ -37,7 +33,7 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
         {/* Notification / Profile */}
         <div className="hidden items-center gap-14 lg:flex ">
           <IoMdNotificationsOutline size={29} />
-          <UserDropdown user={session.user} isAdmin={isAdmin} />
+          <UserDropdown isAdmin={isAdmin} />
         </div>
       </section>
 
