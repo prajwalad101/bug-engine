@@ -35,7 +35,14 @@ export default NextAuth({
         return false;
       }
     },
-    async session({ session, token }) {
+    async jwt({ token, user }) {
+      if (user && user.role) {
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token, user }) {
+      session.user.role = token.role;
       session.user.id = token.sub;
       return session;
     },
