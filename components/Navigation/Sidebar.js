@@ -1,7 +1,7 @@
 import * as AiIcons from "react-icons/ai";
 import { IoAddSharp } from "react-icons/io5";
 
-import { SidebarData } from "./SidebarData";
+import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 
 import useProjects from "../../hooks/useProjects";
@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 
-function Sidebar({ sidebarOpen, setSidebarOpen }) {
+function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
   const router = useRouter();
@@ -36,6 +36,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
     return <span>Error: {error.message}</span>;
   }
 
+  const sidebarData = getSidebarData(isAdmin);
+
   return (
     <div
       className={`${
@@ -57,8 +59,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
       </div>
 
       {/* Sidebar data */}
-      <ul className="">
-        {SidebarData.map((item, index) => {
+      <ul>
+        {sidebarData.map((item, index) => {
           return (
             <li
               key={index}

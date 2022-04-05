@@ -34,18 +34,16 @@ export default function UserDropdown({ isAdmin }) {
       >
         <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
-            {isAdmin && (
-              <Menu.Item>
-                <a
-                  href="#"
-                  className=" bg-gray-50 text-gray-700
+            <Menu.Item>
+              <a
+                href="#"
+                className=" bg-gray-50 text-gray-700
                       block px-4 py-2 text-sm
                     "
-                >
-                  Logged in as {isAdmin.current ? "admin" : user.role}
-                </a>
-              </Menu.Item>
-            )}
+              >
+                Logged in as {isAdmin ? "admin" : user.role}
+              </a>
+            </Menu.Item>
             <Menu.Item>
               <a
                 href="#"
