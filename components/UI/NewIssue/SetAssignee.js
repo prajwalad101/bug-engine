@@ -11,10 +11,23 @@ function SetAssignee({
   const [listOption, setListOption] = useState(allAssignees[0]);
 
   const addNewAssignee = () => {
-    if (selectedAssignees.indexOf(listOption) === -1) {
+    const selectedAssigneesIds = selectedAssignees.map(
+      (assignee) => assignee._id
+    );
+
+    // check if the listOption is already selected
+    if (selectedAssigneesIds.indexOf(listOption._id) === -1) {
       selectedAssignees.push(listOption);
       setSelectedAssignees([...selectedAssignees]);
     }
+  };
+
+  const removeSelectedAssignee = (id) => {
+    const filteredAssignees = selectedAssignees.filter(
+      (assignee) => assignee._id !== id
+    );
+    console.log(filteredAssignees);
+    setSelectedAssignees([...filteredAssignees]);
   };
 
   return (
@@ -43,7 +56,10 @@ function SetAssignee({
         ) : (
           <div>
             {selectedAssignees.map((assignee) => (
-              <div key={assignee._id}>
+              <div
+                key={assignee._id}
+                onClick={() => removeSelectedAssignee(assignee._id)}
+              >
                 <Image
                   alt="assignee"
                   src={assignee.image}
