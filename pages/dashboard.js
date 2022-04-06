@@ -1,11 +1,14 @@
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 
+import { formatIssues } from "../utils/issuesFunc";
 import LineChart from "../components/Dashboard/LineChart";
 import BarChart from "../components/Dashboard/BarChart";
 import useProjects from "../hooks/useProjects";
 
-function DashboardPage() {
+function DashboardPage({ isAdmin }) {
   const { isLoading, isError, data, error } = useProjects();
+  const { data: session, status } = useSession();
 
   const [chartType, setChartType] = useState("status");
 
@@ -16,8 +19,11 @@ function DashboardPage() {
   let allIssues = projects.map((project) => {
     return project.issues.map((issue) => issue);
   });
-
   allIssues = allIssues.flat();
+
+  if (!isAdmin) {
+    allIssues = formatIssues(allIssues, session);
+  }
 
   const openIssues = allIssues.filter((issue) => issue.status === "Open");
   const completedIssues = allIssues.filter(

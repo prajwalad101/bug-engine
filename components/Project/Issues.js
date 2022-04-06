@@ -1,4 +1,5 @@
 import { useSession } from "next-auth/react";
+import { formatIssues } from "../../utils/issuesFunc.js";
 import NoIssues from "../UI/Issues/NoIssues";
 
 import Issue from "./Issue";
@@ -10,14 +11,7 @@ function Issues({ project, issueStatus, isAdmin }) {
 
   if (!isAdmin) {
     // only show issues assigned for that user
-    issues = issues.filter((issue) => {
-      let assigneeIds = issue.assignees.map((assignee) => assignee._id);
-      if (assigneeIds.includes(session.user.id)) {
-        return true;
-      } else {
-        return false;
-      }
-    });
+    issues = formatIssues(issues, session);
   }
 
   return (
