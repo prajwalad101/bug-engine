@@ -17,6 +17,7 @@ export default function EditIssueModal({
   isModalOpen,
   issue,
   projectId,
+  isAdmin,
 }) {
   const router = useRouter();
   const deleteMutation = useDeleteIssue(projectId, issue._id);
@@ -98,14 +99,17 @@ export default function EditIssueModal({
                   />
                 </div>
                 {/* Priority */}
-                <div className="flex gap-3 mt-3">
-                  <span className="text-gray-500">Priority:</span>
-                  <IssueListbox
-                    listType={issuePriority}
-                    listTypes={issuePriorites}
-                    setListType={setIssuePriority}
-                  />
-                </div>
+                {isAdmin && (
+                  <div className="flex gap-3 mt-3">
+                    <span className="text-gray-500">Priority:</span>
+                    <IssueListbox
+                      listType={issuePriority}
+                      listTypes={issuePriorites}
+                      setListType={setIssuePriority}
+                    />
+                  </div>
+                )}
+
                 <UpdateIssueButton
                   issue={{
                     type: issueType.name,

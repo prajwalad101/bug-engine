@@ -7,7 +7,7 @@ import useIssue from "../../../../hooks/useIssue";
 import { AiOutlineEdit } from "react-icons/ai";
 import EditIssueModal from "../../../../components/Modal/EditIssueModal";
 
-function IssuePage() {
+function IssuePage({ isAdmin }) {
   const router = useRouter();
 
   const { id, issueId } = router.query;
@@ -40,6 +40,7 @@ function IssuePage() {
         setIsModalOpen={setIsModalOpen}
         issue={issue}
         projectId={id}
+        isAdmin={isAdmin}
       />
       <div className="flex items-center gap-56">
         {/* Name */}

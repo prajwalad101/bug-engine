@@ -43,7 +43,7 @@ function ProjectPage({ isAdmin }) {
         statusToggleComponent={statusToggleComponent}
         isAdmin={isAdmin}
       />
-      <Issues project={project} issueStatus={issueStatus} />
+      <Issues project={project} issueStatus={issueStatus} isAdmin={isAdmin} />
     </div>
   );
 }
