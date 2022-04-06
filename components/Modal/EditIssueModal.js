@@ -11,6 +11,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { issueTypes, issuePriorites, issueStatuses } from "../../data";
 import UpdateIssueButton from "../UI/NewIssue/UpdateIssueButton";
 import { useRouter } from "next/router";
+import SetAssignee from "../UI/NewIssue/SetAssignee";
+import useAssignees from "../../hooks/useAssignees";
 
 export default function EditIssueModal({
   setIsModalOpen,
@@ -20,8 +22,11 @@ export default function EditIssueModal({
   isAdmin,
 }) {
   const router = useRouter();
-  const deleteMutation = useDeleteIssue(projectId, issue._id);
 
+  const { data } = useAssignees();
+  const allAssignees = data?.data;
+
+  const deleteMutation = useDeleteIssue(projectId, issue._id);
   deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
 
   const createIssueObject = (name) => {
@@ -38,6 +43,8 @@ export default function EditIssueModal({
   const [issueStatus, setIssueStatus] = useState(
     createIssueObject(issue.status)
   );
+
+  if (!allAssignees) return null;
 
   return (
     <>
@@ -111,6 +118,17 @@ export default function EditIssueModal({
                     />
                   </div>
                 )}
+                {/* Set Assignees */}
+                {isAdmin &&
+                  (allAssignees.length !== 0 ? (
+                    <SetAssignee
+                      allAssignees={allAssignees}
+                      selectedAssignees={selectedAssignees}
+                      setSelectedAssignees={setSelectedAssignees}
+                    />
+                  ) : (
+                    <div>No Assignees to assign issue</div>
+                  ))}
 
                 <UpdateIssueButton
                   issue={{
