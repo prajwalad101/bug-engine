@@ -11,7 +11,7 @@ const getUsers = async () => {
 };
 
 function useUsers() {
-  return useQuery("users", getUsers);
+  return useQuery("assignees", getUsers);
 }
 
 export default useUsers;
