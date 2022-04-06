@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 
-const getDeveloperById = async (developerId) => {
-  const res = await fetch(`/api/developer/${developerId}`);
+const getDeveloperById = async (userId) => {
+  const res = await fetch(`/api/user/${userId}`);
 
   if (!res.ok) {
     throw new Error("No developer with that id found");
@@ -9,12 +9,8 @@ const getDeveloperById = async (developerId) => {
   return res.json();
 };
 
-export default function useDeveloper(developerId) {
-  return useQuery(
-    ["developers", developerId],
-    () => getDeveloperById(developerId),
-    {
-      enabled: !!developerId,
-    }
-  );
+export default function useDeveloper(userId) {
+  return useQuery(["developers", userId], () => getDeveloperById(userId), {
+    enabled: !!userId,
+  });
 }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDevelopers } from "../../../hooks/useDevelopers";
+import useUsers from "../../../hooks/useUsers";
 
 // components
 import TextEditor from "../../../components/Project/TextEditor";
@@ -12,7 +12,7 @@ import { issueTypes } from "../../../data";
 import { issuePriorites } from "../../../data";
 
 function NewIssuePage() {
-  const { data } = useDevelopers();
+  const { data } = useUsers();
 
   const allAssignees = data?.data;
 
