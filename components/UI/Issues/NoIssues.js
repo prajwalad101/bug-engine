@@ -1,5 +1,3 @@
-import { IoIosAddCircleOutline } from "react-icons/io";
-
 function NoIssues() {
   return (
     <div className="mt-7 flex flex-col items-center">

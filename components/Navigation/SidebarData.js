@@ -31,11 +31,11 @@ const SidebarUserData = [
   //   path: "/people",
   //   icon: <IoPeopleSharp size={24} />,
   // },
-  // {
-  //   title: "Activity",
-  //   path: "/activity",
-  //   icon: <FiActivity size={24} />,
-  // },
+  {
+    title: "Activity",
+    path: "/activity",
+    icon: <FiActivity size={24} />,
+  },
 ];
 
 export const getSidebarData = (isAdmin) => {

@@ -49,15 +49,16 @@ function Issue({ issue, pId }) {
 
         {/* Assigned to */}
         <div className="flex shrink-0 gap-1 mt-4 lgphone:mt-1 lgphone:mr-9 lgtablet:mr-12 xl:basis-32">
-          {issue.assignees[0] && (
+          {issue.assignees.map((assignee) => (
             <Image
+              key={assignee._id}
               alt="assignee"
-              src={issue.assignees[0].image}
+              src={assignee.image}
               width={30}
               height={30}
               className="rounded-full"
             />
-          )}
+          ))}
         </div>
       </section>
       {/* Horizontal line to differentiate issues */}

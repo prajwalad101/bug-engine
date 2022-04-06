@@ -42,7 +42,7 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
         {/* Heading section 1 */}
         <div className="flex gap-10 items-center xl:gap-20 mt-5 grow">
           <Searchbar />
-          <CreateIssueButton projectId={project._id} />
+          {isAdmin && <CreateIssueButton projectId={project._id} />}
         </div>
         {/* Heading section 2 */}
         <div className="flex items-center justify-between mt-5">

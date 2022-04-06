@@ -83,11 +83,13 @@ export default function EditIssueModal({
                   <h3 className="text-2xl font-lato  leading-6 text-gray-900">
                     {issue.name}
                   </h3>
-                  <AiOutlineDelete
-                    size={20}
-                    className="hover:text-red-900 hover:cursor-pointer"
-                    onClick={() => deleteMutation.mutate()}
-                  />
+                  {isAdmin && (
+                    <AiOutlineDelete
+                      size={20}
+                      className="hover:text-red-900 hover:cursor-pointer"
+                      onClick={() => deleteMutation.mutate()}
+                    />
+                  )}
                 </div>
                 {/* Status */}
                 <div className="flex gap-3 mt-5">
