@@ -77,14 +77,16 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
         })}
         <div className="flex items-center justify-between text-gray-400 ml-3 lg:pl-4 mt-9">
           <p className="uppercase">projects</p>
-          <IoAddSharp
-            size={22}
-            className="mr-5 hover:text-white hover:cursor-pointer"
-            onClick={() => {
-              setSidebarOpen(false);
-              router.push("/newProject");
-            }}
-          />
+          {isAdmin && (
+            <IoAddSharp
+              size={22}
+              className="mr-5 hover:text-white hover:cursor-pointer"
+              onClick={() => {
+                setSidebarOpen(false);
+                router.push("/newProject");
+              }}
+            />
+          )}
         </div>
         {/* All Projects */}
         <div className="mt-5 text-gray-300">

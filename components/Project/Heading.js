@@ -1,3 +1,5 @@
+import { useSession } from "next-auth/react";
+
 // icons
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { GoSettings } from "react-icons/go";
@@ -10,6 +12,7 @@ import UserDropdown from "../UI/Heading/UserDropdown";
 
 function Heading({ project, statusToggleComponent, isAdmin }) {
   const issues = project.issues;
+  const { data: session, status } = useSession();
 
   return (
     <div className="mt-5">
@@ -42,7 +45,9 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
         {/* Heading section 1 */}
         <div className="flex gap-10 items-center xl:gap-20 mt-5 grow">
           <Searchbar />
-          {isAdmin && <CreateIssueButton projectId={project._id} />}
+          {(isAdmin || session.user.role === "submitter") && (
+            <CreateIssueButton projectId={project._id} />
+          )}
         </div>
         {/* Heading section 2 */}
         <div className="flex items-center justify-between mt-5">
