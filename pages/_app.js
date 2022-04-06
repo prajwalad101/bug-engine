@@ -1,21 +1,21 @@
 import "../styles/globals.css";
 
-import { useRef } from "react";
+import { useState } from "react";
 import Providers from "../components/Wrappers/Providers";
 import Layout from "../components/Wrappers/Layout";
 import Auth from "../components/Wrappers/Auth";
 
 function MyApp({ Component, pageProps }) {
-  const isAdmin = useRef(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   return (
     <Providers session={pageProps.session}>
       {Component.auth === false ? (
         <Component {...pageProps} />
       ) : (
-        <Auth isAdmin={isAdmin}>
-          <Layout isAdmin={isAdmin.current}>
-            <Component {...pageProps} isAdmin={isAdmin.current} />
+        <Auth setIsAdmin={setIsAdmin}>
+          <Layout isAdmin={isAdmin}>
+            <Component {...pageProps} isAdmin={isAdmin} />
           </Layout>
         </Auth>
       )}
