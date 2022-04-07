@@ -6,6 +6,13 @@ import useIssue from "../../../../hooks/useIssue";
 
 import { AiOutlineEdit } from "react-icons/ai";
 import EditIssueModal from "../../../../components/Modal/EditIssueModal";
+import Tabs from "../../../../components/UI/IssueDescription/Tabs";
+import Comments from "../../../../components/Project/Comments";
+
+const tabItems = [
+  { name: "description", id: 1 },
+  { name: "comments", id: 2 },
+];
 
 function IssuePage({ isAdmin }) {
   const router = useRouter();
@@ -16,6 +23,7 @@ function IssuePage({ isAdmin }) {
   const issue = data?.data;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [tab, setTab] = useState(tabItems[0].name);
 
   if (!issue) return null;
 
@@ -79,11 +87,13 @@ function IssuePage({ isAdmin }) {
         <span className="text-gray-500">Priority:</span>
         <span className="uppercase text-red-500">{issue.priority}</span>
       </div>
+
+      <Tabs tab={tab} setTab={setTab} tabItems={tabItems} />
       {/* Description */}
-      <div className="mt-5">
-        <p className="text-gray-500 ">Description</p>
+      {tab === "description" && (
         <div dangerouslySetInnerHTML={sanitizedData()} />
-      </div>
+      )}
+      {tab === "comments" && <Comments projectId={id} issueId={issueId} />}
     </div>
   );
 }
