@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import commentSchema from "./Comment";
 
 const Schema = mongoose.Schema;
 
@@ -41,6 +42,7 @@ const issueSchema = new Schema(
         message: "Status should be open or completed",
       },
     },
+    comments: [commentSchema],
   },
   { timestamps: true }
 );
