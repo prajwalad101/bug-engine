@@ -56,7 +56,7 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
         </div>
       </section>
       <hr className="hr-line mt-5 lgphone:hidden" />
-      <ListHeading />
+      {/* <ListHeading /> */}
     </div>
   );
 }
