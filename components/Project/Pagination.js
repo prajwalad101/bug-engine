@@ -1,6 +1,11 @@
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-export default function Pagination({ pageNum, setPageNum }) {
+export default function Pagination({
+  pageNum,
+  setPageNum,
+  currentIssues,
+  totalIssues,
+}) {
   const increasePage = () => {
     setPageNum((pageNum) => pageNum + 1);
   };
@@ -15,9 +20,12 @@ export default function Pagination({ pageNum, setPageNum }) {
   return (
     <div className="flex flex-col items-center my-5 font-ibm">
       <span className="text-sm text-gray-700 ">
-        Showing <span className="font-semibold text-gray-900 ">1</span> to{" "}
-        <span className="font-semibold text-gray-900 ">10</span> of{" "}
-        <span className="font-semibold text-gray-900 ">100</span> Entries
+        Showing{" "}
+        <span className="font-semibold text-gray-900 ">
+          {currentIssues.length}
+        </span>{" "}
+        of <span className="font-semibold text-gray-900 ">{totalIssues}</span>{" "}
+        Entries
       </span>
 
       <div className="inline-flex mt-2 xs:mt-0">

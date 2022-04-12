@@ -6,13 +6,11 @@ import { GoSettings } from "react-icons/go";
 
 // components
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
-import ListHeading from "../UI/Issues/ListHeading";
 import Searchbar from "../UI/Issues/Searchbar";
 import UserDropdown from "../UI/Heading/UserDropdown";
 
-function Heading({ project, statusToggleComponent, isAdmin }) {
-  const issues = project.issues;
-  const { data: session, status } = useSession();
+function Heading({ project, issues, statusToggleComponent, isAdmin }) {
+  const { data: session } = useSession();
 
   return (
     <div className="mt-5">

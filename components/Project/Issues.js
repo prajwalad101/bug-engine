@@ -5,12 +5,8 @@ import NoIssues from "../UI/Issues/NoIssues";
 import Issue from "./Issue";
 import UpdatedIssue from "./UpdatedIssue.js";
 
-function Issues({ project, issueStatus, pageNum, isAdmin }) {
-  const { data: session, status } = useSession();
-
-  let issues = project.issues.filter((el) => el.status === issueStatus);
-
-  issues = formatPagination(issues, pageNum, 10);
+function Issues({ project, issues, isAdmin }) {
+  const { data: session } = useSession();
 
   if (!isAdmin) {
     // only show issues assigned for that user

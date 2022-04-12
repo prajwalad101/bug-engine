@@ -7,10 +7,12 @@ import Heading from "../../../components/Project/Heading";
 import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 import Pagination from "../../../components/Project/Pagination";
+import { formatPagination } from "../../../utils/issuesFunc";
 
 function ProjectPage({ isAdmin }) {
   const [issueStatus, setIssueStatus] = useState("Open");
   const [pageNum, setPageNum] = useState(1);
+  let totalIssues = 0;
 
   // get project id
   const router = useRouter();
@@ -33,6 +35,11 @@ function ProjectPage({ isAdmin }) {
     return <div>Error: {error}</div>;
   }
 
+  let issues = project.issues.filter((el) => el.status === issueStatus); // issue status
+  // sets the total issue number
+  totalIssues = issues.length;
+  issues = formatPagination(issues, pageNum, 10); // limit issues
+
   // This component is rendered inside the heading section.
   const statusToggleComponent = (
     <StatusToggle issueStatus={issueStatus} setIssueStatus={setIssueStatus} />
@@ -42,16 +49,17 @@ function ProjectPage({ isAdmin }) {
     <div className="mx-5 font-lato">
       <Heading
         project={project}
+        issues={issues}
         statusToggleComponent={statusToggleComponent}
         isAdmin={isAdmin}
       />
-      <Issues
-        project={project}
-        issueStatus={issueStatus}
+      <Issues project={project} issues={issues} isAdmin={isAdmin} />
+      <Pagination
         pageNum={pageNum}
-        isAdmin={isAdmin}
+        setPageNum={setPageNum}
+        currentIssues={issues}
+        totalIssues={totalIssues}
       />
-      <Pagination pageNum={pageNum} setPageNum={setPageNum} />
     </div>
   );
 }
