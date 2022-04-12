@@ -10,3 +10,10 @@ export const formatIssues = (issues, session) => {
 
   return filteredIssues;
 };
+
+export const formatPagination = (issues, pageNum, limit) => {
+  // page 1, skip 0, page2, skip 10
+  const skip = (pageNum - 1) * limit;
+  const filteredIssues = issues.slice(skip, limit);
+  return filteredIssues;
+};

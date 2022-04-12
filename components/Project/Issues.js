@@ -1,14 +1,16 @@
 import { useSession } from "next-auth/react";
-import { formatIssues } from "../../utils/issuesFunc.js";
+import { formatIssues, formatPagination } from "../../utils/issuesFunc.js";
 import NoIssues from "../UI/Issues/NoIssues";
 
 import Issue from "./Issue";
 import UpdatedIssue from "./UpdatedIssue.js";
 
-function Issues({ project, issueStatus, isAdmin }) {
+function Issues({ project, issueStatus, pageNum, isAdmin }) {
   const { data: session, status } = useSession();
 
   let issues = project.issues.filter((el) => el.status === issueStatus);
+
+  issues = formatPagination(issues, pageNum, 10);
 
   if (!isAdmin) {
     // only show issues assigned for that user

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useProject from "../../../hooks/useProject";
 
 // components
@@ -10,6 +10,7 @@ import Pagination from "../../../components/Project/Pagination";
 
 function ProjectPage({ isAdmin }) {
   const [issueStatus, setIssueStatus] = useState("Open");
+  const [pageNum, setPageNum] = useState(1);
 
   // get project id
   const router = useRouter();
@@ -44,8 +45,13 @@ function ProjectPage({ isAdmin }) {
         statusToggleComponent={statusToggleComponent}
         isAdmin={isAdmin}
       />
-      <Issues project={project} issueStatus={issueStatus} isAdmin={isAdmin} />
-      <Pagination />
+      <Issues
+        project={project}
+        issueStatus={issueStatus}
+        pageNum={pageNum}
+        isAdmin={isAdmin}
+      />
+      <Pagination pageNum={pageNum} setPageNum={setPageNum} />
     </div>
   );
 }
