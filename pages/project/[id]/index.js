@@ -6,6 +6,7 @@ import useProject from "../../../hooks/useProject";
 import Heading from "../../../components/Project/Heading";
 import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
+import Pagination from "../../../components/Project/Pagination";
 
 function ProjectPage({ isAdmin }) {
   const [issueStatus, setIssueStatus] = useState("Open");
@@ -44,6 +45,7 @@ function ProjectPage({ isAdmin }) {
         isAdmin={isAdmin}
       />
       <Issues project={project} issueStatus={issueStatus} isAdmin={isAdmin} />
+      <Pagination />
     </div>
   );
 }
