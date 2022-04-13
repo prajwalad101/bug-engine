@@ -9,7 +9,7 @@ import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import Searchbar from "../UI/Issues/Searchbar";
 import UserDropdown from "../UI/Heading/UserDropdown";
 
-function Heading({ project, issues, statusToggleComponent, isAdmin }) {
+function Heading({ project, statusToggleComponent, isAdmin }) {
   const { data: session } = useSession();
 
   return (
@@ -19,7 +19,7 @@ function Heading({ project, issues, statusToggleComponent, isAdmin }) {
           <div>
             <h1 className="font-bold text-[27px] leading-tight">Issues</h1>
             <p className="text-gray-500 text-base">
-              {issues.length} Outstanding
+              {project.issues.length} Outstanding
             </p>
           </div>
           {/* Project Details */}

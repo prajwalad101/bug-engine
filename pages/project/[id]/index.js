@@ -53,7 +53,6 @@ function ProjectPage({ isAdmin }) {
     <div className="mx-5 font-lato">
       <Heading
         project={project}
-        issues={issues}
         statusToggleComponent={statusToggleComponent}
         isAdmin={isAdmin}
       />
