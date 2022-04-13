@@ -29,7 +29,7 @@ function SetAssignee({
         <div className="grow">
           <SelectMenu
             options={allAssignees}
-            selected={listOption.name}
+            selected={listOption}
             setSelected={setListOption}
           />
         </div>

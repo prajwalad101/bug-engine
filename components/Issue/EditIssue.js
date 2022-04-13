@@ -12,15 +12,17 @@ import Image from "next/image";
 import SelectMenu from "./SelectMenu";
 
 export default function EditIssue(props) {
-  // const [issueStatus, setIssueStatus] = useState(issue.status);
-  // const [issuePriority, setIssuePriority] = useState(issue.priority);
-  // const [selectedAssignees, setSelectedAssignees] = useState(issue.assignees);
-
   const removeSelectedAssignee = (id) => {
     const filteredAssignees = props.selectedAssignees.filter(
       (assignee) => assignee._id !== id
     );
     props.setSelectedAssignees([...filteredAssignees]);
+  };
+
+  const formatOption = (option) => {
+    return {
+      name: option,
+    };
   };
 
   return (
@@ -35,7 +37,7 @@ export default function EditIssue(props) {
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <SelectMenu
                 options={issueStatusOptions}
-                selected={props.issueStatus}
+                selected={formatOption(props.issueStatus)}
                 setSelected={props.setIssueStatus}
               />
             </dd>
@@ -48,7 +50,7 @@ export default function EditIssue(props) {
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <SelectMenu
                 options={issuePriorityOptions}
-                selected={props.issuePriority}
+                selected={formatOption(props.issuePriority)}
                 setSelected={props.setIssuePriority}
               />
             </dd>
