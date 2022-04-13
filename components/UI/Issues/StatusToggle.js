@@ -17,9 +17,9 @@ function StatusToggle({ issueStatus, setIssueStatus, project }) {
             issueStatus === "Open" ? "text-[#3197f5]" : "text-[#898989]"
           } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
-          open
+          Outstanding
         </p>
-        <span className="font-lato text-gray-500">({openIssues.length})</span>
+        {/* <span className="font-lato text-gray-500">({openIssues.length})</span> */}
       </div>
       <div
         className={`${
@@ -33,7 +33,7 @@ function StatusToggle({ issueStatus, setIssueStatus, project }) {
           } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
           completed
-          <span className="font-lato ml-1">({closedIssues.length})</span>
+          {/* <span className="font-lato ml-1">({closedIssues.length})</span> */}
         </p>
       </div>
     </div>

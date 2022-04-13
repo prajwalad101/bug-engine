@@ -8,8 +8,7 @@ import IssueListbox from "../../../components/UI/NewIssue/IssueListBox";
 import SetAssignee from "../../../components/UI/NewIssue/SetAssignee";
 
 // data
-import { issueTypes } from "../../../data";
-import { issuePriorites } from "../../../data";
+import { issueTypeOptions, issuePriorityOptions } from "../../../data";
 
 function NewIssuePage() {
   const { data } = useAssignees();
@@ -17,8 +16,8 @@ function NewIssuePage() {
   const allAssignees = data?.data;
 
   const [issueTitle, setIssueTitle] = useState("");
-  const [issueType, setIssueType] = useState(issueTypes[0]);
-  const [issuePriority, setIssuePriority] = useState(issuePriorites[0]);
+  const [issueType, setIssueType] = useState(issueTypeOptions[0]);
+  const [issuePriority, setIssuePriority] = useState(issuePriorityOptions[0]);
   const [selectedAssignees, setSelectedAssignees] = useState([]);
   const [issueDescription, setIssueDescription] = useState("");
 
@@ -56,7 +55,7 @@ function NewIssuePage() {
           <div className="max-w-[150px]">
             <h3 className="text-gray-500 mb-3">TYPE</h3>
             <IssueListbox
-              listTypes={issueTypes}
+              listTypes={issueTypeOptions}
               listType={issueType}
               setListType={setIssueType}
             />
@@ -65,7 +64,7 @@ function NewIssuePage() {
           <div className="max-w-[150px]">
             <h3 className="text-gray-500 mb-3">PRIORITY</h3>
             <IssueListbox
-              listTypes={issuePriorites}
+              listTypes={issuePriorityOptions}
               listType={issuePriority}
               setListType={setIssuePriority}
             />

@@ -1,5 +1,3 @@
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-
 export default function Pagination({
   pageNum,
   setPageNum,
@@ -18,31 +16,32 @@ export default function Pagination({
   };
 
   return (
-    <div className="flex flex-col items-center my-5 font-ibm">
-      <span className="text-sm text-gray-700 ">
+    <div className="flex justify-between items-center my-5 font-ibm">
+      <p className="text-sm text-gray-700">
         Showing{" "}
-        <span className="font-semibold text-gray-900 ">
-          {currentIssues.length}
-        </span>{" "}
-        of <span className="font-semibold text-gray-900 ">{totalIssues}</span>{" "}
-        Entries
-      </span>
-
-      <div className="inline-flex mt-2 xs:mt-0">
-        <button
-          className="flex items-center gap-3 py-2 px-4 text-sm font-medium text-white bg-blue-700 rounded-l hover:bg-blue-900"
+        {currentIssues.length !== 0 ? (
+          <span>
+            <span className="font-semibold">{(pageNum - 1) * 10 + 1}</span> to{" "}
+            <span className="font-semibold">{currentIssues.length}</span>
+          </span>
+        ) : (
+          <span>0</span>
+        )}{" "}
+        of <span className="font-semibold">{totalIssues}</span> results
+      </p>
+      <div className="flex items-center">
+        <p
+          className="inline-flex items-center py-2 px-4 mr-3 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 hover:cursor-pointer"
           onClick={decreasePage}
         >
-          <BsArrowLeft />
-          <span>Prev</span>
-        </button>
-        <button
-          className="flex items-center gap-3 py-2 px-4 text-sm font-medium text-white bg-blue-700 rounded-r border-0 border-l border-gray-300 hover:bg-blue-800"
+          Previous
+        </p>
+        <p
+          className="inline-flex items-center py-2 px-4 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 hover:cursor-pointer"
           onClick={increasePage}
         >
-          <span>Next</span>
-          <BsArrowRight />
-        </button>
+          Next
+        </p>
       </div>
     </div>
   );

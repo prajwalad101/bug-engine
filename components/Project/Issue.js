@@ -1,17 +1,11 @@
 import formatDate from "../../utils/formatDate";
-import IssuePriority from "../UI/Issues/IssuePriority";
+import { classNames } from "../../utils/tailwindFunc";
 
 import { useRouter } from "next/router";
 import Image from "next/image";
 
-export default function UpdatedIssue({ issue, pId }) {
+export default function Issue({ issue, pId }) {
   const router = useRouter();
-  const date = new Date(issue.createdAt).toLocaleDateString("en-gb", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone: "utc",
-  });
 
   const relativeDate = formatDate(new Date(issue.createdAt));
 
@@ -27,11 +21,18 @@ export default function UpdatedIssue({ issue, pId }) {
       >
         <th
           scope="row"
-          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          className={classNames(
+            "px-6 py-4 text-[15px] font-medium uppercase font-worksans",
+            issue.priority === "High" && "text-red-700",
+            issue.priority === "Medium" && "text-blue-500",
+            issue.priority === "Low" && "text-gray-400"
+          )}
         >
           {issue.priority}
         </th>
-        <td className="px-6 py-4">{issue.name}</td>
+        <td className="px-6 py-4 text-base text-black whitespace-nowrap">
+          {issue.name}
+        </td>
         <td className="px-6 py-4">{issue.type}</td>
         <td className="px-6 py-4">
           {relativeDate} by {issue.submitter.name}
