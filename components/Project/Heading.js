@@ -22,13 +22,6 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
               {project.issues.length} Outstanding
             </p>
           </div>
-          {/* Project Details */}
-          <div className="flex items-center gap-2 text-gray-400 hover:cursor-pointer">
-            <GoSettings size={18} className="peer" />
-            <p className="hover:underline peer-hover:underline underline-offset-2">
-              Project Details
-            </p>
-          </div>
         </div>
 
         {/* Notification / Profile */}

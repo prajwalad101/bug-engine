@@ -4,12 +4,13 @@ export default function Pagination({
   currentIssues,
   totalIssues,
 }) {
+  console.log(pageNum);
   const increasePage = () => {
     setPageNum((pageNum) => pageNum + 1);
   };
 
   const decreasePage = () => {
-    if (pageNum <= 0) {
+    if (pageNum <= 1) {
       return;
     }
     setPageNum((pageNum) => pageNum - 1);

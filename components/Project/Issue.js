@@ -1,4 +1,4 @@
-import formatDate from "../../utils/formatDate";
+import formatDate, { getFormattedDate } from "../../utils/formatDate";
 import { classNames } from "../../utils/tailwindFunc";
 
 import { useRouter } from "next/router";
@@ -9,6 +9,8 @@ export default function Issue({ issue, pId }) {
 
   const relativeDate = formatDate(new Date(issue.createdAt));
 
+  const date = getFormattedDate(issue.createdAt);
+
   const showIssueInfo = () => {
     router.push(`/project/${pId}/issue/${issue._id}`);
   };
@@ -16,7 +18,7 @@ export default function Issue({ issue, pId }) {
   return (
     <tbody>
       <tr
-        className="h-16 bg-white border-b hover:bg-gray-50 hover:cursor-pointer"
+        className="h-16 bg-white border-b-[1.7px] border-gray-200 hover:bg-gray-50 hover:cursor-pointer"
         onClick={showIssueInfo}
       >
         <th
@@ -30,13 +32,16 @@ export default function Issue({ issue, pId }) {
         >
           {issue.priority}
         </th>
-        <td className="px-6 py-4 text-base text-black whitespace-nowrap">
-          {issue.name}
+        <td className="px-6 py-4 font-hindsiliguri whitespace-nowrap">
+          <div>
+            <p className="font-medium text-xl text-black">{issue.name}</p>
+            <p className="mt-1 text-base">
+              #{issue.type} / {relativeDate} by {issue.submitter.name}
+            </p>
+          </div>
         </td>
-        <td className="px-6 py-4">{issue.type}</td>
-        <td className="px-6 py-4">
-          {relativeDate} by {issue.submitter.name}
-        </td>
+        {/* <td className="px-6 py-4">{issue.type}</td> */}
+        <td className="px-6 py-4 text-base whitespace-nowrap">{date}</td>
         <td className="px-6 py-4">
           {issue.assignees.length !== 0 ? (
             issue.assignees.map((assignee) => (
@@ -52,7 +57,7 @@ export default function Issue({ issue, pId }) {
               </div>
             ))
           ) : (
-            <div>NA</div>
+            <div className="text-base">NA</div>
           )}
         </td>
       </tr>
