@@ -12,7 +12,4 @@ export const issuePriorityOptions = [
 export const issueStatusOptions = [
   { _id: 1, name: "Open", unavailable: false },
   { _id: 2, name: "Completed", unavailable: false },
-  { _id: 3, name: "Verify", unavailable: false },
-  { _id: 4, name: "Blocked", unavailable: false },
-  { _id: 5, name: "In Progress", unavailable: false },
 ];

@@ -3,9 +3,12 @@ import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
 import { useRouter } from "next/router";
+import EditIssue from "../Issue/EditIssue";
+
+// functions
 import useAssignees from "../../hooks/useAssignees";
 import useDeleteIssue from "../../hooks/useDeleteIssue";
-import EditIssue from "../Issue/EditIssue";
+import useUpdateIssue from "../../hooks/useUpdateIssue";
 
 export default function EditIssueModal({
   open,
@@ -14,13 +17,35 @@ export default function EditIssueModal({
   projectId,
   isAdmin,
 }) {
+  const [issueStatus, setIssueStatus] = useState(issue.status);
+  const [issuePriority, setIssuePriority] = useState(issue.priority);
+  const [selectedAssignees, setSelectedAssignees] = useState(issue.assignees);
+
   const router = useRouter();
   const cancelButtonRef = useRef(null);
   const { data } = useAssignees();
   const allAssignees = data?.data;
 
+  const updateMutation = useUpdateIssue(projectId);
   const deleteMutation = useDeleteIssue(projectId, issue._id);
+
   deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
+
+  const updateIssue = () => {
+    const newIssue = {
+      status: issueStatus,
+      priority: issuePriority,
+      assignees: selectedAssignees,
+    };
+
+    updateMutation.mutate(
+      { issue: newIssue, issueId: issue._id },
+
+      {
+        onSuccess: () => router.push(`/project/${projectId}`),
+      }
+    );
+  };
 
   if (!allAssignees) return null;
 
@@ -72,9 +97,13 @@ export default function EditIssueModal({
                       Edit Issue
                     </Dialog.Title>
                     <EditIssue
-                      issue={issue}
-                      projectId={projectId}
                       allAssignees={allAssignees}
+                      issueStatus={issueStatus}
+                      setIssueStatus={setIssueStatus}
+                      issuePriority={issuePriority}
+                      setIssuePriority={setIssuePriority}
+                      selectedAssignees={selectedAssignees}
+                      setSelectedAssignees={setSelectedAssignees}
                     />
                   </div>
                 </div>
@@ -83,7 +112,7 @@ export default function EditIssueModal({
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
+                  onClick={updateIssue}
                 >
                   Update
                 </button>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 import IssueListbox from "./IssueListBox";
+import SelectMenu from "../../Issue/SelectMenu";
 
 function SetAssignee({
   allAssignees,
@@ -22,29 +23,25 @@ function SetAssignee({
     }
   };
 
-  const removeSelectedAssignee = (id) => {
-    const filteredAssignees = selectedAssignees.filter(
-      (assignee) => assignee._id !== id
-    );
-    console.log(filteredAssignees);
-    setSelectedAssignees([...filteredAssignees]);
-  };
-
   return (
     <div>
-      <div className="flex gap-10">
-        <IssueListbox
-          listTypes={allAssignees}
-          listType={listOption}
-          setListType={setListOption}
-        />
+      <div className="flex justify-between items-center">
+        <div className="grow">
+          <SelectMenu
+            options={allAssignees}
+            selected={listOption.name}
+            setSelected={setListOption}
+          />
+        </div>
+
         {/* Add assignee button */}
-        <div
-          className="hover:cursor-pointer flex items-center py-[2px] px-4 bg-blue-400 text-white rounded-sm"
+        <button
+          type="button"
+          className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-6 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           onClick={addNewAssignee}
         >
           Add
-        </div>
+        </button>
       </div>
     </div>
   );

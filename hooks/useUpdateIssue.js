@@ -7,7 +7,7 @@ function useUpdateIssue(projectId, issueId) {
   const queryClient = useQueryClient();
 
   const updateIssue = useMutation(
-    async (issue) => {
+    async ({ issue, issueId }) => {
       const res = await fetch(`/api/project/${projectId}/issue/${issueId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -21,7 +21,7 @@ function useUpdateIssue(projectId, issueId) {
     },
     {
       onSuccess: () => {
-        return queryClient.invalidateQueries(["issue", projectId, issueId]);
+        return queryClient.invalidateQueries(["issues", projectId]);
       },
     }
   );

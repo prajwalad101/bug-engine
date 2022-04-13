@@ -1,7 +1,7 @@
 function StatusToggle({ issueStatus, setIssueStatus, project }) {
   const openIssues = project?.issues.filter((issue) => issue.status === "Open");
   const closedIssues = project?.issues.filter(
-    (issue) => issue.status === "Closed"
+    (issue) => issue.status === "Completed"
   );
 
   return (
