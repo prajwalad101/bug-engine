@@ -1,150 +1,112 @@
-import { useState } from "react";
+/* This example requires Tailwind CSS v2.0+ */
+import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import useDeleteIssue from "../../hooks/useDeleteIssue";
 
-// components
-import IssueListbox from "../UI/NewIssue/IssueListBox";
-import { AiOutlineDelete } from "react-icons/ai";
-
-// data
-import { issueTypes, issuePriorites, issueStatuses } from "../../data";
-import UpdateIssueButton from "../UI/NewIssue/UpdateIssueButton";
 import { useRouter } from "next/router";
-import SetAssignee from "../UI/NewIssue/SetAssignee";
 import useAssignees from "../../hooks/useAssignees";
+import useDeleteIssue from "../../hooks/useDeleteIssue";
+import EditIssue from "../Issue/EditIssue";
 
 export default function EditIssueModal({
-  setIsModalOpen,
-  isModalOpen,
+  open,
+  setOpen,
   issue,
   projectId,
   isAdmin,
 }) {
   const router = useRouter();
-
+  const cancelButtonRef = useRef(null);
   const { data } = useAssignees();
   const allAssignees = data?.data;
 
   const deleteMutation = useDeleteIssue(projectId, issue._id);
   deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
 
-  const createIssueObject = (name) => {
-    return { _id: 0, name, unavailable: false };
-  };
-
-  const [issuePriority, setIssuePriority] = useState(
-    createIssueObject(issue.priority)
-  );
-
-  const [issueType, setIssueType] = useState(createIssueObject(issue.type));
-  const [selectedAssignees, setSelectedAssignees] = useState(issue.assignees);
-
-  const [issueStatus, setIssueStatus] = useState(
-    createIssueObject(issue.status)
-  );
-
   if (!allAssignees) return null;
 
   return (
-    <>
-      <Transition appear show={isModalOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={() => setIsModalOpen(false)}
-        >
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
-            </Transition.Child>
+    <Transition.Root show={open} as={Fragment}>
+      <Dialog
+        as="div"
+        className="fixed z-10 inset-0 overflow-y-auto"
+        initialFocus={cancelButtonRef}
+        onClose={setOpen}
+      >
+        <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
 
-            {/* This element is to trick the browser into centering the modal contents. */}
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              {/* Issue Information */}
-              <div className="inline-block w-full max-w-2xl p-6 my-8 lg:ml-[270px] overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-sm side-transition font-lato">
-                <div className="flex items-center gap-10">
-                  {/* Name */}
-                  <h3 className="text-2xl font-lato  leading-6 text-gray-900">
-                    {issue.name}
-                  </h3>
-                  {isAdmin && (
-                    <AiOutlineDelete
-                      size={20}
-                      className="hover:text-red-900 hover:cursor-pointer"
-                      onClick={() => deleteMutation.mutate()}
-                    />
-                  )}
-                </div>
-                {/* Status */}
-                <div className="flex gap-3 mt-5">
-                  <span className="text-gray-500">Status:</span>
-                  <IssueListbox
-                    listType={issueStatus}
-                    listTypes={issueStatuses}
-                    setListType={setIssueStatus}
-                  />
-                </div>
-                {/* Priority */}
-                {isAdmin && (
-                  <div className="flex gap-3 mt-3">
-                    <span className="text-gray-500">Priority:</span>
-                    <IssueListbox
-                      listType={issuePriority}
-                      listTypes={issuePriorites}
-                      setListType={setIssuePriority}
+          {/* This element is to trick the browser into centering the modal contents. */}
+          <span
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+          >
+            &#8203;
+          </span>
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            enterTo="opacity-100 translate-y-0 sm:scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+            leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+          >
+            <div className="relative inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 w-full text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg leading-6 font-medium text-gray-900 mb-5"
+                    >
+                      Edit Issue
+                    </Dialog.Title>
+                    <EditIssue
+                      issue={issue}
+                      projectId={projectId}
+                      allAssignees={allAssignees}
                     />
                   </div>
-                )}
-                {/* Set Assignees */}
-                {isAdmin &&
-                  (allAssignees.length !== 0 ? (
-                    <SetAssignee
-                      allAssignees={allAssignees}
-                      selectedAssignees={selectedAssignees}
-                      setSelectedAssignees={setSelectedAssignees}
-                    />
-                  ) : (
-                    <div>No Assignees to assign issue</div>
-                  ))}
-
-                <UpdateIssueButton
-                  issue={{
-                    type: issueType.name,
-                    status: issueStatus.name,
-                    assignees: selectedAssignees,
-                    priority: issuePriority.name,
-                  }}
-                  issueId={issue._id}
-                  projectId={projectId}
-                />
+                </div>
               </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
-    </>
+              <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  type="button"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={() => setOpen(false)}
+                >
+                  Update
+                </button>
+                <button
+                  type="button"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={() => deleteMutation.mutate()}
+                >
+                  Delete
+                </button>
+                <button
+                  type="button"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={() => setOpen(false)}
+                  ref={cancelButtonRef}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </Transition.Child>
+        </div>
+      </Dialog>
+    </Transition.Root>
   );
 }

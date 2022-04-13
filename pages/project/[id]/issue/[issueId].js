@@ -8,6 +8,7 @@ import { AiOutlineEdit } from "react-icons/ai";
 import EditIssueModal from "../../../../components/Modal/EditIssueModal";
 import Tabs from "../../../../components/UI/IssueDescription/Tabs";
 import Comments from "../../../../components/Project/Comments";
+import EditIssue from "../../../../components/Issue/EditIssue";
 
 const tabItems = [
   { name: "description", id: 1 },
@@ -44,8 +45,8 @@ function IssuePage({ isAdmin }) {
     <div className="mx-5 mt-8 font-lato">
       {/* modal for editing issue */}
       <EditIssueModal
-        isModalOpen={isModalOpen}
-        setIsModalOpen={setIsModalOpen}
+        open={isModalOpen}
+        setOpen={setIsModalOpen}
         issue={issue}
         projectId={id}
         isAdmin={isAdmin}
