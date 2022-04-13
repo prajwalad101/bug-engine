@@ -42,7 +42,11 @@ function ProjectPage({ isAdmin }) {
 
   // This component is rendered inside the heading section.
   const statusToggleComponent = (
-    <StatusToggle issueStatus={issueStatus} setIssueStatus={setIssueStatus} />
+    <StatusToggle
+      issueStatus={issueStatus}
+      setIssueStatus={setIssueStatus}
+      project={project}
+    />
   );
 
   return (

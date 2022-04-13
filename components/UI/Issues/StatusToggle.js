@@ -1,4 +1,9 @@
-function StatusToggle({ issueStatus, setIssueStatus }) {
+function StatusToggle({ issueStatus, setIssueStatus, project }) {
+  const openIssues = project?.issues.filter((issue) => issue.status === "Open");
+  const closedIssues = project?.issues.filter(
+    (issue) => issue.status === "Closed"
+  );
+
   return (
     <div className="flex h-[37px] font-raleway">
       <div
@@ -14,6 +19,7 @@ function StatusToggle({ issueStatus, setIssueStatus }) {
         >
           open
         </p>
+        <span className="font-lato text-gray-500">({openIssues.length})</span>
       </div>
       <div
         className={`${
@@ -27,6 +33,7 @@ function StatusToggle({ issueStatus, setIssueStatus }) {
           } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
           completed
+          <span className="font-lato ml-1">({closedIssues.length})</span>
         </p>
       </div>
     </div>
