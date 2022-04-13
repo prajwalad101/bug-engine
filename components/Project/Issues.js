@@ -2,8 +2,7 @@ import { useSession } from "next-auth/react";
 import { formatIssues, formatPagination } from "../../utils/issuesFunc.js";
 import NoIssues from "../UI/Issues/NoIssues";
 
-import Issue from "./Issue";
-import UpdatedIssue from "./UpdatedIssue.js";
+import UpdatedIssue from "./Issue.js";
 
 function Issues({ project, issues, isAdmin }) {
   const { data: session } = useSession();
