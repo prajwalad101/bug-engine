@@ -21,7 +21,7 @@ function useUpdateIssue(projectId, issueId) {
     },
     {
       onSuccess: () => {
-        return queryClient.invalidateQueries(["issues", projectId]);
+        return queryClient.invalidateQueries(issueId);
       },
     }
   );

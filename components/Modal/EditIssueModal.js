@@ -42,7 +42,7 @@ export default function EditIssueModal({
       { issue: newIssue, issueId: issue._id },
 
       {
-        onSuccess: () => router.push(`/project/${projectId}`),
+        onSuccess: () => setOpen(false),
       }
     );
   };
