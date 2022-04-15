@@ -19,7 +19,7 @@ function useDeleteIssue(projectId, issueId) {
     {
       onSuccess: () => {
         // refetch the issues
-        return queryClient.invalidateQueries(["project", projectId]);
+        return queryClient.invalidateQueries(issueId);
       },
     }
   );

@@ -6,6 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        inter: ["Inter", "sans-serif"],
         lato: ["Lato", "sans-serif"],
         sourcesans: ["Source Sans Pro", "sans-serif"],
         leaguespartan: ["League Spartan", "sans-serif"],

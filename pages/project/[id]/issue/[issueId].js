@@ -48,7 +48,7 @@ function IssuePage({ isAdmin }) {
   const date = getFormattedDate(issue.createdAt);
 
   return (
-    <div className="mx-5 mt-5 font-lato">
+    <div className="mx-5 mt-5 font-inter">
       {/* modal for editing issue */}
       <EditIssueModal
         open={isModalOpen}
@@ -58,13 +58,15 @@ function IssuePage({ isAdmin }) {
         isAdmin={isAdmin}
       />
       {/* <h1 className="mb-6">
-        <span className="text-[27px] font-bold">Issue: </span>
-        <span className="text-[23px] text-gray-500">#5835</span>
+        <span className="text-[27px] font-raleway font-bold">Issue: </span>
+        <span className="text-[23px] text-gray-500">Fix login screen remember password option</span>
       </h1> */}
-      <div className="flex items-center gap-5 sm:gap-14 mb-4">
-        <p className="text-[23px]">
-          Fix login screen remember password option{" "}
-          <span className="text-xl text-gray-500">(#5835) </span>
+      <div className="flex items-center gap-5 sm:gap-14 mb-7">
+        <p className="text-2xl font-sourcesans font-semibold">
+          <span className="text-gray-500 font-lato text-xl font-normal">
+            (#5634)
+          </span>{" "}
+          Fix login screen remember password option
         </p>
         <div
           className="shadow-md p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
@@ -77,35 +79,35 @@ function IssuePage({ isAdmin }) {
       <div className="mb-10">
         <dl className="max-w-[400px] text-base">
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Tag:</dt>
+            <dt className="font-normal text-gray-500">Tag:</dt>
             <dd className="text-gray-900 sm:mt-0 sm:col-span-2">
               {issue.type}
             </dd>
           </div>
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Priority:</dt>
+            <dt className="font-normal text-gray-500">Priority:</dt>
             <dd className="text-gray-900 sm:mt-0 sm:col-span-2 uppercase">
               {issue.priority}
             </dd>
           </div>
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Status:</dt>
+            <dt className="font-normal text-gray-500">Status:</dt>
             <dd className="text-gray-900 sm:col-span-2 uppercase">
               {issue.status}
             </dd>
           </div>
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Date:</dt>
+            <dt className="font-normal text-gray-500">Date:</dt>
             <dd className=" text-gray-900 sm:col-span-2">{date}</dd>
           </div>
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Submitter:</dt>
+            <dt className="font-normal text-gray-500">Submitter:</dt>
             <dd className="text-gray-900 sm:col-span-2">
               {issue.submitter.name}
             </dd>
           </div>
           <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
-            <dt className="font-medium text-gray-500">Assignees:</dt>
+            <dt className="font-normal text-gray-500">Assignees:</dt>
             <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
               {issue.assignees.map((assignee) => (
                 <div key={assignee._id} className="rounded-full">
