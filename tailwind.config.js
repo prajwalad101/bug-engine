@@ -20,6 +20,7 @@ module.exports = {
         "sidebar-hover": "#000022",
       },
       screens: {
+        vsm: "400px",
         lgphone: "550px",
         tablet: "750px",
         lgtablet: "900px",

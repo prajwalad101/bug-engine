@@ -1,14 +1,18 @@
-import DOMPurify from "dompurify";
-
+// hooks
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useIssue from "../../../../hooks/useIssue";
 
-import { AiOutlineEdit } from "react-icons/ai";
+// components
 import EditIssueModal from "../../../../components/Modal/EditIssueModal";
 import Tabs from "../../../../components/UI/IssueDescription/Tabs";
 import Comments from "../../../../components/Project/Comments";
-import EditIssue from "../../../../components/Issue/EditIssue";
+import { FiEdit2 } from "react-icons/fi";
+
+// functions
+import DOMPurify from "dompurify";
+import { getFormattedDate } from "../../../../utils/formatDate";
+import Image from "next/image";
 
 const tabItems = [
   { name: "description", id: 1 },
@@ -41,8 +45,10 @@ function IssuePage({ isAdmin }) {
     return <h1>Error: {error}</h1>;
   }
 
+  const date = getFormattedDate(issue.createdAt);
+
   return (
-    <div className="mx-5 mt-8 font-lato">
+    <div className="mx-5 mt-5 font-lato">
       {/* modal for editing issue */}
       <EditIssueModal
         open={isModalOpen}
@@ -51,48 +57,76 @@ function IssuePage({ isAdmin }) {
         projectId={id}
         isAdmin={isAdmin}
       />
-      <div className="flex items-center gap-56">
-        {/* Name */}
-        <h3 className="text-2xl font-lato  leading-6 text-gray-900">
-          {issue.name}
-        </h3>
-        {/* Edit issue */}
+      {/* <h1 className="mb-6">
+        <span className="text-[27px] font-bold">Issue: </span>
+        <span className="text-[23px] text-gray-500">#5835</span>
+      </h1> */}
+      <div className="flex items-center gap-5 sm:gap-14 mb-4">
+        <p className="text-[23px]">
+          Fix login screen remember password option{" "}
+          <span className="text-xl text-gray-500">(#5835) </span>
+        </p>
         <div
-          className="flex gap-2 text-gray-600 hover:cursor-pointer"
+          className="shadow-md p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
           onClick={() => setIsModalOpen(true)}
         >
-          <AiOutlineEdit size={23} className="peer" />
-          <p className="hover:underline peer-hover:underline underline-offset-2">
-            Edit
-          </p>
+          <FiEdit2 size={20} />
         </div>
       </div>
-      {/* Submitter */}
-      <div className="mt-2">
-        <span className="text-gray-500">Submitted by: </span>
-        {issue.submitter.name}
-      </div>
-      {/* Type */}
-      <div className="mt-5">
-        <span className="text-gray-500">In {issue.type}</span>
-      </div>
-      {/* Status */}
-      <div className="flex gap-3 mt-4">
-        <span className="text-gray-500">Status:</span>
-        <div className="bg-green-400 px-2 rounded-sm text-white">
-          <span className="uppercase">{issue.status}</span>
-        </div>
-      </div>
-      {/* Priority */}
-      <div className="flex gap-3 mt-3">
-        <span className="text-gray-500">Priority:</span>
-        <span className="uppercase text-red-500">{issue.priority}</span>
+
+      <div className="mb-10">
+        <dl className="max-w-[400px] text-base">
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Tag:</dt>
+            <dd className="text-gray-900 sm:mt-0 sm:col-span-2">
+              {issue.type}
+            </dd>
+          </div>
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Priority:</dt>
+            <dd className="text-gray-900 sm:mt-0 sm:col-span-2 uppercase">
+              {issue.priority}
+            </dd>
+          </div>
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Status:</dt>
+            <dd className="text-gray-900 sm:col-span-2 uppercase">
+              {issue.status}
+            </dd>
+          </div>
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Date:</dt>
+            <dd className=" text-gray-900 sm:col-span-2">{date}</dd>
+          </div>
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Submitter:</dt>
+            <dd className="text-gray-900 sm:col-span-2">
+              {issue.submitter.name}
+            </dd>
+          </div>
+          <div className="py-2 grid grid-cols-2 vsm:grid-cols-3 gap-4">
+            <dt className="font-medium text-gray-500">Assignees:</dt>
+            <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+              {issue.assignees.map((assignee) => (
+                <div key={assignee._id} className="rounded-full">
+                  <Image
+                    src={assignee.image}
+                    alt="User profile"
+                    width={28}
+                    height={28}
+                    className="rounded-full"
+                  />
+                </div>
+              ))}
+            </dd>
+          </div>
+        </dl>
       </div>
 
       <Tabs tab={tab} setTab={setTab} tabItems={tabItems} />
       {/* Description */}
       {tab === "description" && (
-        <div dangerouslySetInnerHTML={sanitizedData()} />
+        <div dangerouslySetInnerHTML={sanitizedData()} className="mt-5" />
       )}
       {tab === "comments" && <Comments projectId={id} issueId={issueId} />}
     </div>
