@@ -35,3 +35,13 @@ a {
   border-top-width: 2px;
   border-color: #d9d9d9;
 }
+
+.grow2 {
+  /* flex: 20 1 auto; */
+  flex-grow: 2;
+}
+
+.grow1 {
+  /* flex: 2 1 auto; */
+  flex-grow: 1;
+}
