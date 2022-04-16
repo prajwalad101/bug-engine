@@ -26,7 +26,7 @@ export default function EditIssue(props) {
   };
 
   return (
-    <div className="bg-white overflow-hidden sm:rounded-lg">
+    <div className="bg-white overflow-hidden sm:rounded-lg font-inter">
       <div className="border-t border-gray-200">
         <dl>
           {/* STATUS */}
@@ -34,7 +34,7 @@ export default function EditIssue(props) {
             <dt className="flex items-center text-sm font-medium text-gray-500">
               Status
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
               <SelectMenu
                 options={issueStatusOptions}
                 selected={formatOption(props.issueStatus)}
@@ -47,7 +47,7 @@ export default function EditIssue(props) {
             <dt className="flex items-center text-sm font-medium text-gray-500">
               Priority
             </dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
               <SelectMenu
                 options={issuePriorityOptions}
                 selected={formatOption(props.issuePriority)}

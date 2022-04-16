@@ -149,7 +149,11 @@ function IssuePage({ isAdmin }) {
             <div dangerouslySetInnerHTML={sanitizedData()} className="mt-5" />
           )}
 
-          {tab === "Comments" && <Comments projectId={id} issueId={issueId} />}
+          {tab === "Comments" && (
+            <div className="tablet:hidden">
+              <Comments projectId={id} issueId={issueId} />
+            </div>
+          )}
         </div>
         <div className="border-l-2 h-[95vh] hidden tablet:block"></div>
         {/* COMMENTS SECTION */}

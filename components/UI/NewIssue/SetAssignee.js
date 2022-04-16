@@ -25,7 +25,7 @@ function SetAssignee({
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row gap-5 sm:justify-between sm:items-center">
         <div className="grow">
           <SelectMenu
             options={allAssignees}
@@ -37,7 +37,7 @@ function SetAssignee({
         {/* Add assignee button */}
         <button
           type="button"
-          className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-6 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+          className="max-w-[100px] w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-6 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
           onClick={addNewAssignee}
         >
           Add

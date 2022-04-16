@@ -30,7 +30,9 @@ function Comments({ projectId, issueId }) {
 
   return (
     <div className="tablet:ml-5">
-      <h1 className="text-lg text-gray-500 mb-7 ">Comments</h1>
+      <h1 className="text-lg text-gray-500 mb-7 hidden tablet:block">
+        Comments
+      </h1>
       <div className="flex items-center gap-3 mt-4">
         <div className="flex items-center min-w-[30px]">
           <Image
