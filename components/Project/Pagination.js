@@ -4,7 +4,6 @@ export default function Pagination({
   currentIssues,
   totalIssues,
 }) {
-  console.log(pageNum);
   const increasePage = () => {
     setPageNum((pageNum) => pageNum + 1);
   };

@@ -27,8 +27,6 @@ function IssuePage({ isAdmin }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tab, setTab] = useState("Description");
 
-  console.log(tab);
-
   if (!issue) return null;
 
   // convert html type string to an actual string
@@ -63,7 +61,9 @@ function IssuePage({ isAdmin }) {
             {/* Back button and title wrapper */}
             <div className="flex items-center gap-5">
               <Link href={`/project/${id}`} passHref>
-                <IoArrowBack size={25} className="hover:cursor-pointer" />
+                <a>
+                  <IoArrowBack size={25} className="hover:cursor-pointer" />
+                </a>
               </Link>
               <div>
                 <span className="text-2xl">Issue</span>{" "}
