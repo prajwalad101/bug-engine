@@ -16,11 +16,6 @@ import { getFormattedDate } from "../../../../utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
 
-const tabItems = [
-  { name: "description", id: 1 },
-  { name: "comments", id: 2 },
-];
-
 function IssuePage({ isAdmin }) {
   const router = useRouter();
 
@@ -30,7 +25,9 @@ function IssuePage({ isAdmin }) {
   const issue = data?.data;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [tab, setTab] = useState(tabItems[0].name);
+  const [tab, setTab] = useState("Description");
+
+  console.log(tab);
 
   if (!issue) return null;
 
@@ -50,7 +47,7 @@ function IssuePage({ isAdmin }) {
   const date = getFormattedDate(issue.createdAt);
 
   return (
-    <div className="mx-5 mt-5 font-inter">
+    <div className="mx-5 mt-4 font-inter">
       {/* modal for editing issue */}
       <EditIssueModal
         open={isModalOpen}
@@ -62,38 +59,35 @@ function IssuePage({ isAdmin }) {
       <section className="flex">
         <div className="grow2">
           {/* Main Heading */}
-          <div className="font-semibold flex items-center justify-between mb-10">
+          <div className="font-semibold flex items-center justify-between sm:justify-start gap-20 tablet:justify-between mb-10">
             {/* Back button and title wrapper */}
             <div className="flex items-center gap-5">
               <Link href={`/project/${id}`} passHref>
-                <IoArrowBack
-                  size={25}
-                  className="hover:cursor-pointer"
-                  // onClick={() => router.push(`/project/${id}`)}
-                />
+                <IoArrowBack size={25} className="hover:cursor-pointer" />
               </Link>
               <div>
-                <span className="text-2xl">Issue:</span>{" "}
-                <span className="text-xl text-gray-600 font-normal">#6434</span>
-                <span className="text-sm text-gray-500 font-normal ml-10">
+                <span className="text-2xl">Issue</span>{" "}
+                <span className="text-xl text-gray-600 font-normal">
+                  {" "}
+                  (#6434)
+                </span>
+                <span className="text-sm text-gray-500 font-normal ml-10 hidden tablet:inline">
                   Created on {date}
                 </span>
               </div>
             </div>
             <div
-              className="mr-4 shadow-md p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
+              className="tablet:mr-4 h-[35px] shadow-md border-gray-200 border p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
               onClick={() => setIsModalOpen(true)}
             >
-              <FiEdit2 size={20} />
+              <FiEdit2 size={20} className="text-gray-700" />
             </div>
           </div>
 
           {/* Issue title */}
           <div className="flex items-center justify-between mb-5">
-            <p className="text-xl font-medium">
-              Fix login screen remember password option
-            </p>
-            <div className="mr-4 bg-[#E8DFB3] px-3 py-1 rounded-md ">
+            <p className="text-xl font-medium">{issue.name}</p>
+            <div className="mr-4 bg-[#E8DFB3] px-3 py-1 rounded-md hidden tablet:block">
               <span className="text-gray-600 uppercase text-sm">
                 {issue.status}
               </span>
@@ -112,6 +106,16 @@ function IssuePage({ isAdmin }) {
                 <dt className="font-normal text-gray-500">Priority:</dt>
                 <dd className="text-gray-500 sm:mt-0 sm:col-span-2 uppercase">
                   {issue.priority}
+                </dd>
+              </div>
+              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4 tablet:hidden">
+                <dt className="font-normal text-gray-500">Status:</dt>
+                <dd className="text-gray-500 sm:mt-0 sm:col-span-2 uppercase">
+                  <div className="mr-4 bg-[#E8DFB3] px-3 py-1 rounded-md w-[70px] text-center ">
+                    <span className="text-gray-600 uppercase text-sm">
+                      {issue.status}
+                    </span>
+                  </div>
                 </dd>
               </div>
 
@@ -139,16 +143,17 @@ function IssuePage({ isAdmin }) {
               </div>
             </dl>
           </div>
-          <Tabs tab={tab} setTab={setTab} tabItems={tabItems} />
+          <Tabs tab={tab} setTab={setTab} />
           {/* Description */}
-          {tab === "description" && (
+          {tab === "Description" && (
             <div dangerouslySetInnerHTML={sanitizedData()} className="mt-5" />
           )}
-          {/* {tab === "comments" && <Comments projectId={id} issueId={issueId} />} */}
+
+          {tab === "Comments" && <Comments projectId={id} issueId={issueId} />}
         </div>
-        <div className="border-l-2 h-[95vh]"></div>
+        <div className="border-l-2 h-[95vh] hidden tablet:block"></div>
         {/* COMMENTS SECTION */}
-        <div className="grow1">
+        <div className="grow1 hidden tablet:block">
           <Comments projectId={id} issueId={issueId} />
         </div>
       </section>

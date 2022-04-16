@@ -29,16 +29,18 @@ function Comments({ projectId, issueId }) {
   };
 
   return (
-    <div className="ml-5">
-      <h1 className="text-lg text-gray-500 mb-7">Comments</h1>
+    <div className="tablet:ml-5">
+      <h1 className="text-lg text-gray-500 mb-7 ">Comments</h1>
       <div className="flex items-center gap-3 mt-4">
-        <Image
-          src={session.user.image}
-          alt="User-img"
-          width={33}
-          height={33}
-          className="rounded-full"
-        />
+        <div className="flex items-center min-w-[30px]">
+          <Image
+            src={session.user.image}
+            alt="User-img"
+            width={33}
+            height={33}
+            className="rounded-full"
+          />
+        </div>
 
         <input
           type="text"

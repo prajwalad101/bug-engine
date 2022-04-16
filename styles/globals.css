@@ -38,7 +38,7 @@ a {
 
 .grow2 {
   /* flex: 20 1 auto; */
-  flex-grow: 2;
+  flex-grow: 10;
 }
 
 .grow1 {
