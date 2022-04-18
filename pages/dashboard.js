@@ -5,6 +5,8 @@ import { formatIssues } from "../utils/issuesFunc";
 import LineChart from "../components/Dashboard/LineChart";
 import BarChart from "../components/Dashboard/BarChart";
 import useProjects from "../hooks/useProjects";
+import Card from "../components/Dashboard/Card";
+import { Tabs } from "../components/Dashboard/Tabs";
 
 function DashboardPage({ isAdmin }) {
   const { isLoading, isError, data, error } = useProjects();
@@ -36,20 +38,16 @@ function DashboardPage({ isAdmin }) {
   const noCompletedIssues = completedIssues.length;
 
   return (
-    <div>
+    <div className="mx-4 my-4">
       {/* Header */}
-      <div className="mb-5 ml-5">
-        <h1>No Issues: {noIssues}</h1>
-        <h1>No Projects: {noProjects}</h1>
-        <h1>Open Issues: {noOpenIssues}</h1>
-        <h1>Completed Issues: {noCompletedIssues}</h1>
+      <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>
+      <div className="flex gap-10 mb-5">
+        <Card message={"Active Projects"} data={noProjects} />
+        <Card message={"Open Issues"} data={noOpenIssues} />
+        <Card message={"Completed Issues"} data={noCompletedIssues} />
       </div>
-      <div className="flex gap-5 ml-5">
-        <button onClick={() => setChartType("status")}>Issue by Status</button>
-        <button onClick={() => setChartType("priority")}>
-          Issue By Priority
-        </button>
-      </div>
+      <Tabs setChartType={setChartType} />
+
       {chartType === "status" && (
         <LineChart openIssues={openIssues} completedIssues={completedIssues} />
       )}

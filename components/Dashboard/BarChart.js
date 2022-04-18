@@ -21,10 +21,11 @@ ChartJS.register(
 );
 
 import { sortIssueByPriority } from "../../utils/chartFunction";
+import { chartOptions } from "../../utils/chartOptions";
 
 function BarChart({ openIssues }) {
   const options = {
-    responsive: true,
+    // responsive: true,
     plugins: {
       title: {
         display: true,
@@ -60,7 +61,11 @@ function BarChart({ openIssues }) {
       },
     ],
   };
-  return <Bar data={data} options={options}></Bar>;
+  return (
+    <div className="h-[40vh] sm:h-[60vh]">
+      <Bar data={data} options={chartOptions} width={400}></Bar>;
+    </div>
+  );
 }
 
 export default BarChart;
