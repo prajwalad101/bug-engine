@@ -60,7 +60,7 @@ const LineChart = ({ openIssues, completedIssues }) => {
 
   return (
     <div className="h-[40vh] sm:h-[60vh]">
-      <Line data={data} options={chartOptions} width={400} />;
+      <Line data={data} options={chartOptions} width={400} />
     </div>
   );
 };

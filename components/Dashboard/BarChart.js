@@ -44,20 +44,19 @@ function BarChart({ openIssues }) {
         label: "High",
         data: highIssueData,
         fill: true,
-        backgroundColor: "rgba(255,114,118,0.5)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "#cc8678",
       },
       {
         label: "Medium",
         data: mediumIssueData,
         fill: false,
-        borderColor: "#742774",
+        backgroundColor: "#a29fd6",
       },
       {
         label: "Low",
         data: lowIssueData,
         fill: false,
-        borderColor: "#742774",
+        backgroundColor: "#b8b8b8",
       },
     ],
   };

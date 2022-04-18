@@ -3,7 +3,7 @@ export function Tabs({ setChartType }) {
   const [activeStatus, setActiveStatus] = useState(1);
   return (
     <div className="mb-5">
-      <div className="sm:hidden relative w-11/12 mx-auto bg-white rounded">
+      <div className="vsm:hidden relative w-11/12 mx-auto bg-white rounded">
         <div className="absolute inset-0 m-auto mr-4 z-0 w-6 h-6">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +41,7 @@ export function Tabs({ setChartType }) {
           </option>
         </select>
       </div>
-      <div className="xl:w-full xl:mx-0 h-12 hidden sm:block bg-white shadow rounded">
+      <div className="xl:w-full xl:mx-0 h-12 hidden vsm:block bg-white shadow rounded">
         <ul className="flex px-5">
           <li
             onClick={() => {

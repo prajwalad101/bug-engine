@@ -41,8 +41,10 @@ function DashboardPage({ isAdmin }) {
     <div className="mx-4 my-4">
       {/* Header */}
       <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>
-      <div className="flex gap-10 mb-5">
-        <Card message={"Active Projects"} data={noProjects} />
+      <div className="flex gap-5 sm:gap-10 mb-5">
+        <div className="hidden vsm:block">
+          <Card message={"Active Projects"} data={noProjects} />
+        </div>
         <Card message={"Open Issues"} data={noOpenIssues} />
         <Card message={"Completed Issues"} data={noCompletedIssues} />
       </div>
