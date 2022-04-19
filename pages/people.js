@@ -3,7 +3,7 @@ import Users from "../components/People/Users";
 import useUsers from "../hooks/useUsers";
 import useVerifiedUsers from "../hooks/useVerifiedUsers";
 
-import { getFilteredUsers } from "../utils/peopleFunc";
+import { getFilteredUsers, getJoinedDate } from "../utils/peopleFunc";
 
 function People() {
   const {
@@ -41,7 +41,7 @@ function People() {
 
   return (
     <section className="mt-5 mx-5">
-      <p className="text-xl">Assignees</p>
+      <h1 className="text-2xl font-semibold mb-3">Assignees</h1>
       <div className="relative overflow-x-auto shadow sm:rounded-sm mt-5">
         <table className="w-full text-sm text-left text-gray-500 ">
           <thead className="text-[14px] text-gray-500 uppercase bg-gray-200 ">
@@ -53,6 +53,9 @@ function People() {
                 Email
               </th>
               <th scope="col" className="px-6 py-3">
+                Joined On
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Role
               </th>
             </tr>
@@ -62,7 +65,7 @@ function People() {
             <td>Data2</td>
           </tbody> */}
           {filteredUsers.map((user) => (
-            <Person user={user} key={user._id} />
+            <Person user={user} key={user._id} verifiedUsers={verifiedUsers} />
           ))}
         </table>
       </div>

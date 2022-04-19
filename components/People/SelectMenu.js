@@ -1,3 +1,8 @@
+const roles = [
+  { name: "developer", id: 1 },
+  { name: "submitter", id: 2 },
+];
+
 export default function SelectMenu({ selectedRole, setSelectedRole, setOpen }) {
   const buttonHandler = (role) => {
     setSelectedRole(role);
@@ -6,13 +11,26 @@ export default function SelectMenu({ selectedRole, setSelectedRole, setOpen }) {
 
   return (
     <div>
-      <select
-        className="form-select block w-1/2 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray focus:bg-white focus:border-blue-600 focus:outline-none"
-        aria-label="Default select example"
-      >
-        <option onClick={() => buttonHandler("developer")}>Developer</option>
-        <option onClick={() => buttonHandler("submitter")}>Submitter</option>
-      </select>
+      <div className="col-span-6 sm:col-span-3">
+        <select
+          id="country"
+          name="country"
+          autoComplete="country-name"
+          className="capitalize mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+        >
+          <option selected onClick={() => buttonHandler(selectedRole)}>
+            {selectedRole}
+          </option>
+          {roles.map((role) => {
+            if (role.name !== selectedRole)
+              return (
+                <option key={role.id} onClick={() => buttonHandler(role.name)}>
+                  {role.name}
+                </option>
+              );
+          })}
+        </select>
+      </div>
     </div>
   );
 }

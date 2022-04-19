@@ -1,3 +1,5 @@
+import { getFormattedDate } from "./formatDate";
+
 export const getFilteredUsers = (users, verifiedUsers) => {
   // get only the admin users from the verified users
   let adminUsers = verifiedUsers.filter((user) => user.isAdmin === true);
@@ -9,4 +11,15 @@ export const getFilteredUsers = (users, verifiedUsers) => {
   );
 
   return filteredUsers;
+};
+
+export const getJoinedDate = (user, verifiedUsers) => {
+  const verifiedUser = verifiedUsers.filter(
+    (vUser) => vUser.email === user.email
+  );
+
+  if (verifiedUser[0]) {
+    const date = getFormattedDate(verifiedUser[0].createdAt);
+    return date;
+  }
 };
