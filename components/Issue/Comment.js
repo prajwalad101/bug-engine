@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getFormattedDate } from "../../utils/formatDate";
 
 export default function Comment({ comment }) {
-  // console.log(comment);
   const firstName = comment.sender.name.split(" ")[0];
   const date = getFormattedDate(comment.createdAt);
 

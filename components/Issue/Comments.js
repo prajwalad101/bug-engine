@@ -28,6 +28,8 @@ function Comments({ projectId, issueId }) {
     );
   };
 
+  let comments = data?.data;
+
   return (
     <div className="tablet:ml-5">
       <h1 className="text-lg text-gray-500 mb-7 hidden tablet:block">
@@ -61,9 +63,12 @@ function Comments({ projectId, issueId }) {
       </div>
       {/* Comments list */}
       <div className="mt-10">
-        {data?.data.map((el) => (
-          <Comment key={el._id} comment={el} />
-        ))}
+        {comments
+          .slice(0)
+          .reverse()
+          .map((el, index) => (
+            <Comment key={el._id} comment={el} />
+          ))}
       </div>
     </div>
   );
