@@ -1,3 +1,4 @@
+import Person from "../components/People/Person";
 import Users from "../components/People/Users";
 import useUsers from "../hooks/useUsers";
 import useVerifiedUsers from "../hooks/useVerifiedUsers";
@@ -39,10 +40,33 @@ function People() {
   const filteredUsers = getFilteredUsers(users, verifiedUsers);
 
   return (
-    <div>
-      <p className="text-xl mb-5">Users</p>
-      <Users filteredUsers={filteredUsers} />
-    </div>
+    <section className="mt-5 mx-5">
+      <p className="text-xl">Assignees</p>
+      <div className="relative overflow-x-auto shadow sm:rounded-sm mt-5">
+        <table className="w-full text-sm text-left text-gray-500 ">
+          <thead className="text-[14px] text-gray-500 uppercase bg-gray-200 ">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                User
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Role
+              </th>
+            </tr>
+          </thead>
+          {/* <tbody>
+            <td>Data1</td>
+            <td>Data2</td>
+          </tbody> */}
+          {filteredUsers.map((user) => (
+            <Person user={user} key={user._id} />
+          ))}
+        </table>
+      </div>
+    </section>
   );
 }
 

@@ -1,3 +1,4 @@
+import { classNames } from "../../utils/tailwindFunc";
 import Person from "./Person";
 
 function Users({ filteredUsers }) {

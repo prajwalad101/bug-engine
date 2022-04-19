@@ -28,7 +28,7 @@ function Issues({ project, issues, isAdmin }) {
               Date
             </th>
             <th scope="col" className="px-6 py-3">
-              Assigned to
+              Assignees
             </th>
           </tr>
         </thead>
