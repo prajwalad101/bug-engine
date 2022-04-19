@@ -25,8 +25,13 @@ async function handler(req, res) {
 
     const activities = await query;
 
+    const count = await Activity.countDocuments({});
+    const resultCount = activities.length;
+
     res.status(200).json({
       status: "success",
+      total: count,
+      resultCount,
       data: activities,
     });
   } else {
