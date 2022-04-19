@@ -15,7 +15,7 @@ const activitySchema = new Schema(
       type: String,
       required: [true, "An activity must have an action "],
       enum: {
-        values: ["create", "update", "delete"],
+        values: ["create", "update", "delete", "comment"],
       },
     },
     issue: {

@@ -13,6 +13,8 @@ function Activity() {
     return <div>Some error occurred</div>;
   }
 
+  console.log(activities[0]);
+
   return (
     <div>
       <h1 className="text-2xl">Activities</h1>

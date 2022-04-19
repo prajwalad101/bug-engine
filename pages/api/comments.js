@@ -29,6 +29,12 @@ async function handler(req, res) {
 
     const newComment = issue.comments[issue.comments.length - 1];
 
+    await Activity.create({
+      projectName: project.name,
+      action: "comment",
+      issue,
+    });
+
     return res.status(200).json({
       status: "success",
       data: newComment,
