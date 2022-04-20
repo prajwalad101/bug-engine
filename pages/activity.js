@@ -1,9 +1,10 @@
 import { useState } from "react";
+import Activity from "../components/Activity/Activity";
 
 import PeoplePagination from "../components/People/PeoplePagination";
 import useActivities from "../hooks/useActivities";
 
-function Activity() {
+function ActivityPage() {
   const [page, setPage] = useState(1);
   const { isLoading, isError, data, error } = useActivities(page, 10);
 
@@ -24,14 +25,13 @@ function Activity() {
     <div className="m-4">
       <h1 className="text-2xl font-semibold mb-3">Activities</h1>
 
-      {activities.map((activity) => (
-        <div key={activity._id}>
-          {activity.action === "create" && <p>Created new issue</p>}
-          {activity.action === "comment" && <p>Added new comment</p>}
-          {activity.action === "update" && <p>Updated issue</p>}
-          {activity.action === "delete" && <p>Deleted issue</p>}
-        </div>
-      ))}
+      <div>
+        {activities.map((activity) => (
+          <div key={activity._id}>
+            <Activity activity={activity} />
+          </div>
+        ))}
+      </div>
       <PeoplePagination
         page={page}
         setPage={setPage}
@@ -43,4 +43,4 @@ function Activity() {
   );
 }
 
-export default Activity;
+export default ActivityPage;

@@ -31,7 +31,7 @@ function compareIssues(newIssue, oldIssue) {
     newIssue.assignees &&
     newIssue.assignees.length !== oldIssue.assignees.length
   ) {
-    changedItems.type = {
+    changedItems.assignees = {
       isChanged: true,
       oldItem: oldIssue.assignees.length,
       newItem: newIssue.assignees.length,
