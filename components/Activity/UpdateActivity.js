@@ -1,4 +1,4 @@
-export default function UpdateActivity({ activity, id, relativeDate }) {
+export default function UpdateActivity({ activity }) {
   const updatedInfo = activity.updatedInfo[0];
 
   return (
@@ -9,7 +9,6 @@ export default function UpdateActivity({ activity, id, relativeDate }) {
             {updatedInfo.oldItem > updatedInfo.newItem
               ? "Added new assignees"
               : "Remove assignees"}{" "}
-            <span className="text-gray-500 text-base pl-1">{relativeDate}</span>
           </p>
         </div>
       )}
@@ -17,7 +16,6 @@ export default function UpdateActivity({ activity, id, relativeDate }) {
         <div>
           <p>
             Changed status from {updatedInfo.oldItem} to {updatedInfo.newItem}{" "}
-            <span className="text-gray-500 text-base pl-1">{relativeDate}</span>
           </p>
         </div>
       )}
@@ -25,7 +23,6 @@ export default function UpdateActivity({ activity, id, relativeDate }) {
         <div>
           <p>
             Changed priority from {updatedInfo.oldItem} to {updatedInfo.newItem}{" "}
-            <span className="text-gray-500 text-base pl-1">{relativeDate}</span>
           </p>
         </div>
       )}
