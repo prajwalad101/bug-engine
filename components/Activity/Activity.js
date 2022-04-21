@@ -16,7 +16,7 @@ export default function Activity({ activity }) {
       <tr className=" bg-white border-b-[1.7px] border-gray-200 hover:bg-gray-50">
         <th
           scope="row"
-          className="px-6 py-3 text-base font-medium uppercase font-worksans"
+          className="px-6 py-3 text-base font-medium uppercase font-worksans whitespace-nowrap"
         >
           # {id}
         </th>
