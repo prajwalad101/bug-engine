@@ -5,6 +5,7 @@ function catchAsync(handler) {
     try {
       await handler(req, res);
     } catch (err) {
+      console.log("err", err);
       globalErrorHandler(err, req, res);
     }
   };

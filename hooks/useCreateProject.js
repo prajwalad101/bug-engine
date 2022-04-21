@@ -5,6 +5,7 @@ function useCreateProject() {
 
   const addProject = useMutation(
     async (newProject) => {
+      console.log(newProject);
       const res = await fetch(`/api/projects`, {
         method: "POST",
         headers: {
@@ -13,13 +14,13 @@ function useCreateProject() {
         body: JSON.stringify(newProject),
       });
       if (!res.ok) {
-        throw Error("Error while adding issue");
+        throw Error("Error while adding project");
       }
       return res;
     },
     {
       onSuccess: async () => {
-        queryClient.invalidateQueries(["projects"]);
+        queryClient.invalidateQueries("projects");
       },
     }
   );

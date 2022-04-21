@@ -11,7 +11,6 @@ const projectSchema = new mongoose.Schema(
     },
     description: {
       type: String,
-      unique: true,
       required: [true, "A project must have a description"],
       trim: true,
     },

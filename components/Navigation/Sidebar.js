@@ -9,13 +9,16 @@ import { IoAddSharp } from "react-icons/io5";
 import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 import UserDropdown from "../UI/Heading/UserDropdown";
+import CreateProjectModal from "../Modal/CreateProjectModal";
+import useProject from "../../hooks/useProject";
 
 function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   const [selectedTab, setSelectedTab] = useState("Dashboard");
+  const [projectModal, setProjectModal] = useState(false);
 
   // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
-  const router = useRouter();
+  // useProject("62612f85a42c7d72bbc22539");
 
   const projects = data?.data;
   const sidebarData = getSidebarData(isAdmin);
@@ -80,7 +83,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
               className="mr-5 hover:text-white hover:cursor-pointer"
               onClick={() => {
                 setSidebarOpen(false);
-                router.push("/newProject");
+                setProjectModal(true);
+                // router.push("/newProject");
               }}
             />
           )}
@@ -98,6 +102,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
           ))}
         </div>
       </ul>
+      <CreateProjectModal open={projectModal} setOpen={setProjectModal} />
     </div>
   );
 }

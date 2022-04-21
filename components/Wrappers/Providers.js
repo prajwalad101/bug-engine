@@ -11,10 +11,10 @@ function Providers({ children, session, user }) {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <ReactQueryDevtools initialIsOpen={false} />
       <SessionProvider refetchOnWindowFocus={false} session={session}>
         {children}
       </SessionProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
