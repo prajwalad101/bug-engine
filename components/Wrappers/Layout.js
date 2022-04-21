@@ -9,7 +9,7 @@ function Layout({ children, isAdmin }) {
 
   return (
     <>
-      <Navbar setSidebarOpen={setSidebarOpen} />
+      <Navbar setSidebarOpen={setSidebarOpen} isAdmin={isAdmin} />
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}

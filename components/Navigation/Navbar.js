@@ -5,8 +5,9 @@ import { useSession } from "next-auth/react";
 import { MdMenu } from "react-icons/md";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import Image from "next/image";
+import UserDropdown from "../UI/Heading/UserDropdown";
 
-function Navbar({ setSidebarOpen }) {
+function Navbar({ setSidebarOpen, isAdmin }) {
   const { data: session, status } = useSession();
 
   const userImage = session.user.image;
@@ -18,12 +19,7 @@ function Navbar({ setSidebarOpen }) {
         onClick={() => setSidebarOpen(true)}
         className="hover:cursor-pointer"
       />
-      <div className="flex items-center gap-8">
-        <IoMdNotificationsOutline size={29} />
-        <div className="rounded-full overflow-y-hidden overflow-x-hidden w-[30px] h-[30px]">
-          <Image src={userImage} alt="user profile" width={30} height={30} />
-        </div>
-      </div>
+      <UserDropdown isAdmin={isAdmin} />
     </div>
   );
 }

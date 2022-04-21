@@ -62,7 +62,7 @@ function BarChart({ openIssues }) {
   };
   return (
     <div className="h-[40vh] sm:h-[60vh]">
-      <Bar data={data} options={chartOptions} width={400}></Bar>;
+      <Bar data={data} options={chartOptions} width={400}></Bar>
     </div>
   );
 }

@@ -26,7 +26,7 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
 
         {/* Notification / Profile */}
         <div className="hidden items-center gap-14 lg:flex ">
-          <IoMdNotificationsOutline size={29} />
+          {/* <IoMdNotificationsOutline size={29} /> */}
           <UserDropdown isAdmin={isAdmin} />
         </div>
       </section>

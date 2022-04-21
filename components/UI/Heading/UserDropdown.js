@@ -4,6 +4,8 @@ import Image from "next/image";
 
 import { signOut, useSession } from "next-auth/react";
 
+import { AiOutlineDown } from "react-icons/ai";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -15,10 +17,18 @@ export default function UserDropdown({ isAdmin }) {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
-      <div>
+      <div className="flex items-center gap-2 ">
         <Menu.Button className="inline-flex justify-center w-full rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500">
-          <div className="rounded-full shadow-md overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
-            <Image src={user.image} alt="user profile" width={35} height={35} />
+          <div className="flex items-center gap-2">
+            <div className="rounded-full shadow-md overflow-y-hidden overflow-x-hidden w-[35px] h-[35px]">
+              <Image
+                src={user.image}
+                alt="user profile"
+                width={35}
+                height={35}
+              />
+            </div>
+            <AiOutlineDown className="mr-1" />
           </div>
         </Menu.Button>
       </div>

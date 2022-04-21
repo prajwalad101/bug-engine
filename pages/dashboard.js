@@ -7,6 +7,7 @@ import BarChart from "../components/Dashboard/BarChart";
 import useProjects from "../hooks/useProjects";
 import Card from "../components/Dashboard/Card";
 import { Tabs } from "../components/Dashboard/Tabs";
+import UserDropdown from "../components/UI/Heading/UserDropdown";
 
 function DashboardPage({ isAdmin }) {
   const { isLoading, isError, data, error } = useProjects();
@@ -32,7 +33,6 @@ function DashboardPage({ isAdmin }) {
     (issue) => issue.status === "Completed"
   );
 
-  const noIssues = allIssues.length;
   const noProjects = projects.length;
   const noOpenIssues = openIssues.length;
   const noCompletedIssues = completedIssues.length;
@@ -40,7 +40,12 @@ function DashboardPage({ isAdmin }) {
   return (
     <div className="mx-4 my-4">
       {/* Header */}
-      <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>
+        <div className="hidden lg:block">
+          {/* <UserDropdown isAdmin={isAdmin} /> */}
+        </div>
+      </div>
       <div className="flex gap-5 sm:gap-10 mb-5">
         <div className="hidden vsm:block">
           <Card message={"Active Projects"} data={noProjects} />

@@ -8,6 +8,7 @@ import { IoAddSharp } from "react-icons/io5";
 
 import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
+import UserDropdown from "../UI/Heading/UserDropdown";
 
 function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   const [selectedTab, setSelectedTab] = useState("Dashboard");
@@ -57,7 +58,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
                 className={`flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors ${
                   item.title === selectedTab && "bg-sidebar-hover"
                 }`}
-                onClick={() => setSelectedTab(item.title)}
+                onClick={() => {
+                  setSelectedTab(item.title);
+                  setSidebarOpen(false);
+                }}
               >
                 <div className="flex items-center gap-3">
                   <span>{item.icon}</span>
