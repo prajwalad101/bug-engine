@@ -1,32 +1,23 @@
+import useProjects from "../../hooks/useProjects";
+import { useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import Link from "next/link";
+
 import * as AiIcons from "react-icons/ai";
 import { IoAddSharp } from "react-icons/io5";
 
 import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 
-import useProjects from "../../hooks/useProjects";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
-
 function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
+  const [selectedTab, setSelectedTab] = useState("Dashboard");
+
   // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
   const router = useRouter();
 
   const projects = data?.data;
-
-  /*
-  projects is undefined on the first render
-  Hence, when projects changes, set the active project to the first project id
-  */
-  useEffect(() => {
-    const firstProject = projects && projects[0]._id;
-    setActiveProject(firstProject);
-  }, [projects]);
-
-  // to view which project is currently selected
-  const [activeProject, setActiveProject] = useState([]);
+  const sidebarData = getSidebarData(isAdmin);
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -35,8 +26,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   if (isError) {
     return <span>Error: {error.message}</span>;
   }
-
-  const sidebarData = getSidebarData(isAdmin);
 
   return (
     <div
@@ -65,7 +54,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
             <Link href={item.path} passHref key={index}>
               <li
                 // key={index}
-                className="flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors"
+                className={`flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors ${
+                  item.title === selectedTab && "bg-sidebar-hover"
+                }`}
+                onClick={() => setSelectedTab(item.title)}
               >
                 <div className="flex items-center gap-3">
                   <span>{item.icon}</span>
@@ -96,8 +88,8 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
               key={item._id}
               project={item}
               setSidebarOpen={setSidebarOpen}
-              setActiveProject={setActiveProject}
-              activeProject={activeProject}
+              setActiveProject={setSelectedTab}
+              activeProject={selectedTab}
             />
           ))}
         </div>

@@ -58,27 +58,6 @@ function ActivityPage() {
       />
     </div>
   );
-
-  return (
-    <div className="m-4">
-      <h1 className="text-2xl font-semibold mb-3">Activities</h1>
-
-      <div>
-        {activities.map((activity) => (
-          <div key={activity._id}>
-            <Activity activity={activity} />
-          </div>
-        ))}
-      </div>
-      <PeoplePagination
-        page={page}
-        setPage={setPage}
-        total={total}
-        resultCount={resultCount}
-        limit={10}
-      />
-    </div>
-  );
 }
 
 export default ActivityPage;
