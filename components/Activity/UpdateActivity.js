@@ -6,7 +6,7 @@ export default function UpdateActivity({ activity }) {
       {updatedInfo.changed === "assignees" && (
         <div>
           <p>
-            {updatedInfo.oldItem > updatedInfo.newItem
+            {updatedInfo.newItem > updatedInfo.oldItem
               ? "Added new assignees"
               : "Remove assignees"}{" "}
           </p>
