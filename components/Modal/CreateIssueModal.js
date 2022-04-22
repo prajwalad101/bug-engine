@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 // Components / Data
 import TextEditor from "../Project/TextEditor";
 import { issuePriorityOptions, issueTypeOptions } from "../../data";
+import QuillTextEditor from "../Project/QuillEditor";
 
 export default function CreateIssueModal({ open, setOpen }) {
   const { data: session } = useSession();
@@ -34,6 +35,8 @@ export default function CreateIssueModal({ open, setOpen }) {
   const [issuePriority, setIssuePriority] = useState(
     issuePriorityOptions[0].name
   );
+
+  console.log(issueDescription);
 
   const mutation = useCreateIssue(projectId); // mutate function for new issue
 
@@ -134,10 +137,11 @@ export default function CreateIssueModal({ open, setOpen }) {
                       </div>
                     </div>
                     {/* Issue Description */}
-                    <div className="mt-5">
-                      <h3 className="text-gray-500 mb-3">ISSUE DESCRIPTION</h3>
-                      <TextEditor
-                        getEditorState={(text) => setIssueDescription(text)}
+                    <div className="my-5">
+                      <h3 className="mb-2 text-sm">Description</h3>
+                      <QuillTextEditor
+                        setValue={setIssueDescription}
+                        value={issueDescription}
                       />
                     </div>
                   </div>
