@@ -43,7 +43,7 @@ function DashboardPage({ isAdmin }) {
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>
         <div className="hidden lg:block">
-          {/* <UserDropdown isAdmin={isAdmin} /> */}
+          <UserDropdown isAdmin={isAdmin} />
         </div>
       </div>
       <div className="flex gap-5 sm:gap-10 mb-5">

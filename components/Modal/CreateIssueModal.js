@@ -106,12 +106,12 @@ export default function CreateIssueModal({ open, setOpen }) {
                       Create new issue
                     </Dialog.Title>
                     {/* Issue Title */}
-                    <div className="mt-5 mb-5">
-                      <label className="block mb-2 text-sm font-medium text-gray-900 ">
+                    <div className="mt-5 mb-5 flex flex-col items-start sm:block">
+                      <label className="block mb-2 text-sm font-medium text-gray-500">
                         Title
                       </label>
                       <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[355px]"
                         required
                         value={issueTitle}
                         onChange={(e) => setIssueTitle(e.target.value)}
@@ -119,26 +119,38 @@ export default function CreateIssueModal({ open, setOpen }) {
                     </div>
                     <div className="mb-10">
                       {/* Issue Type */}
-                      <div className="flex flex-col gap-2 mb-5 max-w-[200px]">
-                        <p className="text-sm">Type:</p>
-                        <SelectMenu
-                          options={issueTypeOptions}
-                          selected={formatOption(issueType)}
-                          setSelected={setIssueType}
-                        />
+                      <div className="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt className="flex items-center text-sm font-medium text-gray-500">
+                          Type
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
+                          <SelectMenu
+                            options={issueTypeOptions}
+                            selected={formatOption(issueType)}
+                            setSelected={setIssueType}
+                          />
+                        </dd>
                       </div>
-                      <div className="flex flex-col gap-2 max-w-[200px]">
-                        <p className="text-sm">Priority</p>
-                        <SelectMenu
-                          options={issuePriorityOptions}
-                          selected={formatOption(issuePriority)}
-                          setSelected={setIssuePriority}
-                        />
+
+                      {/* PRIORITY */}
+                      <div className="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt className="flex items-center text-sm font-medium text-gray-500">
+                          Priority
+                        </dt>
+                        <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
+                          <SelectMenu
+                            options={issuePriorityOptions}
+                            selected={formatOption(issuePriority)}
+                            setSelected={setIssuePriority}
+                          />
+                        </dd>
                       </div>
                     </div>
                     {/* Issue Description */}
-                    <div className="my-5">
-                      <h3 className="mb-2 text-sm">Description</h3>
+                    <div className="my-5 flex flex-col items-start sm:block">
+                      <h3 className="mb-2 text-sm text-gray-500">
+                        Description
+                      </h3>
                       <QuillTextEditor
                         setValue={setIssueDescription}
                         value={issueDescription}
