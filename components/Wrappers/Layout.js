@@ -1,14 +1,20 @@
-import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 import Navbar from "../Navigation/Navbar";
 import Sidebar from "../Navigation/Sidebar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Layout({ children, isAdmin }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
     <>
+      <ToastContainer
+        autoClose={2000}
+        pauseOnFocusLoss={false}
+        bodyClassName="font-poppins text-sm"
+      />
       <Navbar setSidebarOpen={setSidebarOpen} isAdmin={isAdmin} />
       <Sidebar
         sidebarOpen={sidebarOpen}
