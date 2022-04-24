@@ -1,9 +1,5 @@
 import { useSession } from "next-auth/react";
 
-// icons
-import { IoMdNotificationsOutline } from "react-icons/io";
-import { GoSettings } from "react-icons/go";
-
 // components
 import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import Searchbar from "../UI/Issues/Searchbar";
@@ -37,7 +33,7 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
         <div className="flex gap-10 items-center xl:gap-20 mt-5 grow">
           <Searchbar />
           {(isAdmin || session.user.role === "submitter") && (
-            <CreateIssueButton projectId={project._id} />
+            <CreateIssueButton />
           )}
         </div>
         {/* Heading section 2 */}

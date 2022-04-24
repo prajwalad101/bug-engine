@@ -5,6 +5,7 @@ import Image from "next/image";
 import { signOut, useSession } from "next-auth/react";
 
 import { AiOutlineDown } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -28,7 +29,7 @@ export default function UserDropdown({ isAdmin }) {
                 height={35}
               />
             </div>
-            <AiOutlineDown className="mr-1" />
+            <BsChevronDown className="mr-1" />
           </div>
         </Menu.Button>
       </div>

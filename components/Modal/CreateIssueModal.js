@@ -9,7 +9,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 
 // Components / Data
-import TextEditor from "../Project/TextEditor";
+// import TextEditor from "../Project/TextEditor";
 import { issuePriorityOptions, issueTypeOptions } from "../../data";
 import QuillTextEditor from "../Project/QuillEditor";
 
@@ -121,7 +121,7 @@ export default function CreateIssueModal({ open, setOpen }) {
                       {/* Issue Type */}
                       <div className="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt className="flex items-center text-sm font-medium text-gray-500">
-                          Type
+                          Type:
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
                           <SelectMenu
@@ -135,7 +135,7 @@ export default function CreateIssueModal({ open, setOpen }) {
                       {/* PRIORITY */}
                       <div className="py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt className="flex items-center text-sm font-medium text-gray-500">
-                          Priority
+                          Priority:
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 max-w-[200px]">
                           <SelectMenu

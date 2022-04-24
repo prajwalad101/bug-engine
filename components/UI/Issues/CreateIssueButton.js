@@ -1,16 +1,13 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import { IoAddSharp } from "react-icons/io5";
 
 import CreateIssueModal from "../../Modal/CreateIssueModal";
 
-function CreateIssueButton({ projectId }) {
+function CreateIssueButton() {
   const [open, setOpen] = useState(false);
-  const router = useRouter();
 
   const createNewIssue = () => {
     setOpen(true);
-    // router.push(`/project/${projectId}/newIssue`);
   };
 
   return (
