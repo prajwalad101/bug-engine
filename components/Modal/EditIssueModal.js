@@ -9,6 +9,7 @@ import EditIssue from "../Issue/EditIssue";
 import useAssignees from "../../hooks/useAssignees";
 import useDeleteIssue from "../../hooks/useDeleteIssue";
 import useUpdateIssue from "../../hooks/useUpdateIssue";
+import { successNotification } from "../../utils/toastFunc";
 
 export default function EditIssueModal({
   open,
@@ -29,7 +30,12 @@ export default function EditIssueModal({
   const updateMutation = useUpdateIssue(projectId);
   const deleteMutation = useDeleteIssue(projectId, issue._id);
 
-  deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
+  // deleteMutation.isSuccess ? router.push(`/project/${projectId}`) : null;
+
+  if (deleteMutation.isSuccess) {
+    router.push(`/project/${projectId}`);
+    console.log("deleted issue");
+  }
 
   const updateIssue = () => {
     const newIssue = {
@@ -42,7 +48,10 @@ export default function EditIssueModal({
       { issue: newIssue, issueId: issue._id },
 
       {
-        onSuccess: () => setOpen(false),
+        onSuccess: () => {
+          successNotification("Successfully updated issue");
+          setOpen(false);
+        },
       }
     );
   };

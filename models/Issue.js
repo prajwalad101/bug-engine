@@ -9,11 +9,15 @@ const issueSchema = new Schema(
       type: String,
       required: [true, "An issue must have a name"],
       trim: true,
+      minlength: 10,
+      maxlength: 50,
     },
     description: {
       type: String,
       required: [true, "An issue must have a description"],
       trim: true,
+      minlength: 50,
+      maxlength: 1000,
     },
     priority: {
       type: String,

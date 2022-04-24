@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 // import TextEditor from "../Project/TextEditor";
 import { issuePriorityOptions, issueTypeOptions } from "../../data";
 import QuillTextEditor from "../Project/QuillEditor";
+import { successNotification } from "../../utils/toastFunc";
 
 export default function CreateIssueModal({ open, setOpen }) {
   const { data: session } = useSession();
@@ -29,6 +30,7 @@ export default function CreateIssueModal({ open, setOpen }) {
   const data = useAssignees();
   const allAssignees = data?.data;
 
+  const [submitted, setSubmitted] = useState(false);
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
   const [issueType, setIssueType] = useState(issueTypeOptions[0].name);
@@ -36,11 +38,19 @@ export default function CreateIssueModal({ open, setOpen }) {
     issuePriorityOptions[0].name
   );
 
-  console.log(issueDescription);
-
   const mutation = useCreateIssue(projectId); // mutate function for new issue
 
   const submit = () => {
+    setSubmitted(true);
+    if (
+      issueTitle.length < 10 ||
+      issueTitle.length > 50 ||
+      issueDescription.length < 50 ||
+      issueDescription.length > 1000
+    ) {
+      return;
+    }
+
     const newIssue = {
       name: issueTitle,
       type: issueType,
@@ -52,6 +62,11 @@ export default function CreateIssueModal({ open, setOpen }) {
       onSuccess: () => {
         router.push(`/project/${projectId}`);
         setOpen(false);
+        successNotification("Successfully created issue");
+        setIssueTitle("");
+        setIssueDescription("");
+        setIssueType(issueTypeOptions[0].name);
+        setIssuePriority(issuePriorityOptions[0].name);
       },
     });
   };
@@ -108,7 +123,15 @@ export default function CreateIssueModal({ open, setOpen }) {
                     {/* Issue Title */}
                     <div className="mt-5 mb-5 flex flex-col items-start sm:block">
                       <label className="block mb-2 text-sm font-medium text-gray-500">
-                        Title
+                        Title{" "}
+                        {submitted &&
+                          (issueTitle.length < 10 ||
+                            issueTitle.length > 50) && (
+                            <span className="text-red-800">
+                              (Field must be greater than 10 and less than 50
+                              characters)
+                            </span>
+                          )}
                       </label>
                       <input
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-[355px]"
@@ -149,7 +172,15 @@ export default function CreateIssueModal({ open, setOpen }) {
                     {/* Issue Description */}
                     <div className="my-5 flex flex-col items-start sm:block">
                       <h3 className="mb-2 text-sm text-gray-500">
-                        Description
+                        Description{" "}
+                        {submitted &&
+                          (issueDescription.length < 50 ||
+                            issueDescription.length > 1000) && (
+                            <span className="text-red-800">
+                              (Field must be greater than 50 and less than 1000
+                              characters)
+                            </span>
+                          )}
                       </h3>
                       <QuillTextEditor
                         setValue={setIssueDescription}

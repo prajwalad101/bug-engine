@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "react-query";
+import { deleteToastNotify } from "../utils/toastFunc";
 
 function useDeleteIssue(projectId, issueId) {
   const queryClient = useQueryClient();
@@ -19,6 +20,7 @@ function useDeleteIssue(projectId, issueId) {
     {
       onSuccess: () => {
         // refetch the issues
+        deleteToastNotify("Successfully deleted issue");
         return queryClient.invalidateQueries(issueId);
       },
     }
