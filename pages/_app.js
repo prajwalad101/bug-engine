@@ -27,20 +27,6 @@ function MyApp({ Component, pageProps }) {
       )}
     </>
   );
-
-  // return (
-  //   <Providers session={pageProps.session}>
-  //     {Component.auth === false ? (
-  //       <Component {...pageProps} />
-  //     ) : (
-  //       <Auth setIsAdmin={setIsAdmin}>
-  //         <Layout isAdmin={isAdmin}>
-  //           <Component {...pageProps} isAdmin={isAdmin} />
-  //         </Layout>
-  //       </Auth>
-  //     )}
-  //   </Providers>
-  // );
 }
 
 export default MyApp;
