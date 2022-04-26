@@ -7,11 +7,12 @@ import useAssignees from "../../hooks/useAssignees";
 import useCreateIssue from "../../hooks/useCreateIssue";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 
 // Components / Data
-// import TextEditor from "../Project/TextEditor";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
+import "react-quill/dist/quill.snow.css";
 import { issuePriorityOptions, issueTypeOptions } from "../../data";
-import QuillTextEditor from "../Project/QuillEditor";
 import { successNotification } from "../../utils/toastFunc";
 
 export default function CreateIssueModal({ open, setOpen }) {
@@ -182,9 +183,11 @@ export default function CreateIssueModal({ open, setOpen }) {
                             </span>
                           )}
                       </h3>
-                      <QuillTextEditor
-                        setValue={setIssueDescription}
+                      <ReactQuill
+                        theme="snow"
                         value={issueDescription}
+                        onChange={setIssueDescription}
+                        placeholder="Briefly describe what the issue is"
                       />
                     </div>
                   </div>

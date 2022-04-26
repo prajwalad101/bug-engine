@@ -9,18 +9,38 @@ function MyApp({ Component, pageProps }) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   return (
-    <Providers session={pageProps.session}>
-      {Component.auth === false ? (
+    <>
+      {Component.landing === true ? (
         <Component {...pageProps} />
       ) : (
-        <Auth setIsAdmin={setIsAdmin}>
-          <Layout isAdmin={isAdmin}>
-            <Component {...pageProps} isAdmin={isAdmin} />
-          </Layout>
-        </Auth>
+        <Providers session={pageProps.session}>
+          {Component.auth === false ? (
+            <Component {...pageProps} />
+          ) : (
+            <Auth setIsAdmin={setIsAdmin}>
+              <Layout isAdmin={isAdmin}>
+                <Component {...pageProps} isAdmin={isAdmin} />
+              </Layout>
+            </Auth>
+          )}
+        </Providers>
       )}
-    </Providers>
+    </>
   );
+
+  // return (
+  //   <Providers session={pageProps.session}>
+  //     {Component.auth === false ? (
+  //       <Component {...pageProps} />
+  //     ) : (
+  //       <Auth setIsAdmin={setIsAdmin}>
+  //         <Layout isAdmin={isAdmin}>
+  //           <Component {...pageProps} isAdmin={isAdmin} />
+  //         </Layout>
+  //       </Auth>
+  //     )}
+  //   </Providers>
+  // );
 }
 
 export default MyApp;
