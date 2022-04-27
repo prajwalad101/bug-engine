@@ -1,12 +1,5 @@
-import { useState } from "react";
-import IssueListbox from "../UI/NewIssue/IssueListBox";
-
 // data
-import {
-  issueTypeOptions,
-  issuePriorityOptions,
-  issueStatusOptions,
-} from "../../data";
+import { issuePriorityOptions, issueStatusOptions } from "../../data";
 import SetAssignee from "../UI/NewIssue/SetAssignee";
 import Image from "next/image";
 import SelectMenu from "./SelectMenu";

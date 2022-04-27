@@ -4,7 +4,6 @@ import Image from "next/image";
 
 import { signOut, useSession } from "next-auth/react";
 
-import { AiOutlineDown } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import DogeUser from "../../../public/img/doge-user.png";
 

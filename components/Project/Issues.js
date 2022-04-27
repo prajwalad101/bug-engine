@@ -7,7 +7,7 @@ import Issue from "./Issue.js";
 function Issues({ project, issues, isAdmin }) {
   const { data: session } = useSession();
 
-  if (!isAdmin) {
+  if (!isAdmin && session.user.role !== "demo") {
     // only show issues assigned for that user
     issues = formatIssues(issues, session);
   }

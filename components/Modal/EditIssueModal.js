@@ -7,6 +7,8 @@ import EditIssue from "../Issue/EditIssue";
 
 // functions
 import useAssignees from "../../hooks/useAssignees";
+import { useSession } from "next-auth/react";
+
 import useDeleteIssue from "../../hooks/useDeleteIssue";
 import useUpdateIssue from "../../hooks/useUpdateIssue";
 import { successNotification } from "../../utils/toastFunc";
@@ -18,6 +20,7 @@ export default function EditIssueModal({
   projectId,
   isAdmin,
 }) {
+  const { data: session } = useSession();
   const [issueStatus, setIssueStatus] = useState(issue.status);
   const [issuePriority, setIssuePriority] = useState(issue.priority);
   const [selectedAssignees, setSelectedAssignees] = useState(issue.assignees);
@@ -38,6 +41,9 @@ export default function EditIssueModal({
   }
 
   const updateIssue = () => {
+    if (session.user.role === "demo") {
+      return;
+    }
     const newIssue = {
       status: issueStatus,
       priority: issuePriority,
@@ -120,15 +126,24 @@ export default function EditIssueModal({
               <div className="px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  className={`mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                    session.user.role === "demo" && "hover:cursor-not-allowed"
+                  }`}
                   onClick={updateIssue}
                 >
                   Update
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  onClick={() => deleteMutation.mutate()}
+                  className={`mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm ${
+                    session.user.role === "demo" && "hover:cursor-not-allowed"
+                  }`}
+                  onClick={() => {
+                    if (!isAdmin) {
+                      return;
+                    }
+                    deleteMutation.mutate();
+                  }}
                 >
                   Delete
                 </button>

@@ -1,5 +1,4 @@
 import { getProviders, signIn } from "next-auth/react";
-import { useRouter } from "next/router";
 import GetStarted from "../../components/SignIn/GetStarted";
 
 export default function SignIn({ providers }) {

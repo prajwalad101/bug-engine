@@ -1,9 +1,12 @@
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { useState } from "react";
+import Image from "next/image";
 import useComments from "../../hooks/comment/useComments";
+
 import useCreateComment from "../../hooks/comment/useCreateComment";
+
 import Comment from "./Comment";
+import DogeUser from "../../public/img/doge-user.png";
 
 function Comments({ projectId, issueId }) {
   const { data: session } = useSession();
@@ -22,6 +25,9 @@ function Comments({ projectId, issueId }) {
   }
 
   const addComment = () => {
+    if (session.user.role === "demo") {
+      return;
+    }
     mutation.mutate(
       { comment, sender: session.user },
       { onSuccess: () => setComment("") }
@@ -37,13 +43,17 @@ function Comments({ projectId, issueId }) {
       </h1>
       <div className="flex items-center gap-3 mt-4">
         <div className="flex items-center min-w-[30px]">
-          <Image
-            src={session.user.image}
-            alt="User-img"
-            width={33}
-            height={33}
-            className="rounded-full"
-          />
+          {session.user.image ? (
+            <Image
+              src={session.user.image}
+              alt="User-img"
+              width={33}
+              height={33}
+              className="rounded-full"
+            />
+          ) : (
+            <Image src={DogeUser} alt="user profile" width={35} height={35} />
+          )}
         </div>
 
         <input
@@ -56,7 +66,9 @@ function Comments({ projectId, issueId }) {
         />
         <button
           onClick={addComment}
-          className="bg-blue-500 shadow-md px-4 py-2 rounded-md text-white hover:cursor-pointer hover:bg-blue-700 text-sm"
+          className={`bg-blue-500 shadow-md px-4 py-2 rounded-md text-white hover:cursor-pointer hover:bg-blue-700 text-sm ${
+            session.user.role === "demo" && "hover:cursor-not-allowed"
+          }`}
         >
           Send
         </button>

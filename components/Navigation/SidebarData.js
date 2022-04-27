@@ -40,7 +40,6 @@ const SidebarUserData = [
 
 export const getSidebarData = (isAdmin, session) => {
   if (isAdmin || session.user.role === "demo") {
-    console.log("returning sidebar data");
     return SidebarAdminData;
   } else {
     return SidebarUserData;

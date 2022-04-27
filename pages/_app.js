@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }) {
             <Component {...pageProps} />
           ) : (
             <Auth setIsAdmin={setIsAdmin}>
-              <Layout isAdmin={isAdmin}>
+              <Layout isAdmin={isAdmin} isNavbar={Component.navbar}>
                 <Component {...pageProps} isAdmin={isAdmin} />
               </Layout>
             </Auth>

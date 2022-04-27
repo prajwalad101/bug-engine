@@ -165,4 +165,6 @@ function IssuePage({ isAdmin }) {
   );
 }
 
+IssuePage.navbar = false;
+
 export default IssuePage;
