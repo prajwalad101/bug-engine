@@ -43,7 +43,7 @@ function People() {
     <section className="mt-5 mx-5">
       <h1 className="text-2xl font-semibold mb-3">Assignees</h1>
       <div className="relative overflow-x-auto shadow sm:rounded-sm mt-5">
-        <table className="w-full text-sm text-left text-gray-500 ">
+        <table className="w-full text-sm text-left text-gray-500">
           <thead className="text-[14px] text-gray-500 uppercase bg-gray-200 ">
             <tr>
               <th scope="col" className="px-6 py-3">

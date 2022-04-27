@@ -12,8 +12,6 @@ export default function SelectMenu({ selectedRole, setSelectedRole, setOpen }) {
     setOpen(true);
   };
 
-  console.log(session.user.role);
-
   return (
     <div className="min-w-[130px] col-span-6 sm:col-span-3">
       {session.user.role !== "demo" ? (

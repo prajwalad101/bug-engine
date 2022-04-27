@@ -41,7 +41,7 @@ export default function EditIssueModal({
   }
 
   const updateIssue = () => {
-    if (session.user.role === "demo") {
+    if (session.user.role === "demo" || session.user.role === "submitter") {
       return;
     }
     const newIssue = {
@@ -119,6 +119,7 @@ export default function EditIssueModal({
                       setIssuePriority={setIssuePriority}
                       selectedAssignees={selectedAssignees}
                       setSelectedAssignees={setSelectedAssignees}
+                      isAdmin={isAdmin}
                     />
                   </div>
                 </div>
@@ -136,7 +137,7 @@ export default function EditIssueModal({
                 <button
                   type="button"
                   className={`mt-3 w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm ${
-                    session.user.role === "demo" && "hover:cursor-not-allowed"
+                    !isAdmin && "hover:cursor-not-allowed"
                   }`}
                   onClick={() => {
                     if (!isAdmin) {

@@ -24,7 +24,7 @@ function DashboardPage({ isAdmin }) {
   });
   allIssues = allIssues.flat();
 
-  if (!isAdmin) {
+  if (!isAdmin && session.user.role !== "demo") {
     allIssues = formatIssues(allIssues, session);
   }
 

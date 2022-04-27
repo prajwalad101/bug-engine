@@ -59,6 +59,7 @@ export default function EditIssue(props) {
                   allAssignees={props.allAssignees}
                   selectedAssignees={props.selectedAssignees}
                   setSelectedAssignees={props.setSelectedAssignees}
+                  isAdmin={props.isAdmin}
                 />
               ) : (
                 <p>No assignees to assign this issue</p>
@@ -79,7 +80,12 @@ export default function EditIssue(props) {
                         width={30}
                         height={30}
                         className="rounded-full hover:cursor-pointer"
-                        onClick={() => removeSelectedAssignee(assignee._id)}
+                        onClick={() => {
+                          if (!props.isAdmin) {
+                            return;
+                          }
+                          removeSelectedAssignee(assignee._id);
+                        }}
                       />
                     </div>
                   ))}

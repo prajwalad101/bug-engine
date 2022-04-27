@@ -44,9 +44,15 @@ function ActivityPage() {
             </tr>
           </thead>
 
-          {activities.map((activity) => (
-            <Activity activity={activity} key={activity._id} />
-          ))}
+          {activities.map((activity) => {
+            if (
+              activity.action === "update" &&
+              activity.updatedInfo.length === 0
+            ) {
+              return;
+            }
+            return <Activity activity={activity} key={activity._id} />;
+          })}
         </table>
       </div>
       <PeoplePagination
