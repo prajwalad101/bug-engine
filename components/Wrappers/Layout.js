@@ -5,7 +5,8 @@ import Sidebar from "../Navigation/Sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Layout({ children, isAdmin }) {
+function Layout({ children, isAdmin, isNavbar }) {
+  console.log(isNavbar);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -15,7 +16,10 @@ function Layout({ children, isAdmin }) {
         pauseOnFocusLoss={false}
         bodyClassName="font-poppins text-sm"
       />
-      <Navbar setSidebarOpen={setSidebarOpen} isAdmin={isAdmin} />
+      {isNavbar !== false && (
+        <Navbar setSidebarOpen={setSidebarOpen} isAdmin={isAdmin} />
+      )}
+
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
