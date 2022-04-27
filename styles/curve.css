@@ -1,7 +1,13 @@
-.curved {
-  color: white;
-}
-
-.curved svg {
-  display: block;
+.signin-container::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 100vh;
+  height: 100vh;
+  background: #008dff;
+  border-radius: 50%;
+  transform-origin: bottom;
+  transform: translate(-50%) scale(3);
+  margin-bottom: 150px;
 }
