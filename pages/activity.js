@@ -22,7 +22,7 @@ function ActivityPage() {
   }
 
   return (
-    <div className="m-4 ">
+    <div className="m-4">
       <h1 className="text-2xl font-semibold mb-3">Activities</h1>
       <div className="relative overflow-x-auto shadow sm:rounded-sm mt-8">
         <table className="w-full text-sm text-left text-gray-500 ">

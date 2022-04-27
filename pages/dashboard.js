@@ -9,7 +9,8 @@ import Card from "../components/Dashboard/Card";
 import { Tabs } from "../components/Dashboard/Tabs";
 import UserDropdown from "../components/UI/Heading/UserDropdown";
 
-function DashboardPage({ isAdmin }) {
+function DashboardPage({ admin }) {
+  const isAdmin = admin.current;
   const { isLoading, isError, data, error } = useProjects();
   const { data: session, status } = useSession();
 
@@ -38,7 +39,7 @@ function DashboardPage({ isAdmin }) {
   const noCompletedIssues = completedIssues.length;
 
   return (
-    <div className="mx-4 my-4">
+    <div className="m-4">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>

@@ -1,30 +1,26 @@
 import "../styles/globals.css";
 
-import { useState } from "react";
 import Providers from "../components/Wrappers/Providers";
 import Layout from "../components/Wrappers/Layout";
 import Auth from "../components/Wrappers/Auth";
+import { useRef } from "react";
 
 function MyApp({ Component, pageProps }) {
-  const [isAdmin, setIsAdmin] = useState(false);
+  const admin = useRef();
 
   return (
     <>
-      {Component.landing === true ? (
-        <Component {...pageProps} />
-      ) : (
-        <Providers session={pageProps.session}>
-          {Component.auth === false ? (
-            <Component {...pageProps} />
-          ) : (
-            <Auth setIsAdmin={setIsAdmin}>
-              <Layout isAdmin={isAdmin} isNavbar={Component.navbar}>
-                <Component {...pageProps} isAdmin={isAdmin} />
-              </Layout>
-            </Auth>
-          )}
-        </Providers>
-      )}
+      <Providers session={pageProps.session}>
+        {Component.auth === false ? (
+          <Component {...pageProps} />
+        ) : (
+          <Auth admin={admin}>
+            <Layout admin={admin} isNavbar={Component.navbar}>
+              <Component {...pageProps} admin={admin} />
+            </Layout>
+          </Auth>
+        )}
+      </Providers>
     </>
   );
 }

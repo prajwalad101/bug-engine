@@ -27,7 +27,6 @@ export function Tabs({ setChartType }) {
           className="form-select block w-full p-3 border border-gray-300 rounded text-gray-600 appearance-none bg-transparent relative z-10"
         >
           <option
-            selected
             className="text-sm text-gray-600"
             onClick={() => setChartType("status")}
           >

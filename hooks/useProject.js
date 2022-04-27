@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-export const getProjectById = async (projectId) => {
+const getProjectById = async (projectId) => {
   const res = await fetch(`/api/project/${projectId}`);
 
   if (!res.ok) {
@@ -10,7 +10,5 @@ export const getProjectById = async (projectId) => {
 };
 
 export default function useProject(projectId) {
-  return useQuery(["project", projectId], () => getProjectById(projectId), {
-    enabled: !!projectId,
-  });
+  return useQuery(["project", projectId], () => getProjectById(projectId));
 }

@@ -5,7 +5,8 @@ import Sidebar from "../Navigation/Sidebar";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function Layout({ children, isAdmin, isNavbar }) {
+function Layout({ children, admin, isNavbar }) {
+  const isAdmin = admin.current;
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (

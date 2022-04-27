@@ -10,11 +10,7 @@ const getIssueById = async (projectId, issueId) => {
 };
 
 export default function useIssue(projectId, issueId) {
-  return useQuery(
-    ["issue", projectId, issueId],
-    () => getIssueById(projectId, issueId),
-    {
-      enabled: !!projectId && !!issueId,
-    }
+  return useQuery(["issue", projectId, issueId], () =>
+    getIssueById(projectId, issueId)
   );
 }

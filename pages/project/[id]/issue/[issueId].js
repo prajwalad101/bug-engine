@@ -17,7 +17,8 @@ import { getFormattedDate } from "../../../../utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
 
-function IssuePage({ isAdmin }) {
+function IssuePage({ admin }) {
+  const isAdmin = admin.current;
   const { data: session } = useSession();
   const router = useRouter();
 

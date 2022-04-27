@@ -9,7 +9,8 @@ import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 import Pagination from "../../../components/Project/Pagination";
 import { formatPagination } from "../../../utils/issuesFunc";
 
-function ProjectPage({ isAdmin }) {
+function ProjectPage() {
+  const isAdmin = true;
   const [issueStatus, setIssueStatus] = useState("Open");
   const [pageNum, setPageNum] = useState(1);
   let totalIssues = 0;

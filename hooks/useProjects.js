@@ -4,7 +4,7 @@ const getProjects = async () => {
   const res = await fetch("/api/projects");
 
   if (!res.ok) {
-    throw new Error("Unable to fetch data");
+    throw new Error("Unable to fetch data", 404);
   }
   return res.json();
 };

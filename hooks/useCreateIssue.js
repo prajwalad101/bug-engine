@@ -23,7 +23,7 @@ function useCreateIssue(projectId) {
     {
       onSuccess: () => {
         // refetch the issues for the project
-        return queryClient.invalidateQueries("project");
+        return queryClient.invalidateQueries(["project", projectId]);
       },
     }
   );
