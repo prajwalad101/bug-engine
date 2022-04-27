@@ -64,7 +64,6 @@ export default function CreateIssueModal({ open, setOpen }) {
     };
     mutation.mutate(newIssue, {
       onSuccess: () => {
-        router.push(`/project/${projectId}`);
         setOpen(false);
         successNotification("Successfully created issue");
         setIssueTitle("");

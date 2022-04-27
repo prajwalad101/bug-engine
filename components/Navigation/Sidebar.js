@@ -56,7 +56,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
           return (
             <Link href={item.path} passHref key={index}>
               <li
-                // key={index}
                 className={`flex items-center text-gray-300 mb-[2px] pl-3 lg:pl-5 h-12 hover:bg-sidebar-hover hover:cursor-pointer transition-colors ${
                   item.title === selectedTab && "bg-sidebar-hover"
                 }`}
@@ -71,7 +70,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
                 </div>
               </li>
             </Link>
-            // </Link>
           );
         })}
         <div className="flex items-center justify-between text-gray-400 ml-3 lg:pl-4 mt-9">
