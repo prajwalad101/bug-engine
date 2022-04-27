@@ -1,6 +1,7 @@
 // hooks
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
 import useIssue from "../../../../hooks/useIssue";
 
 // components
@@ -17,6 +18,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 function IssuePage({ isAdmin }) {
+  const { data: session } = useSession();
   const router = useRouter();
 
   const { id, issueId } = router.query;
@@ -76,14 +78,15 @@ function IssuePage({ isAdmin }) {
                 </span>
               </div>
             </div>
-            <div
-              className="tablet:mr-4 h-[35px] shadow-md border-gray-200 border p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
-              onClick={() => setIsModalOpen(true)}
-            >
-              <FiEdit2 size={20} className="text-gray-700" />
-            </div>
+            {session.user.role !== "submitter" && (
+              <div
+                className="tablet:mr-4 h-[35px] shadow-md border-gray-200 border p-2 rounded-md hover:cursor-pointer hover:bg-gray-50"
+                onClick={() => setIsModalOpen(true)}
+              >
+                <FiEdit2 size={20} className="text-gray-700" />
+              </div>
+            )}
           </div>
-
           {/* Issue title */}
           <div className="flex items-center justify-between mb-5">
             <p className="text-xl font-medium">{issue.name}</p>
@@ -144,9 +147,12 @@ function IssuePage({ isAdmin }) {
             </dl>
           </div>
           <Tabs tab={tab} setTab={setTab} />
+
           {/* Description */}
           {tab === "Description" && (
-            <div dangerouslySetInnerHTML={sanitizedData()} className="mt-5" />
+            <div className="max-w-[600px]">
+              <div dangerouslySetInnerHTML={sanitizedData()} className="mt-5" />
+            </div>
           )}
 
           {tab === "Comments" && (
