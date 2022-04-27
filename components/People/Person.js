@@ -42,7 +42,9 @@ function Person({ user, verifiedUsers }) {
           </div>
         </th>
         <td className="px-6 py-4 whitespace-nowrap">{user.email}</td>
-        <td className="px-6 py-4 whitespace-nowrap">{joinedDate}</td>
+        <td className="px-6 py-4 whitespace-nowrap">
+          {joinedDate ? joinedDate : "NA"}
+        </td>
         <td className="px-6 py-4 whitespace-nowrap">
           <SelectMenu
             selectedRole={selectedRole}

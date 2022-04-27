@@ -60,10 +60,6 @@ function People() {
               </th>
             </tr>
           </thead>
-          {/* <tbody>
-            <td>Data1</td>
-            <td>Data2</td>
-          </tbody> */}
           {filteredUsers.map((user) => (
             <Person user={user} key={user._id} verifiedUsers={verifiedUsers} />
           ))}

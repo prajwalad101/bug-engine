@@ -1,6 +1,6 @@
 import useProjects from "../../hooks/useProjects";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 
 import * as AiIcons from "react-icons/ai";
@@ -8,11 +8,10 @@ import { IoAddSharp } from "react-icons/io5";
 
 import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
-import UserDropdown from "../UI/Heading/UserDropdown";
 import CreateProjectModal from "../Modal/CreateProjectModal";
-import useProject from "../../hooks/useProject";
 
 function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
+  const { data: session } = useSession();
   const [selectedTab, setSelectedTab] = useState("Dashboard");
   const [projectModal, setProjectModal] = useState(false);
 
@@ -21,7 +20,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   // useProject("62612f85a42c7d72bbc22539");
 
   const projects = data?.data;
-  const sidebarData = getSidebarData(isAdmin);
+  const sidebarData = getSidebarData(isAdmin, session);
 
   if (isLoading) {
     return <span>Loading...</span>;
