@@ -26,7 +26,6 @@ export default NextAuth({
     CredentialsProvider({
       name: "Demo user",
       async authorize(credentials) {
-        console.log("Cred", credentials);
         return credentials;
       },
     }),
