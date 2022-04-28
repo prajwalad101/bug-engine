@@ -5,7 +5,13 @@ import CreateIssueButton from "../UI/Issues/CreateIssueButton";
 import Searchbar from "../UI/Issues/Searchbar";
 import UserDropdown from "../UI/Heading/UserDropdown";
 
-function Heading({ project, statusToggleComponent, isAdmin }) {
+function Heading({
+  project,
+  statusToggleComponent,
+  isAdmin,
+  searchField,
+  setSearchField,
+}) {
   const { data: session } = useSession();
 
   return (
@@ -31,7 +37,10 @@ function Heading({ project, statusToggleComponent, isAdmin }) {
       <section className="flex flex-col lgphone:items-center lgphone:flex-row lgphone:justify-between lg:mt-2">
         {/* Heading section 1 */}
         <div className="flex gap-10 items-center xl:gap-20 mt-5 grow">
-          <Searchbar />
+          <Searchbar
+            searchField={searchField}
+            setSearchField={setSearchField}
+          />
           {(isAdmin ||
             session.user.role === "submitter" ||
             session.user.role === "demo") && <CreateIssueButton />}

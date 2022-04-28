@@ -4,18 +4,7 @@ import { formatIssues } from "../../utils/issuesFunc.js";
 import NoIssues from "../UI/Issues/NoIssues";
 import Issue from "./Issue.js";
 
-function Issues({ project, issues, isAdmin }) {
-  const { data: session } = useSession();
-
-  if (
-    !isAdmin &&
-    session.user.role !== "demo" &&
-    session.user.role !== "submitter"
-  ) {
-    // only show issues assigned for that user
-    issues = formatIssues(issues, session);
-  }
-
+function Issues({ project, issues }) {
   return (
     <div className="relative overflow-x-auto shadow sm:rounded-sm mt-8">
       <table className="w-full text-sm text-left text-gray-500 ">

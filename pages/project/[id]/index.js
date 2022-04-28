@@ -4,16 +4,20 @@ import useProject from "../../../hooks/useProject";
 
 // components
 import Heading from "../../../components/Project/Heading";
-import Issues from "../../../components/Project/Issues";
 import StatusToggle from "../../../components/UI/Issues/StatusToggle";
 import Pagination from "../../../components/Project/Pagination";
-import { formatPagination } from "../../../utils/issuesFunc";
+import { formatIssues, formatPagination } from "../../../utils/issuesFunc";
+import { useSession } from "next-auth/react";
+import SearchIssues from "../../../components/Project/SearchIssues";
 
 function ProjectPage({ admin }) {
   const isAdmin = admin.current;
+  const { data: session } = useSession();
 
   const [issueStatus, setIssueStatus] = useState("Open");
   const [pageNum, setPageNum] = useState(1);
+  const [searchField, setSearchField] = useState("");
+
   let totalIssues = 0;
 
   // get project id
@@ -38,6 +42,16 @@ function ProjectPage({ admin }) {
   }
 
   let issues = project.issues.filter((el) => el.status === issueStatus); // issue status
+
+  if (
+    !isAdmin &&
+    session.user.role !== "demo" &&
+    session.user.role !== "submitter"
+  ) {
+    // only show issues assigned for that user
+    issues = formatIssues(issues, session);
+  }
+
   // sets the total issue number
   totalIssues = issues.length;
   issues = formatPagination(issues, pageNum, 10); // limit issues
@@ -57,8 +71,14 @@ function ProjectPage({ admin }) {
         project={project}
         statusToggleComponent={statusToggleComponent}
         isAdmin={isAdmin}
+        setSearchField={setSearchField}
+        searchField={searchField}
       />
-      <Issues project={project} issues={issues} isAdmin={isAdmin} />
+      <SearchIssues
+        project={project}
+        issues={issues}
+        searchField={searchField}
+      />
       <Pagination
         pageNum={pageNum}
         setPageNum={setPageNum}
