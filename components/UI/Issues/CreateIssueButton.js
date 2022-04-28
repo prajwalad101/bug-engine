@@ -12,14 +12,14 @@ function CreateIssueButton() {
 
   return (
     <div
-      className="mr-[30px] lgphone:min-w-[105px] bg-[#3197F5] text-white rounded-[4px] flex items-center justify-center hover:shadow-md hover:cursor-pointer transition-shadow hover:bg-[#52a9fa] "
+      className="mr-[30px] lgphone:min-w-[105px] bg-blue-600 text-white rounded-[4px] flex items-center justify-center hover:shadow-md hover:cursor-pointer transition-shadow hover:bg-blue-500 "
       onClick={createNewIssue}
     >
       <CreateIssueModal open={open} setOpen={setOpen} />
       <div className="px-[6px] py-[5px] lgphone:hidden">
         <IoAddSharp size={25} />
       </div>
-      <p className="hidden lgphone:block px-5 py-[6px]">Add new</p>
+      <p className="hidden lgphone:block px-5 py-2">Add new</p>
     </div>
   );
 }
