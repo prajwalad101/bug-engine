@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function ProjectLink({
   project,
@@ -7,12 +6,6 @@ export default function ProjectLink({
   activeProject,
   setActiveProject,
 }) {
-  const router = useRouter();
-
-  const pushToProjectPage = () => {
-    router.push(`/project/${project._id}`);
-  };
-
   const activeClass = activeProject === project._id ? "bg-sidebar-hover" : "";
 
   return (

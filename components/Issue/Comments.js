@@ -7,6 +7,7 @@ import useCreateComment from "../../hooks/comment/useCreateComment";
 
 import Comment from "./Comment";
 import DogeUser from "../../public/img/doge-user.png";
+import LoadingSpinner from "../LoadingSpinner";
 
 function Comments({ projectId, issueId }) {
   const { data: session } = useSession();
@@ -17,7 +18,7 @@ function Comments({ projectId, issueId }) {
   const { isLoading, isError, data, error } = useComments(projectId, issueId);
 
   if (isLoading) {
-    return <div>Loading comments</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

@@ -9,6 +9,7 @@ import { IoAddSharp } from "react-icons/io5";
 import { getSidebarData } from "./SidebarData";
 import ProjectLink from "../UI/Sidebar/ProjectLink";
 import CreateProjectModal from "../Modal/CreateProjectModal";
+import LoadingSpinner from "../LoadingSpinner";
 
 function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
   const { data: session } = useSession();
@@ -17,13 +18,12 @@ function Sidebar({ sidebarOpen, setSidebarOpen, isAdmin }) {
 
   // Fetch projects from the api
   const { isLoading, isError, data, error } = useProjects();
-  // useProject("62612f85a42c7d72bbc22539");
 
   const projects = data?.data;
   const sidebarData = getSidebarData(isAdmin, session);
 
   if (isLoading) {
-    return <span>Loading...</span>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

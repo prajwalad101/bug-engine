@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Activity from "../components/Activity/Activity";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 import PeoplePagination from "../components/People/PeoplePagination";
 import useActivities from "../hooks/useActivities";
@@ -14,7 +15,7 @@ function ActivityPage() {
   const resultCount = data?.resultCount;
 
   if (isLoading) {
-    return <div>Loading activities</div>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

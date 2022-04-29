@@ -8,6 +8,7 @@ import useProjects from "../hooks/useProjects";
 import Card from "../components/Dashboard/Card";
 import { Tabs } from "../components/Dashboard/Tabs";
 import UserDropdown from "../components/UI/Heading/UserDropdown";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function DashboardPage({ admin }) {
   const isAdmin = admin.current;
@@ -18,7 +19,7 @@ function DashboardPage({ admin }) {
 
   const projects = data?.data;
 
-  if (isLoading) return null;
+  if (isLoading) return <LoadingSpinner />;
 
   let allIssues = projects.map((project) => {
     return project.issues.map((issue) => issue);

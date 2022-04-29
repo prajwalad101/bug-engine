@@ -16,6 +16,7 @@ import DOMPurify from "dompurify";
 import { getFormattedDate } from "../../../../utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 
 function IssuePage({ admin }) {
   const isAdmin = admin.current;
@@ -38,7 +39,7 @@ function IssuePage({ admin }) {
   });
 
   if (isLoading) {
-    return <h1>loading</h1>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {

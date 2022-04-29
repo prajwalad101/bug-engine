@@ -9,6 +9,7 @@ import Pagination from "../../../components/Project/Pagination";
 import { formatIssues, formatPagination } from "../../../utils/issuesFunc";
 import { useSession } from "next-auth/react";
 import SearchIssues from "../../../components/Project/SearchIssues";
+import LoadingSpinner from "../../../components/LoadingSpinner";
 
 function ProjectPage({ admin }) {
   const isAdmin = admin.current;
@@ -30,7 +31,7 @@ function ProjectPage({ admin }) {
 
   // Check project statues
   if (isLoading) {
-    return <div>project page loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (!project) {

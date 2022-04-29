@@ -1,3 +1,4 @@
+import LoadingSpinner from "../components/LoadingSpinner";
 import Person from "../components/People/Person";
 import Users from "../components/People/Users";
 import useUsers from "../hooks/useUsers";
@@ -21,7 +22,7 @@ function People() {
   } = useVerifiedUsers();
 
   if (isUsersLoading || isVerifiedUsersLoading) {
-    return <div>Loading users...</div>;
+    return <LoadingSpinner />;
   }
 
   if (isUsersError || isVerifiedUsersError) {
