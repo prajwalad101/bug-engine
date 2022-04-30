@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useState } from "react";
 import Activity from "../components/Activity/Activity";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -24,6 +25,9 @@ function ActivityPage() {
 
   return (
     <div className="m-4">
+      <Head>
+        <title>Activity | BugEngine</title>
+      </Head>
       <h1 className="text-2xl font-semibold mb-3">Activities</h1>
       <div className="relative overflow-x-auto shadow sm:rounded-sm mt-8">
         <table className="w-full text-sm text-left text-gray-500 ">

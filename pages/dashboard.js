@@ -9,6 +9,7 @@ import Card from "../components/Dashboard/Card";
 import { Tabs } from "../components/Dashboard/Tabs";
 import UserDropdown from "../components/UI/Heading/UserDropdown";
 import LoadingSpinner from "../components/LoadingSpinner";
+import Head from "next/head";
 
 function DashboardPage({ admin }) {
   const isAdmin = admin.current;
@@ -41,6 +42,9 @@ function DashboardPage({ admin }) {
 
   return (
     <div className="m-4">
+      <Head>
+        <title>Dashboard | BugEngine</title>
+      </Head>
       {/* Header */}
       <div className="flex justify-between items-center">
         <h1 className="text-2xl font-semibold mb-3">Dashboard</h1>

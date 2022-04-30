@@ -17,6 +17,8 @@ import { getFormattedDate } from "../../../../utils/formatDate";
 import Image from "next/image";
 import Link from "next/link";
 import LoadingSpinner from "../../../../components/LoadingSpinner";
+import Head from "next/head";
+import { getIssueId } from "../../../../utils/issuesFunc";
 
 function IssuePage({ admin }) {
   const isAdmin = admin.current;
@@ -46,10 +48,14 @@ function IssuePage({ admin }) {
     return <h1>Error: {error}</h1>;
   }
 
+  const formattedId = getIssueId(issue._id);
   const date = getFormattedDate(issue.createdAt);
 
   return (
     <div className="mx-5 mt-4 font-inter">
+      <Head>
+        <title>Issue: #{formattedId} | BugEngine</title>
+      </Head>
       {/* modal for editing issue */}
       <EditIssueModal
         open={isModalOpen}
@@ -73,7 +79,7 @@ function IssuePage({ admin }) {
                 <span className="text-2xl">Issue</span>{" "}
                 <span className="text-xl text-gray-600 font-normal">
                   {" "}
-                  (#6434)
+                  (#{formattedId})
                 </span>
                 <span className="text-sm text-gray-500 font-normal ml-10 hidden tablet:inline">
                   Created on {date}

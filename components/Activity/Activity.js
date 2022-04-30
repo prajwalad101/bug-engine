@@ -1,14 +1,9 @@
 import formatDate from "../../utils/formatDate";
+import { getIssueId } from "../../utils/issuesFunc";
 import ActivityTitle from "./ActivityTitle";
 
 export default function Activity({ activity }) {
-  const idArr = activity.issue[0]._id.split("");
-
-  const idNum = idArr.filter((char) => !isNaN(char)).join("");
-  const id1 = idNum.slice(0, 2);
-  const id2 = idNum.slice(-3);
-
-  const id = id1 + id2;
+  const id = getIssueId(activity.issue[0]._id);
   const relativeDate = formatDate(new Date(activity.createdAt));
 
   return (

@@ -10,6 +10,7 @@ import { formatIssues, formatPagination } from "../../../utils/issuesFunc";
 import { useSession } from "next-auth/react";
 import SearchIssues from "../../../components/Project/SearchIssues";
 import LoadingSpinner from "../../../components/LoadingSpinner";
+import Head from "next/head";
 
 function ProjectPage({ admin }) {
   const isAdmin = admin.current;
@@ -68,6 +69,9 @@ function ProjectPage({ admin }) {
 
   return (
     <div className="mx-5 font-lato">
+      <Head>
+        <title>{project.name} | BugEngine</title>
+      </Head>
       <Heading
         project={project}
         statusToggleComponent={statusToggleComponent}
