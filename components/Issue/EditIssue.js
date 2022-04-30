@@ -71,7 +71,7 @@ export default function EditIssue(props) {
               {props.selectedAssignees.length === 0 ? (
                 <div className="text-gray-500 ">Not assigned</div>
               ) : (
-                <div>
+                <div className="flex">
                   {props.selectedAssignees.map((assignee) => (
                     <div key={assignee._id}>
                       <Image

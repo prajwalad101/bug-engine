@@ -140,7 +140,7 @@ function IssuePage({ admin }) {
               </div>
               <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Assignees:</dt>
-                <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                <dd className="mt-1 text-gray-900 flex">
                   {issue.assignees.map((assignee) => (
                     <div key={assignee._id} className="rounded-full">
                       <Image
