@@ -14,7 +14,7 @@ function Layout({ children, admin, isNavbar }) {
       <ToastContainer
         autoClose={2000}
         pauseOnFocusLoss={false}
-        bodyClassName="font-poppins text-sm"
+        bodyClassName="font-inter text-sm"
       />
       {isNavbar !== false && (
         <Navbar setSidebarOpen={setSidebarOpen} isAdmin={isAdmin} />
@@ -25,7 +25,7 @@ function Layout({ children, admin, isNavbar }) {
         setSidebarOpen={setSidebarOpen}
         isAdmin={isAdmin}
       />
-      <div className="lg:ml-[285px] side-transition">{children}</div>
+      <div className="lg:ml-[285px] side-transition font-inter">{children}</div>
     </>
   );
 }

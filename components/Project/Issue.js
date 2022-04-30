@@ -24,7 +24,7 @@ export default function Issue({ issue, pId }) {
         <th
           scope="row"
           className={classNames(
-            "px-6 py-4 text-[15px] font-medium uppercase font-worksans",
+            "px-6 py-4 text-[15px] font-medium uppercase",
             issue.priority === "High" && "text-red-700",
             issue.priority === "Medium" && "text-blue-500",
             issue.priority === "Low" && "text-gray-400"
@@ -32,9 +32,9 @@ export default function Issue({ issue, pId }) {
         >
           {issue.priority}
         </th>
-        <td className="px-6 py-4 font-hindsiliguri whitespace-nowrap">
+        <td className="px-6 py-4 whitespace-nowrap">
           <div>
-            <p className="font-medium text-xl text-black">{issue.name}</p>
+            <p className="font-medium text-lg text-black">{issue.name}</p>
             <p className="mt-1 text-base">
               #{issue.type} / {relativeDate} by {issue.submitter.name}
             </p>

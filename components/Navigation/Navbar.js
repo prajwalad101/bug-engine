@@ -13,7 +13,7 @@ function Navbar({ setSidebarOpen, isAdmin }) {
   const userImage = session.user.image;
 
   return (
-    <div className="flex items-center justify-between my-3 mx-5 lg:hidden">
+    <div className="font-inter flex items-center justify-between my-3 mx-5 lg:hidden">
       <MdMenu
         size={35}
         onClick={() => setSidebarOpen(true)}

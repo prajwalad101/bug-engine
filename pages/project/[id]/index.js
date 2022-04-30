@@ -68,7 +68,7 @@ function ProjectPage({ admin }) {
   );
 
   return (
-    <div className="mx-5 font-lato">
+    <div className="mx-5">
       <Head>
         <title>{project.name} | BugEngine</title>
       </Head>

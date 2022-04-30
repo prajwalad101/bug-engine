@@ -19,7 +19,7 @@ function Heading({
       <section className="flex ">
         <div className="flex grow items-end justify-between lg:justify-start lg:gap-24">
           <div>
-            <h1 className="font-bold text-[27px] leading-tight">Issues</h1>
+            <h1 className="font-semibold text-[25px] leading-tight">Issues</h1>
             <p className="text-gray-500 text-base">
               {project.issues.length} Outstanding
             </p>

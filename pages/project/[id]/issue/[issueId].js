@@ -52,7 +52,7 @@ function IssuePage({ admin }) {
   const date = getFormattedDate(issue.createdAt);
 
   return (
-    <div className="mx-5 mt-4 font-inter">
+    <div className="mx-5 mt-4">
       <Head>
         <title>Issue: #{formattedId} | BugEngine</title>
       </Head>
@@ -75,15 +75,17 @@ function IssuePage({ admin }) {
                   <IoArrowBack size={25} className="hover:cursor-pointer" />
                 </a>
               </Link>
-              <div>
-                <span className="text-2xl">Issue</span>{" "}
-                <span className="text-xl text-gray-600 font-normal">
-                  {" "}
-                  (#{formattedId})
-                </span>
-                <span className="text-sm text-gray-500 font-normal ml-10 hidden tablet:inline">
+              <div className="flex flex-col xl:flex-row xl:gap-5 items-center">
+                <div className="flex items-center gap-2">
+                  <p className="text-2xl">Issue</p>{" "}
+                  <p className="text-xl text-gray-600 font-normal">
+                    {" "}
+                    (#{formattedId})
+                  </p>
+                </div>
+                <p className="text-sm text-gray-500 font-normal hidden tablet:inline">
                   Created on {date}
-                </span>
+                </p>
               </div>
             </div>
             {session.user.role !== "submitter" && (
@@ -107,19 +109,19 @@ function IssuePage({ admin }) {
 
           <div className="mb-10">
             <dl className="max-w-[400px] text-base">
-              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4">
+              <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Tag:</dt>
                 <dd className="text-gray-900 sm:mt-0 sm:col-span-2">
                   {issue.type}
                 </dd>
               </div>
-              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4">
+              <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Priority:</dt>
                 <dd className="text-gray-500 sm:mt-0 sm:col-span-2 uppercase">
                   {issue.priority}
                 </dd>
               </div>
-              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4 tablet:hidden">
+              <div className="py-[7px] grid grid-cols-3 gap-4 tablet:hidden">
                 <dt className="font-normal text-gray-500">Status:</dt>
                 <dd className="text-gray-500 sm:mt-0 sm:col-span-2 uppercase">
                   <div className="mr-4 bg-[#E8DFB3] px-3 py-1 rounded-md w-[70px] text-center ">
@@ -130,13 +132,13 @@ function IssuePage({ admin }) {
                 </dd>
               </div>
 
-              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4">
+              <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Submitter:</dt>
                 <dd className="text-gray-900 sm:col-span-2">
                   {issue.submitter.name}
                 </dd>
               </div>
-              <div className="py-[7px] grid grid-cols-2 vsm:grid-cols-3 gap-4">
+              <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Assignees:</dt>
                 <dd className="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
                   {issue.assignees.map((assignee) => (

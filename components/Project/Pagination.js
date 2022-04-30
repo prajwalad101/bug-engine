@@ -16,8 +16,8 @@ export default function Pagination({
   };
 
   return (
-    <div className="flex justify-between items-center my-5 font-ibm">
-      <p className="text-sm text-gray-700">
+    <div className="flex justify-between items-center my-5">
+      <p className="text-sm text-gray-700 hidden vsm:block">
         Showing{" "}
         {currentIssues.length !== 0 ? (
           <span>

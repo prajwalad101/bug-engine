@@ -1,6 +1,3 @@
-import { useSession } from "next-auth/react";
-
-import { formatIssues } from "../../utils/issuesFunc.js";
 import NoIssues from "../UI/Issues/NoIssues";
 import Issue from "./Issue.js";
 
@@ -16,7 +13,6 @@ function Issues({ project, issues }) {
             <th scope="col" className="px-6 py-3">
               Issue
             </th>
-
             <th scope="col" className="px-6 py-3">
               Date
             </th>

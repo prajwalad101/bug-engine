@@ -8,8 +8,10 @@ export default function GetStarted({ providers }) {
   const router = useRouter();
 
   return (
-    <div className="block p-6 max-w-sm bg-white rounded-lg  mx-3 vsm:mx-auto">
-      <h5 className="mb-3 text-2xl font-semibold text-gray-700">Get started</h5>
+    <div className="block p-6 max-w-sm bg-white rounded-lg mx-3 vsm:mx-auto">
+      <h5 className="mb-3 text-[22px] font-semibold text-gray-700">
+        Get started
+      </h5>
 
       <p className="mb-8 text-gray-500">
         Completely free. No credit card required
@@ -60,8 +62,8 @@ export default function GetStarted({ providers }) {
             size={25}
             className="hidden vsm:inline text-blue-500"
           />
-          <span className="hidden vsm:inline text-gray-800"></span>
-          Login as Guest
+          <span className="hidden vsm:inline text-gray-800 "></span>
+          Continue as a Guest
         </button>
       </div>
     </div>
