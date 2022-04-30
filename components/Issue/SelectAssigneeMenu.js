@@ -3,28 +3,27 @@ import { Listbox, Transition } from "@headlessui/react";
 
 import { HiSelector, HiCheck } from "react-icons/hi";
 import Image from "next/image";
+import { useState } from "react";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function SelectMenu({ options, selected, setSelected }) {
+export default function SelectAssigneeMenu({ selected, setSelected, options }) {
   return (
-    <Listbox value={selected.name} onChange={setSelected}>
+    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
           <div className="relative">
             <Listbox.Button className="relative w-full bg-white border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               <span className="flex items-center">
-                {selected.image && (
-                  <Image
-                    src={selected.image}
-                    width={25}
-                    height={25}
-                    alt=""
-                    className="flex-shrink-0 h-6 w-6 rounded-full"
-                  />
-                )}
+                <Image
+                  src={selected.image}
+                  width={25}
+                  height={25}
+                  alt=""
+                  className="flex-shrink-0 h-6 w-6 rounded-full"
+                />
                 <span className="ml-3 block truncate">{selected.name}</span>
               </span>
               <span className="ml-3 absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
@@ -52,7 +51,7 @@ export default function SelectMenu({ options, selected, setSelected }) {
                         "cursor-default select-none relative py-2 pl-3 pr-9"
                       )
                     }
-                    value={option.name}
+                    value={option}
                   >
                     {({ selected, active }) => (
                       <>
