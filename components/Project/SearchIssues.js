@@ -1,8 +1,6 @@
 import Issues from "./Issues";
 
 export default function SearchIssues({ project, issues, searchField }) {
-  console.table(issues[0]);
-
   const filteredIssues = issues.filter((issue) => {
     return (
       issue.name.toLowerCase().includes(searchField.toLowerCase()) ||
@@ -11,8 +9,6 @@ export default function SearchIssues({ project, issues, searchField }) {
       issue.type.toLowerCase().includes(searchField.toLowerCase())
     );
   });
-
-  // console.log(filteredIssues);
 
   return (
     <div>

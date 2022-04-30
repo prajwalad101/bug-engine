@@ -1,6 +1,3 @@
-const defaultTheme = require("tailwindcss/defaultTheme");
-const colors = require("tailwindcss/colors");
-
 module.exports = {
   darkMode: "class", // or 'media' or 'class'
   content: [
@@ -9,9 +6,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        trueGray: colors.trueGray,
-      },
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         lato: ["Lato", "sans-serif"],

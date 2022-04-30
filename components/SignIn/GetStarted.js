@@ -2,6 +2,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import { AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import { BsFillPersonFill } from "react-icons/bs";
 
 export default function GetStarted({ providers }) {
   const router = useRouter();
@@ -55,8 +56,12 @@ export default function GetStarted({ providers }) {
             })
           }
         >
+          <BsFillPersonFill
+            size={25}
+            className="hidden vsm:inline text-blue-500"
+          />
           <span className="hidden vsm:inline text-gray-800"></span>
-          Log In as a Demo user
+          Login as Guest
         </button>
       </div>
     </div>

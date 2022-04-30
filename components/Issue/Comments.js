@@ -53,7 +53,7 @@ function Comments({ projectId, issueId }) {
               className="rounded-full"
             />
           ) : (
-            <Image src={DogeUser} alt="user profile" width={35} height={35} />
+            <Image src={DogeUser} alt="user profile" width={45} height={45} />
           )}
         </div>
 
