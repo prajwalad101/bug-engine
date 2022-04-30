@@ -12,7 +12,7 @@ function CreateIssueButton() {
 
   return (
     <div
-      className="mr-[30px] lgphone:min-w-[105px] bg-blue-600 text-white rounded-[4px] flex items-center justify-center hover:shadow-md hover:cursor-pointer transition-shadow hover:bg-blue-500 "
+      className="mr-[30px] lgphone:min-w-[105px] bg-blue-500 text-white rounded-[4px] flex items-center justify-center hover:shadow-md hover:cursor-pointer transition-shadow hover:bg-blue-600 "
       onClick={createNewIssue}
     >
       <CreateIssueModal open={open} setOpen={setOpen} />
