@@ -10,11 +10,11 @@ export default function SignIn({ providers }) {
         <link rel="shortcut icon" href="/hourglass.png" />
       </Head>
       <div className="relative z-[1] max-w-[1000px] text-center overflow-hidden max-h-[600px]">
-        <h1 className="text-3xl sm:text-4xl font-bold pt-10 mb-3 font-leaguespartan text-white">
+        <h1 className="text-3xl sm:text-3xl font-bold pt-10 mb-3 text-white">
           BugEngine
         </h1>
         <p className="mb-10 text-gray-200 text-base">
-          The issue tracker you&apos;ve always dreamed about 👌
+          The issue tracker you&apos;ve always wanted 👌
         </p>
         <GetStarted providers={providers} />
       </div>

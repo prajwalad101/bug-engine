@@ -23,7 +23,7 @@ export default function Auth({ children, admin }) {
     admin.current = verified[0].isAdmin;
   }
 
-  if (isLoading) return <div>Loading userdata</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (isError) return <div>An error occurred {error}</div>;
 
   if (isUser && verified) {
