@@ -5,7 +5,7 @@ import useVerifiedUsers from "../../hooks/useVerifiedUsers";
 import LoadingSpinner from "../LoadingSpinner";
 
 export default function Auth({ children, admin }) {
-  const { data: session, status } = useSession({
+  const { data: session } = useSession({
     required: true,
   });
   const isUser = !!session?.user;
@@ -22,16 +22,6 @@ export default function Auth({ children, admin }) {
   if (verified && verified.length !== 0) {
     admin.current = verified[0].isAdmin;
   }
-
-  // useEffect(() => {
-  //   if (!verified) {
-  //     return;
-  //   }
-  //   if (verified.length !== 0) {
-  //     admin.current = verified[0].isAdmin;
-  //     setIsAdmin(verified[0].isAdmin);
-  //   }
-  // }, [verified, admin]);
 
   if (isLoading) return <div>Loading userdata</div>;
   if (isError) return <div>An error occurred {error}</div>;
