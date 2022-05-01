@@ -19,6 +19,7 @@ function ProjectPage({ admin }) {
   const [issueStatus, setIssueStatus] = useState("Open");
   const [pageNum, setPageNum] = useState(1);
   const [searchField, setSearchField] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
 
   let totalIssues = 0;
 
@@ -83,13 +84,16 @@ function ProjectPage({ admin }) {
         project={project}
         issues={issues}
         searchField={searchField}
+        setIsEmpty={setIsEmpty}
       />
-      <Pagination
-        pageNum={pageNum}
-        setPageNum={setPageNum}
-        currentIssues={issues}
-        totalIssues={totalIssues}
-      />
+      {!isEmpty && (
+        <Pagination
+          pageNum={pageNum}
+          setPageNum={setPageNum}
+          currentIssues={issues}
+          totalIssues={totalIssues}
+        />
+      )}
     </div>
   );
 }

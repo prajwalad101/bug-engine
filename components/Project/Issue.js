@@ -43,22 +43,24 @@ export default function Issue({ issue, pId }) {
         {/* <td className="px-6 py-4">{issue.type}</td> */}
         <td className="px-6 py-4 text-base whitespace-nowrap">{date}</td>
         <td className="px-6 py-4">
-          {issue.assignees.length !== 0 ? (
-            issue.assignees.map((assignee) => (
-              <div key={assignee._id}>
-                <Image
-                  // key={assignee._id}
-                  alt="assignee"
-                  src={assignee.image}
-                  width={30}
-                  height={30}
-                  className="rounded-full"
-                />
-              </div>
-            ))
-          ) : (
-            <div className="text-base">NA</div>
-          )}
+          <div className="flex">
+            {issue.assignees.length !== 0 ? (
+              issue.assignees.map((assignee) => (
+                <div key={assignee._id}>
+                  <Image
+                    // key={assignee._id}
+                    alt="assignee"
+                    src={assignee.image}
+                    width={30}
+                    height={30}
+                    className="rounded-full"
+                  />
+                </div>
+              ))
+            ) : (
+              <div className="text-base">NA</div>
+            )}
+          </div>
         </td>
       </tr>
     </tbody>
