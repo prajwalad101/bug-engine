@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { useSession } from "next-auth/react";
 import useVerifiedUsers from "../../hooks/useVerifiedUsers";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function Auth({ children, admin }) {
   const { data: session, status } = useSession({
@@ -39,5 +40,9 @@ export default function Auth({ children, admin }) {
     return children;
   }
 
-  return <div>Loading session...</div>;
+  return (
+    <div>
+      <LoadingSpinner />
+    </div>
+  );
 }
