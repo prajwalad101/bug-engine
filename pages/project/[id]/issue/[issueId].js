@@ -112,7 +112,7 @@ function IssuePage({ admin }) {
               <div className="py-[7px] grid grid-cols-3 gap-4">
                 <dt className="font-normal text-gray-500">Tag:</dt>
                 <dd className="text-gray-900 sm:mt-0 sm:col-span-2">
-                  {issue.type}
+                  #{issue.type}
                 </dd>
               </div>
               <div className="py-[7px] grid grid-cols-3 gap-4">

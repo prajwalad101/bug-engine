@@ -19,7 +19,7 @@ function CreateIssueButton() {
       <div className="px-[6px] py-[5px] lgphone:hidden">
         <IoAddSharp size={25} />
       </div>
-      <p className="hidden lgphone:block px-5 py-2">Add new</p>
+      <p className="hidden lgphone:block py-2">Add new</p>
     </div>
   );
 }
