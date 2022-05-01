@@ -8,12 +8,6 @@ module.exports = {
     extend: {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        lato: ["Lato", "sans-serif"],
-        sourcesans: ["Source Sans Pro", "sans-serif"],
-        leaguespartan: ["League Spartan", "sans-serif"],
-        poppins: ["Poppins", "sans-serif"],
-        raleway: ["Raleway", "sans-serif"],
-        worksans: ["Work Sans", "sans-serif"],
         hindsiliguri: ["Hind Siliguri", "sans-serif"],
       },
       colors: {

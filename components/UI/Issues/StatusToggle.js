@@ -5,7 +5,7 @@ function StatusToggle({ issueStatus, setIssueStatus, project }) {
   );
 
   return (
-    <div className="flex h-[40px] font-raleway">
+    <div className="flex h-[40px]">
       <div
         className={`${
           issueStatus === "Open" ? "border-[#3197f5]" : "border-[#D4D4D4]"

@@ -4,16 +4,16 @@ export const chartOptions = {
     legend: {
       labels: {
         font: {
-          family: "Poppins",
+          family: "Inter",
         },
       },
     },
     tooltip: {
       bodyFont: {
-        family: "Poppins",
+        family: "Inter",
       },
       titleFont: {
-        family: "Poppins",
+        family: "Inter",
       },
     },
   },
@@ -21,14 +21,14 @@ export const chartOptions = {
     yAxes: {
       ticks: {
         font: {
-          family: "Poppins",
+          family: "Inter",
         },
       },
     },
     xAxes: {
       ticks: {
         font: {
-          family: "Poppins",
+          family: "Inter",
         },
       },
     },
