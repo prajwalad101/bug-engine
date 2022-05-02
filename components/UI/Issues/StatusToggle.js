@@ -15,9 +15,11 @@ function StatusToggle({ issueStatus, setIssueStatus, project }) {
         <p
           className={`${
             issueStatus === "Open" ? "text-[#3197f5]" : "text-[#898989]"
-          } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
+          } text-[13.5px] lgphone:text-[14px] font-semibold px-1 whitespace-nowrap`}
         >
-          Outstanding <span className="ml-1">({openIssues.length})</span>
+          <span className="hidden sm:inline">Outstanding</span>
+          <span className="sm:hidden">Open</span>
+          <span className="ml-1">({openIssues.length})</span>
         </p>
       </div>
       <div
@@ -31,7 +33,8 @@ function StatusToggle({ issueStatus, setIssueStatus, project }) {
             issueStatus === "Completed" ? "text-[#3197f5]" : "text-[#898989]"
           } text-[13.5px] lgphone:text-[14px] font-semibold  px-1`}
         >
-          Completed
+          <span className="hidden sm:inline">Completed</span>
+          <span className="sm:hidden">Closed</span>
           <span className="font-lato ml-1">({closedIssues.length})</span>
         </p>
       </div>
