@@ -48,11 +48,9 @@ function Heading({
         {/* Heading section 2 */}
         <div className="flex items-center justify-between mt-5">
           {statusToggleComponent}
-          {/* <FilterIssues /> */}
         </div>
       </section>
       <hr className="hr-line mt-5 lgphone:hidden" />
-      {/* <ListHeading /> */}
     </div>
   );
 }

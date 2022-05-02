@@ -86,14 +86,14 @@ function ProjectPage({ admin }) {
         searchField={searchField}
         setIsEmpty={setIsEmpty}
       />
-      {!isEmpty && (
-        <Pagination
-          pageNum={pageNum}
-          setPageNum={setPageNum}
-          currentIssues={issues}
-          totalIssues={totalIssues}
-        />
-      )}
+      {/* {!isEmpty && ( */}
+      <Pagination
+        pageNum={pageNum}
+        setPageNum={setPageNum}
+        currentIssues={issues}
+        totalIssues={totalIssues}
+      />
+      {/* )} */}
     </div>
   );
 }
