@@ -8,49 +8,37 @@ export default function GetStarted({ providers }) {
   const router = useRouter();
 
   return (
-    <div className="block p-6 max-w-sm bg-white rounded-lg mx-3 vsm:mx-auto">
-      <h5 className="mb-3 text-[22px] font-semibold text-gray-700">
-        Get started
-      </h5>
-
-      <p className="mb-8 text-gray-500">
-        Completely free. No credit card required
-      </p>
-      <div className="flex flex-col items-center">
+    <section>
+      <div className="flex flex-col items-center gap-7">
         {Object.values(providers).map((provider) => {
           return (
-            <div
-              key={provider.name}
-              className="flex flex-col items-center justify-center"
-            >
-              {provider.name !== "Demo user" && (
+            provider.name !== "Demo user" && (
+              <div
+                key={provider.name}
+                className="flex flex-col items-center justify-center w-full"
+              >
                 <button
-                  type="button"
-                  className="flex gap-3 items-center bg-shadow font-medium rounded-sm text-md px-5 py-2.5 mr-2 mb-2 hover:bg-gray-50 transition-colors"
+                  className="w-full flex justify-center items-center gap-3 border-2 rounded-[5px] text-md px-5 py-3 border-blue-500 hover:bg-blue-500 hover:text-white transition-colors"
                   onClick={() =>
                     signIn(provider.id, {
                       callbackUrl: router.query.callbackUrl,
                     })
                   }
                 >
-                  <span className="hidden vsm:inline text-gray-800">
-                    {provider.name === "GitHub" && <AiFillGithub size={25} />}
-                    {provider.name === "Google" && <FcGoogle size={25} />}
-                  </span>
+                  {provider.name === "GitHub" && <AiFillGithub size={25} />}
+                  {provider.name === "Google" && <FcGoogle size={25} />}
                   Continue with {provider.name}
                 </button>
-              )}
-              {provider.name === "GitHub" && (
-                <p className="text-gray-600 mb-2">or</p>
-              )}
-            </div>
+              </div>
+            )
           );
         })}
-        <p className="text-gray-600 mb-3">or</p>
+      </div>
 
+      <div className="w-full text-center">
+        <p className="my-4 text-gray-500 font-medium">or</p>
         <button
-          type="button"
-          className="flex gap-3 items-center bg-shadow font-medium rounded-sm text-md px-5 py-2.5 mr-2 mb-2 hover:bg-gray-50 transition-colors"
+          className="w-full flex justify-center items-center gap-3 border-2 border-blue-500 rounded-[5px] text-md px-5 py-3  bg-blue-500 text-white hover:bg-blue-600 hover:border-blue-600 transition-colors"
           onClick={() =>
             signIn("credentials", {
               demo: true,
@@ -58,14 +46,10 @@ export default function GetStarted({ providers }) {
             })
           }
         >
-          <BsFillPersonFill
-            size={25}
-            className="hidden vsm:inline text-blue-500"
-          />
-          <span className="hidden vsm:inline text-gray-800 "></span>
+          <BsFillPersonFill size={25} />
           Continue as a Guest
         </button>
       </div>
-    </div>
+    </section>
   );
 }
