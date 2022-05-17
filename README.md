@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div id="top"></div>
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h1 align="center">BugEngine</h1>
+  <p align="center">
+    A free issue tracker that you really need
+    <br />
+    <br/>
+    <a href="https://bug-engine.vercel.app">Get Started</a>
+  </p>
+</div>
 
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![bugengine-landing](https://user-images.githubusercontent.com/84787320/167077488-11e60480-b9f0-4a99-8274-b803052e045a.PNG)
+
+
+BugEngine is an simple and minimalistic issue tracker that helps you to track bugs in your project. The interface is simple to use so that the learning curve application is extremly minimal. The project focuses only on the core functionalities that you will need to track issues. 
+
+If you are working on a large development team, then this application might not be the right choice for you as it is mainly made for personal projects with a team of 3-8 people.
+
+Here are some of the main features of the application:
+* Helps you to save time by removing unnecessary issue tracking features for individuals.
+* Simple and easy to use for beginners.
+* It is flexible and can be used any way you want. And did I also mention it's free :smile:
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+
+### Built With
+
+Here are some of the technologies I used to build this project
+
+* [Next.js](https://nextjs.org/)
+* [React.js](https://reactjs.org/)
+* [TailwindCSS](https://tailwindcss.com/)
+* [NodeJS](https://nodejs.org/en/)
+* [MongoDB/ Mongoose](https://www.mongodb.com/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Demo
+
+![ezgif com-gif-maker(1)](https://user-images.githubusercontent.com/84787320/167091649-daacf97c-2316-4a50-8af2-82d6be7f7d03.gif)
+
+
+<!-- GETTING STARTED -->
 ## Getting Started
 
-First, run the development server:
+If you want to see how the code base of the project works, feel free to fork the project and clone it.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run the application, you need to have node installed into your system. This automatically comes with npm which you can use to install packages and run the application.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Installation
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Below is the step by step guide explaining how you can run the application into your local system.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+2. Clone the repo
+   ```sh
+   git clone https://github.com/Prajwalad101/bug-engine.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run the application`
+   ```js
+   npm start
+   ```
+   
+5. You will also need to add your own environment variables inside the .env.local file inside root folder
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<p align="right">(<a href="#top">back to top</a>)</p>
